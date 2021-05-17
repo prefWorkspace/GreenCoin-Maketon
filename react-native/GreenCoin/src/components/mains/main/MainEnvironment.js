@@ -3,7 +3,7 @@ import { TouchableOpacity, Text,Image, View, Dimensions,ScrollView,StyleSheet, A
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation ,useRoute } from '@react-navigation/native';
 import userInfoSingleton from '../../../db/userInfoSingleton';
-MainEnvironmentResult
+
 export default function MainEnvironment() {
   const navigation = useNavigation();
   const routeInfo = useRoute();
@@ -13,38 +13,38 @@ export default function MainEnvironment() {
         <View style={styles.subContainer}>
           <View style={styles.itemContainer}>
             <View style={styles.titleContainer}>
-              <Text style={styles.title}>미세먼지</Text>
+              <Text  style={[styles.title]}>미세먼지</Text>
               <View style={styles.titleDateContainer}>
-                <Text style={styles.title}>10:30AM</Text>
-                <Text>img</Text>    
+                <Text  style={[styles.title]} >10:30AM</Text>
+                <Image style={styles.resetImage} source={require('../../../assets/img/icon/reset.png')}></Image>
               </View>
             </View>
             <View style={styles.dustInfoContainer}>
               <View style={styles.dustIconImage}>
-                <Text>아이콘</Text>
+                <Image style={styles.dustIconImage} source={require('../../../assets/img/icon/dustIcon.png')}></Image>
               </View>
               <View>
-                <Text>미세먼지<Text>좋음</Text></Text>
-                <Text>초미세먼지<Text>좋음</Text></Text>
-                <Text>오존<Text>좋음</Text></Text>
+                <Text style={[styles.label,{bottom:"10%"}]}>&nbsp;&nbsp;미세먼지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{}]}>좋음</Text></Text>
+                <Text style={[styles.label,{bottom:"20%"}]}>&nbsp;&nbsp;초미세먼지&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{}]}>좋음</Text></Text>
+                <Text style={[styles.label,{bottom:"30%"}]}>&nbsp;&nbsp;오존&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{}]}>좋음</Text></Text>
               </View>
             </View>
           </View>
           <View style={styles.middleContainer}></View>
           <View style={styles.itemContainer}>
             <View style={styles.titleContainer}>
-              <Text style={styles.title}>대기 정보</Text>
+              <Text  style={[styles.label,styles.title]}>대기 정보</Text>
               <View style={styles.titleDateContainer}>
-                <Text style={styles.title}>10:30AM</Text>
-                <Text>img</Text>    
+                <Text  style={[styles.label,styles.title]} >10:30AM</Text>
+                <Image style={styles.resetImage} source={require('../../../assets/img/icon/reset.png')}></Image>
               </View>
             </View>
             <View style={styles.dustInfoContainer}>
               <View>
-                <Text>이산화탄소 <Text>좋음</Text> <Text>0.0070ppm</Text></Text>
-                <Text>일산화탄소 <Text>좋음</Text> <Text>0.0070ppm</Text></Text>
-                <Text>아황산가스 <Text>좋음</Text> <Text>0.0070ppm</Text></Text>
-                <Text>통합대기 <Text>좋음</Text> <Text>56</Text></Text>
+                <Text style={[styles.label,{bottom:"10%"}]}>이산화탄소 &nbsp;<Text style={[styles.scoreLike,{}]}>좋음</Text>&nbsp;&nbsp;&nbsp;<Text>0.0070ppm</Text></Text>
+                <Text style={[styles.label,{bottom:"20%"}]}>일산화탄소 &nbsp;<Text style={[styles.scoreLike,{color:"#FFC400"}]}>보통</Text>&nbsp;&nbsp;&nbsp;<Text>0.0070ppm</Text></Text>
+                <Text style={[styles.label,{bottom:"30%"}]}>아황산가스 &nbsp;<Text style={[styles.scoreLike,{color:"#FFC400"}]}>보통</Text>&nbsp;&nbsp;&nbsp;<Text>0.0070ppm</Text></Text>
+                <Text style={[styles.label,{bottom:"40%"}]}>통합대기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{color:"#FF4E00"}]}>나쁨</Text>&nbsp;&nbsp;&nbsp;<Text>56</Text></Text>
               </View>
             </View>
           </View>
@@ -78,10 +78,17 @@ const styles = EStyleSheet.create({
   dustInfoContainer:{
     flexDirection: 'row',
   },
+  resetImage:{
+    width:"16rem",
+    height:"16rem",
+    marginLeft:"5rem",
+  },
+  scoreLike:{
+    color:"#00C386",
+  },
   dustIconImage:{
-    width:"60rem",
-    height:"60rem",
-    backgroundColor:"grey",
+    width:"56rem",
+    height:"56rem",
   },
   titleContainer:{
     flexDirection: 'row',
@@ -101,20 +108,28 @@ const styles = EStyleSheet.create({
     borderWidth:1,
     borderColor:"#efefef",
   },
+  label:{
+    color:"#7B7B7B",
+    fontSize:12,
+    fontFamily: "NotoSansKR-Medium"
+  },
   title:{
-    color:"#7B7B7B"
+    color:"#7B7B7B",
+    fontSize:17,
+    fontFamily: "NotoSansKR-Medium",
   },
   titleLabel:{
     textAlign:"center",
     fontSize :"14rem",
     fontWeight:'bold',
     
-    //fontFamily: "NotoSansCJKkrRegular"
   },
   titleDateContainer:{
     marginLeft:"13rem",
     flexDirection: 'row',
-    color:"#7B7B7B"
+    color:"#7B7B7B",
+    alignItems: "center",
+    justifyContent: "center",
   },
   titleAddressPoint:{
     marginLeft:"5rem",

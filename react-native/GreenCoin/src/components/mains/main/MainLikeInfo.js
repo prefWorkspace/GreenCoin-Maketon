@@ -5,7 +5,14 @@ import { useNavigation ,useRoute } from '@react-navigation/native';
 import MainTextContent from '../../comm/content/MainTextContent';
 
 
+const getIconType = (icon) =>{
+  switch(icon){
+    case "dust" : return require('../../../assets/img/icon/dust.png');
+    case "community" : return require('../../../assets/img/icon/community.png');
+    default : return require('../../../assets/img/icon/dust.png');
 
+  }
+}
 
 export default function MainLikeInfo({title,icon,list}) {
   const navigation = useNavigation();
@@ -15,6 +22,7 @@ export default function MainLikeInfo({title,icon,list}) {
       <View style={styles.container}>
         <View style={styles.likeInfoContainer}>
           <View style={styles.likeInfo}>
+            <Image style={styles.image} source={getIconType(icon)} resizeMode="stretch"></Image>
             <Text>{title}</Text>
           </View>
           <Text style={styles.likeInfoMore}>더보기 +</Text>
@@ -47,6 +55,13 @@ const styles = EStyleSheet.create({
   likeInfo:{
     marginRight:"auto",
     flexDirection: 'row',
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  image:{
+    width:"28.42rem",
+    height:"28.42rem",
+    marginRight:"10rem",
   },
   likeInfoMore:{
     marginLeft:"auto",

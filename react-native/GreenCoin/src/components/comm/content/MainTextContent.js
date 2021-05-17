@@ -3,6 +3,16 @@ import { TouchableOpacity, Text,Image, View, Dimensions,ScrollView,StyleSheet, A
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation ,useRoute } from '@react-navigation/native';
 
+
+const getStylesType = (type) =>{
+  switch(type){
+    case 0 : return <View style={styles.contentTypeA}><Text>Hot</Text></View>;
+    case 1 : return <View style={styles.contentTypeA}><Text>Hot</Text></View>;
+    case 2 : return <View style={styles.contentTypeB}><Text>New</Text></View>;
+    case 3 : return <View style={styles.contentTypeC}><Text>Hot</Text></View>;
+  }
+}
+
 export default function MainTextContent({item}) {
 
     return (
@@ -11,7 +21,7 @@ export default function MainTextContent({item}) {
           <View style={styles.likeInfo}>
             {
               item.type != 0 ?
-              <Image source={require('../../../assets/img/shop/wishList.png')}></Image>
+              getStylesType(item.type)
               :
               null
             }
@@ -32,15 +42,22 @@ const styles = EStyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: "center",
+    width:"100%",
+    paddingLeft:"8rem",
+    paddingRight:"8rem",
   },
   likeInfoContainer:{
     flexDirection: 'row',
     width:"100%",
-    padding:"10rem",
+    paddingTop:"10rem",
+    paddingBottom:"10rem",
     alignItems: "center",
     justifyContent: "center",
+    borderBottomWidth:1,
+    borderBottomColor:"#EDEDED",
   },
   likeInfo:{
+    width:"70%",
     marginRight:"auto",
     flexDirection: 'row',
   },
@@ -76,7 +93,34 @@ const styles = EStyleSheet.create({
     height :"31.46rem",
     top:"23.28rem",
     left:"15rem",
-    
-  }
-
+  },
+  contentTypeA:{ 
+    backgroundColor:"#66D8B9",
+    borderRadius:10,
+    width :"30rem",
+    height :"20rem",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight:"6rem",
+  },
+  contentTypeB:{ 
+    backgroundColor:"#505050",
+    borderRadius:10,
+    width :"30rem",
+    height :"20rem",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight:"6rem",
+  },
+  contentTypeC:{ 
+    backgroundColor:"#66D8B9",
+    borderRadius:10,
+    width :"30rem",
+    height :"20rem",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight:"6rem",
+  },
+  contentTypeD:{ 
+  },
 });

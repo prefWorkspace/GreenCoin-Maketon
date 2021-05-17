@@ -25,7 +25,7 @@ export default function App({navigation}) {
         tabBarOptions={{
         scrollable :true,
         labelStyle: styles.tabNavgiationLabel,
-        activeTintColor: '#e91e63',
+        activeTintColor: '#00C386',
         style: styles.tabNavigationStyle,
         
       }}
@@ -33,63 +33,42 @@ export default function App({navigation}) {
       <Tab.Screen 
         name="홈" component={MainStack}
         options={{
-          tabBarLabel: "",
+          tabBarLabel: "홈",
           tabBarIcon: ({focused }) => {
               let focuseColor = focused == true ? styles.iconFocuse : styles.iconUnFocuse;
-              return  ( <Image style={[focuseColor,styles.icon1]} source={require('../assets/img/navi/mainBottomNav-1.png')} /> )
+              return  ( <Image style={[focuseColor,styles.icon1]} source={require('../assets/img/navi/home.png')} /> )
             }
         }}
       />
       <Tab.Screen 
         name="shop" component={ShopStack} 
         options={{
-          tabBarLabel: "",
+          tabBarLabel: "컨텐츠",
           tabBarIcon: ({focused }) => {
               let focuseColor = focused == true ? styles.iconFocuse : styles.iconUnFocuse;
-              return  ( <Image style={[focuseColor,styles.icon2]} source={require('../assets/img/navi/mainBottomNav-2.png')} /> )
+              return  ( <Image style={[focuseColor,styles.icon2]} source={require('../assets/img/navi/content.png')} /> )
             }
         }}
       />
        <Tab.Screen 
         name="Goods" component={GoodsStack} 
         options={{
-          tabBarLabel: "",
+          
+          tabBarLabel: "커뮤니티",
           tabBarIcon: ({focused }) => {
               let focuseColor = focused == true ? styles.iconFocuse : styles.iconUnFocuse;
-              return  ( <Image style={[focuseColor,styles.icon3]} source={require('../assets/img/navi/mainBottomNav-3.png')} /> )
+              return  ( <Image style={[focuseColor,styles.icon3]} source={require('../assets/img/navi/community.png')} /> )
             }
         }}
       />
-      {/* <Tab.Screen 
-        name="Carts" component={CartStack} 
-        options={{
-          tabBarLabel: "",
-          tabBarIcon: ({focused }) => {
-              let focuseColor = focused == true ? styles.iconFocuse : styles.iconUnFocuse;
-              return  ( 
-                <View>
-                  <Image style={[focuseColor,styles.icon4]} source={require('../assets/img/navi/mainBottomNav-4.png')} />
-                  {
-                    userInfoSingleton.getInstance()._cartCount > 0 
-                    ?
-                    <View style={styles.badge}>
-                      <Text style={styles.text}>{userInfoSingleton.getInstance()._cartCount}</Text>
-                    </View>
-                    :
-                    null
-                  }
-                </View>
-              )}
-        }}
-      /> */}
       <Tab.Screen 
         name="Profile" component={ProfileStack} 
         options={{
-          tabBarLabel: "",
+          tabBarLabel: "마이페이지",
           tabBarIcon: ({focused }) => {
             let focuseColor = focused == true ? styles.iconFocuse : styles.iconUnFocuse;
             return  ( 
-              <Image style={[focuseColor,styles.icon5]} source={require('../assets/img/navi/mainBottomNav-5.png')} />
+              <Image style={[focuseColor,styles.icon5]} source={require('../assets/img/navi/mypage.png')} />
           )}
         }}
       />
@@ -99,36 +78,24 @@ export default function App({navigation}) {
 
 const styles = EStyleSheet.create({
   iconFocuse:{
-    tintColor:"#2E3541",
+    tintColor:"#00C386",
   },
   iconUnFocuse:{
     tintColor :"#D2D5DA",
   },
 
-  icon1: { width: "18.362rem", height: "19.502rem", },
-  icon2: { width: "18.937rem", height: "15.746rem", },
-  icon3: { width: "18.362rem", height: "18.362rem", },
-  icon4: { width: "21.801rem", height: "20.483rem", },
-  icon5: { width: "19.928rem", height: "19.541rem", },
+  icon1: { width: "35rem", height: "35rem", },
+  icon2: { width: "35rem", height: "35rem", },
+  icon3: { width: "35rem", height: "35rem", },
+  icon4: { width: "35rem", height: "35rem", },
+  icon5: { width: "35rem", height: "35rem", },
   //============== Tab Navigation 디자인 ================
   tabNavgiationLabel:{
-   
+    bottom:"10rem",
   },
   tabNavigationStyle:{
-    paddingTop:"10rem",
-    height: "67rem",
+    height: "70rem",
     backgroundColor : "#FFFFFF",
-  },
-  badge: {
-    position: 'absolute',
-    right: -6,
-    top: "-8rem",
-    backgroundColor: 'red',
-    borderRadius: "12rem",
-    width: "16rem",
-    height: "16rem",
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   text: {
     color: 'white',

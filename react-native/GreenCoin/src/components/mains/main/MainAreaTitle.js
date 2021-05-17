@@ -12,7 +12,7 @@ export default function MainTitle() {
       <View style={styles.container}>
         <TouchableOpacity style={styles.titleAreaBody} onPress={()=>{}}>
           <Text style={styles.titleLabel}>{"주소를 선택해주세요!"}</Text>
-          <Image style={styles.titleAddressPoint} source={require('../../../assets/img/label_point/titleAddressPoint.png')}></Image>
+          <Image style={styles.titleAddressPoint} source={require('../../../assets/img/label_point/rightClickPoint.png')}></Image>
         </TouchableOpacity>
       </View>
     );
@@ -34,7 +34,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     width:"240rem",
     // padding:"10rem",
-    height:"68.42rem",
+    height:"50.42rem",
     alignItems: "center",
     // justifyContent: "center",
   },
@@ -42,11 +42,10 @@ const styles = EStyleSheet.create({
     textAlign:"center",
     fontSize :"14rem",
     fontWeight:'bold',
-    
+    color:"#505050",
   },
   titleAddressPoint:{
     marginLeft:"5rem",
-    bottom:"2rem",
   },
 
 });

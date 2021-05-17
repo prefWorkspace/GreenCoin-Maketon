@@ -10,11 +10,11 @@ export default function MainTitle() {
 
     return (
       <View style={styles.container}>
-        <Image style={styles.logoImage} source={require('../../../assets/img/logo/MainLogo.png')} />
-        <TouchableOpacity style={styles.titleAreaBody} onPress={()=>{}}>
+        <TouchableOpacity style={styles.titleLeft} onPress={()=>{}}>
+          <Image style={styles.logoImage} source={require('../../../assets/img/logo/MainLogo.png')} resizeMode="stretch" />
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>{  navigation.navigate("search" ,{root:routeInfo.name}); }}>
-          <Image style={styles.searchImage} source={require('../../../assets/img/icon/search.png')}/>
+        <TouchableOpacity style={styles.titleRight}  onPress={()=>{  navigation.navigate("search" ,{root:routeInfo.name}); }}>
+          <Image style={styles.searchImage} />
         </TouchableOpacity>
       </View>
     );
@@ -28,40 +28,34 @@ EStyleSheet.build({ $rem: entireScreenWidth / 380 });
 const styles = EStyleSheet.create({
   container: {
     flexDirection: 'row',
-    width :"380rem",
     height :"68.42rem",
     justifyContent: "center",
     right:"10rem",
   },
-  titleAreaBody:{
+  titleLeft:{
     flexDirection: 'row',
-    width:"240rem",
+    padding:"10rem",
+    paddingLeft:"30rem",
+    height:"68.42rem",
+    marginRight:"auto",
+  },
+  titleRight:{
+    flexDirection: 'row',
     padding:"10rem",
     height:"68.42rem",
-    alignItems: "center",
-    justifyContent: "center",
+    marginLeft:"auto",
   },
-  titleLabel:{
-    textAlign:"center",
-    fontSize :"14rem",
-    fontWeight:'bold',
-    
-    //fontFamily: "NotoSansCJKkrRegular"
-  },
-  titleAddressPoint:{
-    marginLeft:"5rem",
-    bottom:"2rem",
-  },
+ 
   logoImage:{
-    width :"59.457rem",
-    height :"44.593rem",
-    top:"10rem",
+    height:"40.62rem",
+    width:"123.09rem"
   },
   searchImage:{
-    width :"31.46rem",
-    height :"31.46rem",
-    top:"23.28rem",
-    left:"15rem",
+    width :"40.62rem",
+    height:"40.62rem",
+    backgroundColor:"grey",
+    borderRadius:50,
+
     
   }
 

@@ -43,7 +43,7 @@ const CommunityList = [
   },
   {
     title:"Title place here, long title will be shorten when text reac…",
-    date :"2020.333.00",
+    date :"2020.33.00",
     type : 2,
   },
   {
@@ -58,7 +58,7 @@ const CommunityList = [
   },
   {
     title:"Title place here, long title will be shorten when text reac…",
-    date :"2020.333.00",
+    date :"2020.33.00",
     type : 2,
   },
 ]
@@ -73,10 +73,10 @@ const MainScreen = () => {
       <MainTitle/>
       <ScrollView>
         <MainAreaTitle/>
-        <MainLikeInfo list={Data} title={"미세먼지"}/>
+        <MainLikeInfo list={Data} title={"미세먼지"} icon={"dust"}/>
         <MainEnvironment/>
         <MainCuponBanner couponList={couponList}/>
-        <MainLikeInfo list={CommunityList} title={"우리지역 커뮤니티"}/>
+        <MainLikeInfo list={CommunityList} title={"우리지역 커뮤니티"} icon={"community"}/>
         <MainEnvironmentResult/>
         {/* <MainDoubrleClick></MainDoubrleClick> */}
       </ScrollView>

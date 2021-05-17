@@ -18,7 +18,7 @@ export default function MainCuponBanner({couponList}) {
               onIndexChanged={(index)=>{setIndex(index)}}
               >
               <TouchableOpacity style={styles.imageStyle} onPress={async ()=>{ }}>
-                        <Image resizeMode={"cover"} style={styles.imageStyle} source={require('../../../assets/img/sample/cupon.png')} />
+                        <Image resizeMode={"cover"} style={styles.imageStyle} source={require('../../../assets/img/icon/banner.png')} />
                 </TouchableOpacity>
                 
           </Swiper>
