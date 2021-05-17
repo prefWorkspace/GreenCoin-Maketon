@@ -1,0 +1,9 @@
+rootProject.name = 'bedragon'
+include ':react-native-kakao-plus-friend'
+project(':react-native-kakao-plus-friend').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-kakao-plus-friend/android')
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+include ':app'
+include ':react-native-seoul-kakao-login'
+project(':react-native-seoul-kakao-login').projectDir = new File(rootProject.projectDir,     '../node_modules/@react-native-seoul/kakao-login/android')
+include ':react-native-seoul-naver-login'
+project(':react-native-seoul-naver-login').projectDir = new File(rootProject.projectDir, 	'../node_modules/@react-native-seoul/naver-login/android')
