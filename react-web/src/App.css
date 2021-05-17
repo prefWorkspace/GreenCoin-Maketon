@@ -1,38 +1,73 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/*보편적 스타일링 reset.css*/
+*{-webkit-tap-highlight-color:none;
+  font-family: 'NanumSquare', sans-serif;
+  color:#707070;}
+  html, body,
+  div, span,
+  dl, dt, dd, ul, ol, li,
+  h1, h2, h3, h4, h5, h6,
+  blockquote, p, address, pre, cite,
+  form, fieldset, input, textarea, select,
+  table, th, td {
+    margin:0;
+    padding:0;
+    font-family: 'Noto Sans KR', sans-serif;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  input[type="password"]{font-family:'nbg';letter-spacing:-5px;}
+  input[type="password"]::placeholder{font-family:'nbg';letter-spacing:normal;}
+  input::placeholder{font-family:'nbg';font-weight:500;}
+  h1, h2, h3, h4, h5, h6 {
+    font-size:100%;
+    font-weight:normal;
+    letter-spacing:normal;
   }
-  to {
-    transform: rotate(360deg);
+  
+  fieldset, img, abbr,acronym { border:0 none; }
+  
+  ol, ul { list-style:none; }
+  
+  table {
+    border-collapse: separate;
+    border-spacing:0;
+    border:0 none;
   }
-}
+  caption, th, td {
+    text-align:left;
+    font-weight: normal;
+    border:0;
+  }
+  
+  address, caption, strong, em, cite {
+    font-weight:normal;
+    font-style:normal;
+  }
+  ins { text-decoration:none; }
+  del { text-decoration:line-through; }
+  
+  blockquote:before, blockquote:after, q:before, q:after { content:""; }
+  blockquote,q { quotes:"" ""; }
+  
+  hr { display:none; }
+  
+  /* HTML5 Boilerplate  */
+  
+  article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display:block; }
+  img, video { /*max-width:100%;*/ border:0; vertical-align:top; }
+  audio, canvas, video { display:inline-block; *display:inline; *zoom: 1; }
+  img{image-rendering:-moz-auto;/*firefox*/
+  image-rendering:-o-auto;/*opera*/
+  image-rendering:-webkit-optimize-contrast;/*webkit*/
+  image-rendering:auto;
+  -ms-interpolation-mode:nearest-neighbor;
+  -webkit-perspective: 1;}
+  * { margin:0; padding:0; border:0; outline:0; vertical-align:top; box-sizing:border-box; }
+  ul, ol, dl { list-style:none; }
+  a { vertical-align:top; text-decoration:none; color:inherit; cursor: pointer;}
+  table { border-collapse:collapse; border-spacing:0; }
+  input, select, label { vertical-align:middle; }
+  button, input, select, textarea { font-size:100%; margin:0; vertical-align:baseline; *vertical-align:middle;font-weight:normal;letter-spacing:normal;}
+  button, input { line-height:normal;}
+  button, select { text-transform:none; }
