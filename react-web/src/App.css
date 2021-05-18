@@ -4,7 +4,7 @@
 /*보편적 스타일링 reset.css*/
 *{-webkit-tap-highlight-color:none;
   font-family: 'NanumSquare', sans-serif;
-  color:#707070;}
+  color:#000;}
   html, body,
   div, span,
   dl, dt, dd, ul, ol, li,

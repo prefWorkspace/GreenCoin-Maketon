@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 //css
 import styled from "styled-components"
@@ -15,6 +15,7 @@ import Share from '../../img/contents/share@3x.png';
 import SkewRec from '../../img/contents/skewRec@3x.png';
 import Arrow from '../../img/icon/arrow@3x.png';
 import Pig from '../../img/contents/pig@3x.png';
+import Bubble from '../../img/contents/bubble@3x.png';
 
 const Contents = (props) => {
 
@@ -23,7 +24,9 @@ const Contents = (props) => {
     const [currentDataArr, setCurrentDataArr] = useState([]);
     const [graphData, setGraphData] = useState([]);
     const [historyData, setHistoryData] = useState([]);
-
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [bubbleLeft, setBubbleLeft] = useState(17);
+    const barRef = useRef();
     useEffect(() => {
         setCurrentDataArr([
             {title: "칼로리", content:1000},
@@ -34,25 +37,29 @@ const Contents = (props) => {
         setGraphData([150, 114, 69, 82, 119, 40, 146]);
 
         setHistoryData([
-            {date:"2020.00.00", price:500, desc:"적립", current:550},
-            {date:"2020.00.00", price:500, desc:"적립", current:550},
-            {date:"2020.00.00", price:500, desc:"적립", current:550},
-            {date:"2020.00.00", price:500, desc:"적립", current:550},
+            {date:"2020.00.00", price:150, desc:"적립", current:550},
+            {date:"2020.00.00", price:150, desc:"적립", current:400},
+            {date:"2020.00.00", price:-5000, desc:"지역화폐 교환", current:250},
+            {date:"2020.00.00", price:250, desc:"적립", current:5250},
         ])
+        setTimeout(() => {
+            setBubbleLeft(barRef.current.children[0].offsetLeft)
+        }, 50)
     }, [])
 
-    const onClickBar = () =>{
-        console.log("onClickBar");
+    const onClickBar = (e, index) =>{
+        setBubbleLeft(e.target.offsetLeft);
+        setActiveIndex(index)
     }
 
     const onClickRight = () =>{
-        console.log("onClickRight");
     }
 
     const onClickLeft = () =>{
-        console.log("onClickLeft");
     }
 
+    const onClickMore = () => {
+    }
 
     return(
         <ContentsWrap>
@@ -70,7 +77,6 @@ const Contents = (props) => {
                 <StepBottom>
                     {
                         currentDataArr.map((item, index) => {
-                            console.log(index);
                             return(
                                 <StepBottomEl key={index}>
                                     <StepBottomTitle>{item.title}</StepBottomTitle>
@@ -83,7 +89,6 @@ const Contents = (props) => {
             </StepWrap>
                 
             {/* 그래프 */}
-            {/* 거꾸로*/}
             <GraphWrap>
                 <DateWrap>
                     <LeftArrow src={Arrow} alt="방향 아이콘" onClick={() => onClickLeft()}/>
@@ -91,19 +96,21 @@ const Contents = (props) => {
                     <RightArrow src={Arrow} alt="방향 아이콘" onClick={() => onClickRight()}/>
                 </DateWrap>
 
-                <GraphCanvas>
-                    <GraphLine style={{bottom:"38px"}}/>
-                    <GraphLine style={{bottom:"77px"}}/>
-                    <GraphLine style={{bottom:"116px"}}/>
-                    <GraphLine style={{bottom:"154px"}}/>
-                    <GraphBarGroup>
+                <GraphCanvas>   
+                    <BubbleText style={{left:`${bubbleLeft - 27}px`}}>150코인</BubbleText> 
+                    <GraphBarGroup ref={barRef}>
                         {
                             graphData.map((item, index) => {
+                                if(index == 0){}
                                 return(
-                                    <GraphBar onClick={() => onClickBar()} style={{height:`${item}px`}}></GraphBar>
+                                    <GraphBar key={index} onClick={(e) => onClickBar(e, index)} style={{height:`${item}px`, backgroundColor:`${activeIndex == index?"#6EEAC8":"#E8E8E8"}`}}></GraphBar>
                                 )
                             })
                         }
+                        <GraphLine style={{bottom:"0px"}}/>
+                        <GraphLine style={{bottom:"38px"}}/>
+                        <GraphLine style={{bottom:"77px"}}/>
+                        <GraphLine style={{bottom:"116px"}}/>
                     </GraphBarGroup>
                 </GraphCanvas>
                 <GraphText>
@@ -135,7 +142,7 @@ const Contents = (props) => {
                 <HistoryTop>
                     <PigImg src={Pig} alt="돼지 아이콘"/>
                     <HistoryTitle>나의 그린코인 적립 및 지역 화폐 전환 내역</HistoryTitle>
-                    <MoreBtn>더보기 +</MoreBtn>
+                    <MoreBtn onClick={ () => onClickMore()}>더보기 +</MoreBtn>
                 </HistoryTop>
 
                 <HistoryTable>
@@ -147,12 +154,16 @@ const Contents = (props) => {
                     </TableTitleWrap>
                     {
                         historyData.map((item, index) => {
+                            let color = "#00C386";
+                            if(item.desc == "지역화폐 교환"){
+                                color="#D68C01";
+                            }
                             return(
                                 <TableContentWrap key={index}>
-                                    <TableConten>{item.date}</TableConten>
-                                    <TableConten>{item.price}코인</TableConten>
-                                    <TableConten>{item.desc}</TableConten>
-                                    <TableConten>{item.current}코인</TableConten>
+                                    <TableContent style={{color:"#959595"}}>{item.date}</TableContent>
+                                    <TableContent>{InsertComma(item.price)}코인</TableContent>
+                                    <TableContent style={{fontWeight:500, color:color}}>{item.desc}</TableContent>
+                                    <TableContent>{InsertComma(item.current)}코인</TableContent>
                                 </TableContentWrap>
                             )
                         })
@@ -165,7 +176,7 @@ const Contents = (props) => {
             <ChangeBtn>
                 지역화폐로 교환하기
             </ChangeBtn>
-            <Navbar />
+            <Navbar crtIndex={1}/>
         </ContentsWrap>
     )
 };
@@ -288,6 +299,17 @@ const GraphCanvas = styled.div`
     border-bottom:1px solid #D9D9D9;
     position:relative;
 `
+const BubbleText = styled.div`
+    width:67px;
+    height:38px;
+    background-image:url(${Bubble});
+    text-align:center;
+    padding-top:6px;
+    font-size:12px;
+    position:absolute;
+    top:-45px;
+    color:#fff;
+`
 
 const GraphLine = styled.div`
     width:100%;
@@ -301,6 +323,7 @@ const GraphBarGroup = styled.div`
     width:100%;
     display:flex;
     justify-content:space-around;
+    transform:rotate(180deg) rotateY(180deg);
 `
 const GraphBar = styled.div`
     width:14px;
@@ -384,10 +407,10 @@ const PigImg = styled.img`
     margin-right:11px;
 `
 const HistoryTitle = styled.p`
-    font-size:15px;
+    font-size:calc(100vw*(15/428));
     color:#505050;
     font-weight:700;
-    margin-right:50px;
+    margin-right:calc(100vw*(50/428));
 `
 const MoreBtn = styled.div`
     font-size:11px;
@@ -395,8 +418,8 @@ const MoreBtn = styled.div`
     font-weight:400;
 `
 const HistoryTable = styled.div`
-
 `
+
 const TableTitleWrap = styled.div`
     height:36px;
     background-color:#F8F7F7;
@@ -416,11 +439,12 @@ const TableContentWrap = styled.div`
     align-items:center;
     border-bottom:1px solid #E6E6E6;
 `
-const TableConten = styled.span`
+const TableContent = styled.span`
     width:25%;
     text-align:center;
     font-weight:400;
     font-size:12px;
+    color:#505050;
 `
 
 const ChangeBtn = styled.button`
