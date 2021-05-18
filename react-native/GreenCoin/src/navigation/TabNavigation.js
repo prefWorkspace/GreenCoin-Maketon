@@ -2,26 +2,21 @@ import * as React from 'react';
 import { Text, View, Image,StyleSheet,BackHandler, Alert } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import CartScreen from '../screens/cart/CartScreen';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import MainStack from './MainStack';
-import ShopStack from './ShopStack';
-import GoodsStack from './GoodsStack';
 import ProfileStack from './ProfileStack';
-import CartStack from './CartStack';
-import userInfoSingleton from '../db/userInfoSingleton';
 
 const Tab = createBottomTabNavigator();
 
-export default function App({navigation}) {
+export default function App() {
 
   
 
   return (
       <Tab.Navigator
         initialRouteName={"홈"}
-        lazy={false}
+        lazy={true}
         tabBarOptions={{
         scrollable :true,
         labelStyle: styles.tabNavgiationLabel,
@@ -41,7 +36,7 @@ export default function App({navigation}) {
         }}
       />
       <Tab.Screen 
-        name="shop" component={ShopStack} 
+        name="shop" component={MainStack} 
         options={{
           tabBarLabel: "컨텐츠",
           tabBarIcon: ({focused }) => {
@@ -51,7 +46,7 @@ export default function App({navigation}) {
         }}
       />
        <Tab.Screen 
-        name="Goods" component={GoodsStack} 
+        name="Goods" component={ProfileStack} 
         options={{
           
           tabBarLabel: "커뮤니티",

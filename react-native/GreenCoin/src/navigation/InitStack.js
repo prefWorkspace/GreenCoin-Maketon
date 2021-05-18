@@ -1,16 +1,9 @@
 import * as React from 'react';
 
-import LoginMainScreen from '../screens/register/LoginMainScreen';
-import CartOrderSuccessScreen from '../screens/cart/CartOrderSuccessScreen';
-import LoaderRotateBar from '../components/comm/LoaderRotateBar';
 import TabNavigation from './TabNavigation';
-import LoginStack from './LoginStack';
-import RegisterAccountStack from './RegisterAccountStack';
-import InsertPhoneIdentifyScreen from '../screens/register/InsertPhoneIdentifyScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Payment from '../screens/Payment';
 
 
 const Stack = createStackNavigator();

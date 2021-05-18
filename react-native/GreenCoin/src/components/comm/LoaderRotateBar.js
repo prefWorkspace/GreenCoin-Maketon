@@ -41,7 +41,7 @@ export default class LoaderRotateBar extends React.Component {
             height: 50,
             transform: [{ rotate: RotateData }],
           }}
-          source={require('../../assets/img/load/loadbar.png')}
+          // source={require('../../assets/img/load/loadbar.png')}
           resizeMode={"stretch"}
         />
       </View>

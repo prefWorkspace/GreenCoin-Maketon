@@ -13,7 +13,7 @@ export default function OrderFinBar(){
 
   return (
     <TouchableOpacity style={styles.imageContainer} onPress={()=>{ navigation.navigate("deliverInfo") }}>
-      <Image style={styles.image} source={require('../../assets/img/shop/cart.png')}></Image>
+      {/* <Image style={styles.image} source={require('../../assets/img/shop/cart.png')}></Image> */}
       <View  style={styles.countBox} >
         <Text style={{color:"white"}}>{appStaticInfomation.getInstance()._finCount ? appStaticInfomation.getInstance()._finCount  : 0}</Text>
       </View>

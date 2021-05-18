@@ -80,12 +80,7 @@ export default function ItemBox({item,colum,tag}){
           <FastImage style={[styles.image,{height:height}]} source={{uri:localStringData.imagePath + item.prd_img}} resizeMode={FastImage.resizeMode.cover} />
         </View>
         <TouchableOpacity style={styles.wishContainer} onPress={clickWishItem}>
-          {
-            wish == 1 ?
-            <Image style={styles.wish} source={require('../../assets/img/shop/wishList.png')} resizeMode={"stretch"} />
-            :
-            <Image style={styles.wish} source={require('../../assets/img/shop/emptyWishList.png')} resizeMode={"stretch"} />
-          }
+
         </TouchableOpacity>
         <View style={styles.textContainer}>
           <View>

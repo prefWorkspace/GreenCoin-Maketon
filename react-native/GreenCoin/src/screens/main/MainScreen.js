@@ -10,7 +10,6 @@ import MainEnvironmentResult from '../../components/mains/main/MainEnvironmentRe
 import MainLikeInfo from '../../components/mains/main/MainLikeInfo';
 // import MainDoubleClick from '../../components/mains/main/MainDoubleClick';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import OrderFindBar from "../../components/comm/OrderFindBar";
 
 const Data = [
   {
@@ -80,7 +79,6 @@ const MainScreen = () => {
         <MainEnvironmentResult/>
         {/* <MainDoubrleClick></MainDoubrleClick> */}
       </ScrollView>
-      <OrderFindBar/>
     </View>
   );
 }
