@@ -6,6 +6,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 import MainStack from './MainStack';
 import ProfileStack from './ProfileStack';
+import CommunityStack from './CommunityStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -46,7 +47,7 @@ export default function App() {
         }}
       />
        <Tab.Screen 
-        name="Goods" component={ProfileStack} 
+        name="Goods" component={CommunityStack} 
         options={{
           
           tabBarLabel: "커뮤니티",

@@ -20,10 +20,7 @@ export default function MainEnvironmentResult() {
      
         <View style={styles.itemContainer}>
           <View style={styles.titleContainer}>
-            <Text  style={[styles.label,styles.title]}>미세먼지</Text>
             <View style={styles.titleDateContainer}>
-              <Text  style={[styles.label,styles.title]} >10:30AM</Text>
-              <Image style={styles.resetImage} source={require('../../../assets/img/icon/reset.png')}></Image>
             </View>
           </View>
           <View style={styles.dustInfoContainer}>
@@ -31,27 +28,26 @@ export default function MainEnvironmentResult() {
               <Image style={styles.dustIconImage} source={require('../../../assets/img/icon/subway.png')}></Image>
             </View>
             <View>
-              <Text style={[styles.label]}>미세먼지<Text style={styles.scoreLike}>좋음</Text></Text>
-              <Text style={[styles.label]}>초미세먼지<Text style={styles.scoreLike}>좋음</Text></Text>
-              <Text style={[styles.label]}>오존<Text style={styles.scoreLike}>좋음</Text></Text>
+              <Text style={[styles.label]}>하루 출/퇴근 대중교통 이용하기!</Text>
+              <View style={[styles.agreeBox]}>
+                <Text style={[styles.agreeLabel]}>미션수락</Text>
+              </View>
             </View>
           </View>
         </View>
         <View style={styles.middleContainer}></View>
         <View style={styles.itemContainer}>
           <View style={styles.titleContainer}>
-            <Text  style={[styles.label,styles.title]}>대기 정보</Text>
             <View style={styles.titleDateContainer}>
-              <Text  style={[styles.label,styles.title]} >10:30AM</Text>
               <Image style={styles.resetImage} source={require('../../../assets/img/icon/reset.png')}></Image>
+              <Text  style={[styles.label,styles.title]} >0000 step</Text>
             </View>
           </View>
           <View style={styles.dustInfoContainer}>
-            <View>
-              <Text style={[styles.label]}>이산화탄소 <Text style={styles.scoreLike} >좋음</Text> <Text >0.0070ppm</Text></Text>
-              <Text style={[styles.label]}>일산화탄소 <Text style={styles.scoreLike}>좋음</Text> <Text>0.0070ppm</Text></Text>
-              <Text style={[styles.label]}>아황산가스 <Text style={styles.scoreLike}>좋음</Text> <Text>0.0070ppm</Text></Text>
-              <Text style={[styles.label]}>통합대기 <Text style={styles.scoreLike}>좋음</Text> <Text>56</Text></Text>
+            <View style={styles.infoContainer}>
+              <Text style={[styles.calLabel]}>00.00 kg</Text>
+              <Text style={[styles.label]}>칼로리 <Text style={styles.rate}>0.0070ppm</Text></Text>
+              <Text style={[styles.label]}>거리&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={styles.rate}>56</Text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
             </View>
           </View>
         </View>
@@ -67,9 +63,7 @@ EStyleSheet.build({ $rem: entireScreenWidth / 380 });
 
 const styles = EStyleSheet.create({
 container: {
-  height :"180rem",
   justifyContent: "center",
-  marginTop:"15rem",
   padding:"10rem",
   marginBottom:"40rem",
 },
@@ -100,21 +94,28 @@ image:{
   marginRight:"10rem",
 },
 itemContainer:{
+  width:"47%",
 },
 dustInfoContainer:{
-  flexDirection: 'row',
+  alignItems: "center",
+  justifyContent: "center",
+},
+infoContainer:{
+  alignItems: "center",
+  justifyContent: "center",
 },
 resetImage:{
   width:"16rem",
   height:"16rem",
-  marginLeft:"5rem",
+  marginLeft:"100rem",
+  top:"10rem",
 },
 scoreLike:{
   color:"#00C386",
 },
 dustIconImage:{
-  width:"56rem",
-  height:"56rem",
+  width:"128rem",
+  height:"96rem",
 },
 titleContainer:{
   flexDirection: 'row',
@@ -134,10 +135,32 @@ middleContainer:{
   borderWidth:1,
   borderColor:"#efefef",
 },
-label:{
+calLabel:{
+  color:"#00C386",
+  fontSize:29,
+  marginBottom:"20rem",
+},
+agreeBox:{
+  borderRadius:50,
+  backgroundColor:"#66D8B9",
+  alignItems: "center",
+  justifyContent: "center",
+  textAlign:"center",
+  height:"40rem",
+},
+agreeLabel:{
+  color:"white",
+},
+rate:{
   color:"#7B7B7B"
 },
+label:{
+  fontSize:10,
+  color:"black",
+  marginBottom:"5rem",
+},
 title:{
+  fontSize:15,
   color:"#7B7B7B"
 },
 titleLabel:{
@@ -148,11 +171,10 @@ titleLabel:{
   //fontFamily: "NotoSansCJKkrRegular"
 },
 titleDateContainer:{
-  marginLeft:"13rem",
-  flexDirection: 'row',
-  color:"#7B7B7B",
+  width:"100%",
   alignItems: "center",
   justifyContent: "center",
+  textAlign:"center",
 },
 titleAddressPoint:{
   marginLeft:"5rem",
