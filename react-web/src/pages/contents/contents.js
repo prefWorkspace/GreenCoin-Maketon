@@ -26,6 +26,7 @@ const Contents = (props) => {
     const [historyData, setHistoryData] = useState([]);
     const [activeIndex, setActiveIndex] = useState(0);
     const [bubbleLeft, setBubbleLeft] = useState(17);
+    const [bubbleText, setBubbleText] = useState(0);
     const barRef = useRef();
     useEffect(() => {
         setCurrentDataArr([
@@ -35,7 +36,7 @@ const Contents = (props) => {
         ]);
 
         setGraphData([150, 114, 69, 82, 119, 40, 146]);
-
+        setBubbleText(150)
         setHistoryData([
             {date:"2020.00.00", price:150, desc:"적립", current:550},
             {date:"2020.00.00", price:150, desc:"적립", current:400},
@@ -47,9 +48,10 @@ const Contents = (props) => {
         }, 50)
     }, [])
 
-    const onClickBar = (e, index) =>{
+    const onClickBar = (e, index, item) =>{
         setBubbleLeft(e.target.offsetLeft);
         setActiveIndex(index)
+        setBubbleText(item);
     }
 
     const onClickRight = () =>{
@@ -97,13 +99,13 @@ const Contents = (props) => {
                 </DateWrap>
 
                 <GraphCanvas>   
-                    <BubbleText style={{left:`${bubbleLeft - 27}px`}}>150코인</BubbleText> 
+                    <BubbleText style={{left:`${bubbleLeft - 27}px`}}>{bubbleText}코인</BubbleText> 
                     <GraphBarGroup ref={barRef}>
                         {
                             graphData.map((item, index) => {
                                 if(index == 0){}
                                 return(
-                                    <GraphBar key={index} onClick={(e) => onClickBar(e, index)} style={{height:`${item}px`, backgroundColor:`${activeIndex == index?"#6EEAC8":"#E8E8E8"}`}}></GraphBar>
+                                    <GraphBar key={index} onClick={(e) => onClickBar(e, index, item)} style={{height:`${item}px`, backgroundColor:`${activeIndex == index?"#6EEAC8":"#E8E8E8"}`}}></GraphBar>
                                 )
                             })
                         }
