@@ -93,7 +93,7 @@ const WriteNotice = ({}) => {
                         {
                             [0, 1, 2, 3, 4, 5].map((item, index) => {
                                 return(
-                                    <SlideElWrap>
+                                    <SlideElWrap key={index}>
                                         <SlideEl>
                                             <ListEl uploadImgArr={uploadImgArr[index]}/> 
                                         </SlideEl>
