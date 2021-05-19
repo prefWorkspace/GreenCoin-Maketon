@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import {useHistory} from "react-router-dom";
 
 //css
 import styled from "styled-components"
@@ -7,21 +8,29 @@ import styled from "styled-components"
 // img
 import Home from '../../img/navIcon/home@3x.png';
 import Contents from '../../img/navIcon/contents@3x.png';
+import ContentsAct from '../../img/navIcon/contentsAct@3x.png';
 import Community from '../../img/navIcon/community@3x.png';
+import communityAct from '../../img/navIcon/communityAct@3x.png';
 import Mypages from '../../img/navIcon/mypage@3x.png';
+import mypageAct from '../../img/navIcon/mypageAct@3x.png';
 
-const Navbar = (props) => {
-
-
+const Navbar = ({crtIndex}) => {
+    // 사용 x ....
+    
+    const history = useHistory();
     const tabData = [
         {title:"홈", img: Home, select:false},
-        {title:"컨텐츠", img: Contents, select:true},
-        {title:"커뮤니티", img: Community, select:false},
-        {title:"마이페이지", img: Mypages, select:false},
+        {title:"컨텐츠", img: Contents, activeImg:ContentsAct, select:false},
+        {title:"커뮤니티", img: Community, activeImg:communityAct, select:false},
+        {title:"마이페이지", img: Mypages, activeImg:mypageAct, select:false},
     ]
 
     const onClickTab= (index) => {
-        console.log(index);
+        if(index == 1){
+            history.push('/');
+        }else if(index == 2){
+            history.push('/Community');
+        }
     }
 
     return (
@@ -30,8 +39,8 @@ const Navbar = (props) => {
                 tabData.map((item, index) => {
                     return(
                         <TabEl key={index} onClick={() => onClickTab(index)}>
-                            <TabImg src={item.img} alt="탭아이콘"/>
-                            <TabTitle className={item.select?"selected":null}>{item.title}</TabTitle>
+                            <TabImg src={index == crtIndex?item.activeImg:item.img} alt="탭아이콘"/>
+                            <TabTitle className={index == crtIndex?"selected":null}>{item.title}</TabTitle>
                         </TabEl>
                     )
                 })

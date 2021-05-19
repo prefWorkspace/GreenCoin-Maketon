@@ -1,10 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+/* 폰트 선언 */
+@font-face {
+  font-family: "Noto Sans CJK KR";
+  font-weight: 400;
+  src: url("./font/NotoSansCJKkr-Regular.otf");
+}
+@font-face {
+  font-family: "Noto Sans CJK kr";
+  font-weight: 500;
+  src: url("./font/NotoSansCJKkr-Medium.otf");
+}
+@font-face {
+  font-family: "Noto Sans CJK kr";
+  font-weight: 700;
+  src: url("./font/NotoSansCJKkr-Bold.otf");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
 
 
 /*보편적 스타일링 reset.css*/
 *{-webkit-tap-highlight-color:none;
-  font-family: 'NanumSquare', sans-serif;
-  color:#707070;}
+  font-family: 'Noto Sans CJK kr', 'Nanum Gothic', sans-serif;
+  color:#000;}
   html, body,
   div, span,
   dl, dt, dd, ul, ol, li,
@@ -14,7 +32,7 @@
   table, th, td {
     margin:0;
     padding:0;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans CJK kr', 'Nanum Gothic', sans-serif;
   }
   input[type="password"]{font-family:'nbg';letter-spacing:-5px;}
   input[type="password"]::placeholder{font-family:'nbg';letter-spacing:normal;}

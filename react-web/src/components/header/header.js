@@ -12,9 +12,8 @@ import Arrow from '../../img/icon/arrow@3x.png'
 
 
 const Header = (props) => {
-
-
-
+    // 사용 x ....
+    
     return(
         <HeaderWrap>
             <Top>
