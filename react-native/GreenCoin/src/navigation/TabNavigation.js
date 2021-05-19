@@ -17,7 +17,7 @@ export default function App() {
   return (
       <Tab.Navigator
         initialRouteName={"홈"}
-        lazy={true}
+        lazy={false}
         tabBarOptions={{
         scrollable :true,
         labelStyle: styles.tabNavgiationLabel,

@@ -14,9 +14,15 @@ const getStylesType = (type) =>{
 }
 
 export default function MainTextContent({item}) {
+    const navigation = useNavigation();
+
+    const moveToContentDetail = () =>{
+      navigation.navigate("communityDetail");
+    }
+
 
     return (
-      <View style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={moveToContentDetail}>
         <View style={styles.likeInfoContainer}>
           <View style={styles.likeInfo}>
             {
@@ -29,7 +35,7 @@ export default function MainTextContent({item}) {
           </View>
           <Text style={styles.likeInfoMore}>{item.date}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
   
