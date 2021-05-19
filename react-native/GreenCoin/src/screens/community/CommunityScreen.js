@@ -4,30 +4,12 @@ import { Dimensions, View,BackHandler,ScrollView,TouchableOpacity,Image } from "
 
 import MainTitle from '../../components/mains/main/MainTitle';
 import MainAreaTitle from '../../components/mains/main/MainAreaTitle';
-import MainCuponBanner from '../../components/mains/main/MainCuponBanner';
-import MainEnvironment from '../../components/mains/main/MainEnvironment';
-import MainEnvironmentResult from '../../components/mains/main/MainEnvironmentResult';
 import MainLikeInfo from '../../components/mains/main/MainLikeInfo';
 // import MainDoubleClick from '../../components/mains/main/MainDoubleClick';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
-const Data = [
-  {
-    title:"환경을 지키는 쓰레기 줄이기 운동 dsafew  ",
-    date :"2020.00.00",
-    type : 0,
-  },
-  {
-    title:"환경을 운동",
-    date :"2020.11.00",
-    type : 1,
-  },
-  {
-    title:"쓰레기 줄이기 운동",
-    date :"2020.333.00",
-    type : 2,
-  },
-]
+import CommunityEventBanner from "../../components/community/community/CommunityEventBanner";
+import CommunityEvent from "../../components/community/community/CommunityEvent";
+import CommunityContentList from "../../components/community/community/CommunityContentList";
 
 const CommunityList = [
   {
@@ -58,7 +40,37 @@ const CommunityList = [
   {
     title:"Title place here, long title will be shorten when text reac…",
     date :"2020.33.00",
+    type : 2, 
+  },
+  {
+    title:"탄소줄이고 다이어트도 같이했어요!",
+    date :"2020.00.00",
+    type : 0,
+  },
+  {
+    title:"Title place here, long title will be shorten when text reac… 운동",
+    date :"2020.11.00",
+    type : 1,
+  },
+  {
+    title:"Title place here, long title will be shorten when text reac…",
+    date :"2020.33.00",
     type : 2,
+  },
+  {
+    title:"탄소줄이고 다이어트도 같이했어요!",
+    date :"2020.00.00",
+    type : 0,
+  },
+  {
+    title:"Title place here, long title will be shorten when text reac… 운동",
+    date :"2020.11.00",
+    type : 1,
+  },
+  {
+    title:"Title place here, long title will be shorten when text reac…",
+    date :"2020.33.00",
+    type : 2, 
   },
 ]
 
@@ -66,14 +78,14 @@ const CommunityScreen = () => {
  
   const [couponList,setCouponList] = useState([]);
 
-
   return (
     <View style={styles.container}>
       <MainTitle/>
       <ScrollView>
         <MainAreaTitle/>
-        <MainCuponBanner couponList={couponList}/>
-        <MainLikeInfo list={CommunityList} title={"우리지역 커뮤니티"} icon={"community"}/>
+        <CommunityEventBanner couponList={couponList}/>
+        <CommunityEvent/>
+        <CommunityContentList list={CommunityList} title={"우리지역 커뮤니티"} icon={"community"}/>
         {/* <MainDoubrleClick></MainDoubrleClick> */}
       </ScrollView>
     </View>
