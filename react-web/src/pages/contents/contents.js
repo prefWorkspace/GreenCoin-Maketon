@@ -456,4 +456,5 @@ const ChangeBtn = styled.button`
     font-size:20px;
     font-weight:700;
     border-radius:10px;
+    margin-bottom: calc(100vw*(101/438));
 `

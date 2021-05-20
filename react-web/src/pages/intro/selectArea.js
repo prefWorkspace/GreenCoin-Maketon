@@ -25,7 +25,7 @@ const SelectArea = (props) => {
         setCurrentIndex(index);
         if(currentIndex == index){
             setIsClick(false);
-            setCurrentIndex(null);
+            setCurrentIndex(index);
         }else{
             setIsClick(true);
         }
@@ -54,7 +54,7 @@ const SelectArea = (props) => {
                     return(
                         <ListEl
                         onClick={() => onClickList(item.no)}
-                        className={index==currentIndex&&"selected"}
+                        className={item.no==currentIndex&&"selected"}
                         style={{marginTop:`${index==0?"22px":0}`}}
                         key={index}
                         >
@@ -91,6 +91,7 @@ const ListWrap = styled.ul`
         background-color: #66D8B9;
         color:#fff;
     }
+    margin-bottom: calc(100vw*(341/438));
 `
 const ListEl = styled.li`
     width: 100%;
@@ -113,8 +114,8 @@ const GradientImg = styled.img`
 // 버튼
 const BtnWrap = styled.div`
     position: fixed;
-    /* bottom: calc(100vw*(20/428)); */
-    bottom: 50px;
+    bottom: calc(100vw*(100/428)); 
+    // bottom: 50px;
     margin: 0 13px;
     & > button{
         font-size: calc(100vw*(20/428));

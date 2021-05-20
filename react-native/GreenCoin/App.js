@@ -21,8 +21,8 @@ export default function App() {
 
 
   useEffect(() => {
-    appStaticInfomation.getInstance()._interest = false;
-    appStaticInfomation.getInstance()._area = false;
+    appStaticInfomation.getInstance()._interest = true;
+    appStaticInfomation.getInstance()._area = true;
   }, [])
 
   return  load ?

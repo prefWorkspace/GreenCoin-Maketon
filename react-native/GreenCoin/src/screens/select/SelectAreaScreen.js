@@ -6,7 +6,7 @@ import MainTitle from '../../components/mains/main/MainTitle';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { WebView } from 'react-native-webview';
 import appStaticInfomation from "../../db/appStaticInfomation";
-import { useNavigation } from "@react-navigation/core";
+import { useFocusEffect, useNavigation } from "@react-navigation/core";
 
 const SelectAreaScreen = () => {
  
@@ -19,12 +19,18 @@ const SelectAreaScreen = () => {
     }
   }, []);
 
-  const [webViewHeight,setWebViewHeight] = useState(100);
+  useFocusEffect(
+    React.useCallback(() => {  
+      if(appStaticInfomation.getInstance()._area && appStaticInfomation.getInstance()._interest){
+        navigation.goBack();
+        navigation.navigate("tab");
+      } 
+    }, [])
+  );
 
   const onWebViewMessage = (event) => {
     let data = JSON.parse(event.nativeEvent.data);
     if(data.type == "screen"){
-      setWebViewHeight(Number(data.data));
     }
     else if(data.type == "area"){
       navigation.navigate(data.navi);
@@ -37,10 +43,9 @@ const SelectAreaScreen = () => {
     <View style={styles.container}>
       <MainTitle/>
       <View>
-        <ScrollView  contentContainerStyle={{flexGrow: 1, height : webViewHeight}}>
+        <ScrollView  contentContainerStyle={{flexGrow: 1, height : "100%"}}>
           <WebView
-              // source={{ uri: `http://172.28.5.10:3000/SelectArea` }}
-              source={{ uri: `http://172.28.7.85:3001/SelectArea` }}
+              source={{ uri: `http://172.28.5.10:3000/SelectArea` }}
               bounces={true}
               scrollEnabled={false}
               onMessage={onWebViewMessage}

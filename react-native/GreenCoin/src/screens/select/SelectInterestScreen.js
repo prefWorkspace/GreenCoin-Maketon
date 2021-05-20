@@ -6,7 +6,7 @@ import MainTitle from '../../components/mains/main/MainTitle';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { WebView } from 'react-native-webview';
 import appStaticInfomation from "../../db/appStaticInfomation";
-import { useNavigation } from "@react-navigation/core";
+import { useFocusEffect, useNavigation } from "@react-navigation/core";
 
 const SelectInterestScreen = () => {
   var navigation = useNavigation();
@@ -18,12 +18,20 @@ const SelectInterestScreen = () => {
     } 
   }, []);
 
-  const [webViewHeight,setWebViewHeight] = useState(100);
+  useFocusEffect(
+    React.useCallback(() => {  
+      if(appStaticInfomation.getInstance()._area && appStaticInfomation.getInstance()._interest){
+        navigation.goBack();
+        navigation.navigate("tab");
+      } 
+    }, [])
+  );
+
 
   const onWebViewMessage = (event) => {
     let data = JSON.parse(event.nativeEvent.data);
     if(data.type == "screen"){
-      setWebViewHeight(Number(data.data));
+      console.log(data);
     }
     else if(data.type == "interest"){
       console.log(data.data);
@@ -35,9 +43,9 @@ const SelectInterestScreen = () => {
     <View style={styles.container}>
       <MainTitle/>
       <View>
-        <ScrollView  contentContainerStyle={{flexGrow: 1, height : 1000}}>
+        <ScrollView  contentContainerStyle={{flexGrow: 1, height : "100%"}}>
           <WebView
-              source={{ uri: `http://172.28.7.85:3001/SelectInterest` }}
+              source={{ uri: `http://172.28.5.10:3000/SelectInterest` }}
               bounces={true}
               scrollEnabled={false}
               onMessage={onWebViewMessage}

@@ -21,7 +21,7 @@ const ContentScreen = () => {
         <ScrollView  contentContainerStyle={{flexGrow: 1, height : webViewHeight}}>
           <WebView
               // source={{ uri: `http://172.28.5.10:3000` }}
-              source={{ uri: `http://172.28.7.85:3001` }}
+              source={{ uri: `http://172.28.5.10:3000` }}
               bounces={true}
               scrollEnabled={false}
               onMessage={onWebViewMessage}

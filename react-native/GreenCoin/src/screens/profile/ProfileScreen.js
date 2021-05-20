@@ -21,7 +21,7 @@ export default function ProfileScreen({route}) {
         <ScrollView>
             <ProfileContent  title={"내 정보"}></ProfileContent>
             <ProfileContent  navi={"myCoin"} title={"내 그린코인"} ></ProfileContent>
-            <ProfileContent  title={"내 글보기"} ></ProfileContent>
+            <ProfileContent  navi={"myContent"} title={"내 글보기"} ></ProfileContent>
             <ProfileContent  title={"설정"} ></ProfileContent>
             <ProfileContent  title={"앱 정보"} ></ProfileContent>
             <ProfileContent  title={"커뮤니티 글쓰기"} ></ProfileContent>

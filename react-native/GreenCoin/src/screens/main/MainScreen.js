@@ -69,12 +69,12 @@ const MainScreen = () => {
   const [couponList,setCouponList] = useState([]);
 
   useEffect(() => {
-    
+
     if(!appStaticInfomation.getInstance()._interest)
       navigation.navigate("interest");
     else if(!appStaticInfomation.getInstance()._area)
       navigation.navigate("area");
-
+      
   }, [])
 
   return (
