@@ -186,9 +186,7 @@ const Contents = (props) => {
 export default Contents;
 
 const ContentsWrap = styled.div`
-    margin-top:133px;
     padding:15px;
-    margin-bottom:80px;
 `
 const StepWrap = styled.div`
     /* width:397px; */

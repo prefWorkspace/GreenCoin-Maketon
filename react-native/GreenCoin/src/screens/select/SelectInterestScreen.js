@@ -37,7 +37,7 @@ const SelectInterestScreen = () => {
       <View>
         <ScrollView  contentContainerStyle={{flexGrow: 1, height : 1000}}>
           <WebView
-              source={{ uri: `http://172.28.5.10:3000/SelectInterest` }}
+              source={{ uri: `http://172.28.7.85:3001/SelectInterest` }}
               bounces={true}
               scrollEnabled={false}
               onMessage={onWebViewMessage}

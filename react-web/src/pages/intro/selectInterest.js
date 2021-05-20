@@ -87,8 +87,6 @@ const SelectInterest = ({}) => {
 export default SelectInterest;
 
 const ContentsWrap = styled.div`
-    margin-top:133px;
-    margin-bottom:80px;
     overflow-x: hidden;
 `
 
@@ -125,7 +123,7 @@ const ListEl = styled.li`
 `
 const NextBtn = styled.div`
     position: fixed;
-    bottom: 0;
+    bottom: 50px;
     width: 100vw;
     height: calc(100vw*(105/438));
     text-align: center;

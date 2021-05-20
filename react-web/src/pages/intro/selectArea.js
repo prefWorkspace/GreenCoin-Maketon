@@ -78,8 +78,6 @@ const SelectArea = (props) => {
 export default SelectArea;
 
 const ContentsWrap = styled.div`
-    margin-top:133px;
-    margin-bottom:80px;
     overflow-x: hidden;
 `
 // 리스트
@@ -115,7 +113,8 @@ const GradientImg = styled.img`
 // 버튼
 const BtnWrap = styled.div`
     position: fixed;
-    bottom: calc(100vw*(30/428));
+    /* bottom: calc(100vw*(20/428)); */
+    bottom: 50px;
     margin: 0 13px;
     & > button{
         font-size: calc(100vw*(20/428));
@@ -130,7 +129,6 @@ const StartBtn = styled.button`
     border: 3px solid #F8F7F7;
     color:#FFFFFF;
     margin-bottom: 5px;
-    
     ${({isClick})=>{
     return isClick?
     `
