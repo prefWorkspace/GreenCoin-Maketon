@@ -7,6 +7,7 @@ import realmController from './src/db/realm/realmController';
 // import messaging from '@react-native-firebase/messaging';
 import InitStack from './src/navigation/InitStack';
 import appStaticInfomation from './src/db/appStaticInfomation';
+import SelectAreaScreen from './src/screens/select/SelectAreaScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,6 +20,10 @@ export default function App() {
   const [load,setLoad] = useState(true);
 
 
+  useEffect(() => {
+    appStaticInfomation.getInstance()._interest = false;
+    appStaticInfomation.getInstance()._area = false;
+  }, [])
 
   return  load ?
       <InitStack></InitStack>

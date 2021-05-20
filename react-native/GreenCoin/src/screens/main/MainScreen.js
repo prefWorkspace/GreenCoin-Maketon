@@ -10,6 +10,8 @@ import MainEnvironmentResult from '../../components/mains/main/MainEnvironmentRe
 import MainLikeInfo from '../../components/mains/main/MainLikeInfo';
 // import MainDoubleClick from '../../components/mains/main/MainDoubleClick';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { useNavigation } from "@react-navigation/core";
+import appStaticInfomation from "../../db/appStaticInfomation";
 
 const Data = [
   {
@@ -63,9 +65,17 @@ const CommunityList = [
 ]
 
 const MainScreen = () => {
- 
+  const navigation = useNavigation();
   const [couponList,setCouponList] = useState([]);
 
+  useEffect(() => {
+    
+    if(!appStaticInfomation.getInstance()._interest)
+      navigation.navigate("interest");
+    else if(!appStaticInfomation.getInstance()._area)
+      navigation.navigate("area");
+
+  }, [])
 
   return (
     <View style={styles.container}>

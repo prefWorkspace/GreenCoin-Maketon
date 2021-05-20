@@ -7,24 +7,18 @@ import Header from '../../components/header/header';
 // img
 import Gradient from "../../img/intro/gradient.png";
 
+import serverController from '../server/serverController';
+
 const SelectArea = (props) => {
     
     const [isClick, setIsClick] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(null);
+    const [listData, setListData] = useState([]);
 
-    const listData = [
-        "서울 특별시",
-        "인천 광역시",
-        "대전 광역시",
-        "광주 광역시",
-        "부산 광역시",
-        "대전 광역시",
-        "광주 광역시",
-        "부산 광역시",
-        "대전 광역시",
-        "광주 광역시",
-        "부산 광역시",
-    ]
+
+    useEffect(() => {  serverController.connectFetchController('locations',"GET",null,function(res){
+        setListData(res.data.locations);
+    },null);  }, [])
 
     // 리스트 클릭 
     const onClickList = (index) =>{
@@ -39,32 +33,36 @@ const SelectArea = (props) => {
 
     // 시작 버튼 클릭
     const onClickStart = (item) =>{
-        console.log(item);
+        reactNativeSelectArea("tab");
     }
     // 로그인 버튼 클릭
     const onClickLogin = (item) =>{
-        console.log(item);
+        reactNativeSelectArea("tab");
+    }
+
+    const reactNativeSelectArea = (navi) =>{
+        window.ReactNativeWebView.postMessage(JSON.stringify({ type:"area", data:currentIndex ,navi :navi}));
     }
 
     return(
         <ContentsWrap>
-            <Header />
+            {/* <Header /> */}
             {/* 리스트 */}
             <ListWrap>
-                {
-                    listData.map((item, index) => {
-                        return(
-                            <ListEl
-                            onClick={() => onClickList(index)}
-                            className={index==currentIndex&&"selected"}
-                            style={{marginTop:`${index==0?"22px":0}`}}
-                            key={index}
-                            >
-                                {item}
-                            </ListEl>
-                        )
-                    })
-                }
+            {
+                listData.map((item, index) => {
+                    return(
+                        <ListEl
+                        onClick={() => onClickList(item.no)}
+                        className={index==currentIndex&&"selected"}
+                        style={{marginTop:`${index==0?"22px":0}`}}
+                        key={index}
+                        >
+                        {item.fullname}
+                        </ListEl>
+                    )
+                })
+            }
             </ListWrap>
             {/* 그라데이션 */}
             <GradientImg src={Gradient} alt="그라데이션 이미지"/>

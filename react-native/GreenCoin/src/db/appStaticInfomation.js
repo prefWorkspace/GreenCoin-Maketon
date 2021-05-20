@@ -2,6 +2,11 @@ export default class appStaticInfomation {
 
     static myInstance = null;
 
+    _area = null;
+    _interest = null;
+
+
+
     _categorieslist = [];
     _subCategoriesList = {};
     _loginBanner = [];

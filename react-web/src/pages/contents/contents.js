@@ -65,7 +65,7 @@ const Contents = (props) => {
 
     return(
         <ContentsWrap>
-            <Header />
+            {/* <Header /> */}
             
             {/* 만보기 */}
             <StepWrap>
@@ -178,7 +178,7 @@ const Contents = (props) => {
             <ChangeBtn>
                 지역화폐로 교환하기
             </ChangeBtn>
-            <Navbar crtIndex={1}/>
+            {/* <Navbar crtIndex={1}/> */}
         </ContentsWrap>
     )
 };

@@ -16,20 +16,28 @@ import list_2Act from '../../img/intro/list_2Act.png'
 import list_3Act from '../../img/intro/list_3Act.png'
 import list_4Act from '../../img/intro/list_4Act.png'
 import list_5Act from '../../img/intro/list_5Act.png'
+import serverController from '../server/serverController';
+
 
 const SelectInterest = ({}) => {
 
     const [selectedArr, setSelectedArr] = useState([]);
     const [isActive, setIsActive] = useState(false);
+    const [listData, setListData] = useState([]);
 
-    const listData = [
-        {img: list, avtiveImg:listAct, title:"탄소줄이기"},
-        {img: list_2, avtiveImg:list_2Act, title:"수질오염"},
-        {img: list_3, avtiveImg:list_3Act, title:"쓰레기 줄이기"},
-        {img: list_4, avtiveImg:list_4Act, title:"미세먼지"},
-        {img: list_5, avtiveImg:list_5Act, title:"Sustainable fashion"},
-    ];
 
+    // const listData = [
+    //     {img: list, avtiveImg:listAct, title:"탄소줄이기"},
+    //     {img: list_2, avtiveImg:list_2Act, title:"수질오염"},
+    //     {img: list_3, avtiveImg:list_3Act, title:"쓰레기 줄이기"},
+    //     {img: list_4, avtiveImg:list_4Act, title:"미세먼지"},
+    //     {img: list_5, avtiveImg:list_5Act, title:"Sustainable fashion"},
+    // ];
+    
+    useEffect(() => {  serverController.connectFetchController('pollutions',"GET",null,function(res){
+        console.log(res);
+        setListData(res.data.pollutions);
+    },null);  }, [])
 
     const onClickListEl = (index) => {
         let newArr = selectedArr;
@@ -46,23 +54,32 @@ const SelectInterest = ({}) => {
         }
         setSelectedArr([...newArr]);
     }
+
+    const clickNext = () =>{
+        window.ReactNativeWebView.postMessage(JSON.stringify({
+            type:"interest",
+            data:selectedArr
+        }));
+    }
+
     return(
         <ContentsWrap>
-            <Header />
+            {/* <Header /> */}
             <Desc>3개 이상선택해주세요!</Desc>
 
             <ListWrap>
                 {
                     listData.map((item, index) => {
+                        console.log(item);
                         return(
-                            <ListEl onClick={() => onClickListEl(index)} img={selectedArr.includes(index)?item.avtiveImg:item.img}></ListEl>
+                            <ListEl onClick={() => onClickListEl(item.no)} img={list}></ListEl>
                         )
                     })
                 }
             </ListWrap>
 
 
-            <NextBtn isActive={isActive}>다음</NextBtn>
+            <NextBtn onClick={clickNext} isActive={isActive}>다음</NextBtn>
         </ContentsWrap>
     )
 };
@@ -100,7 +117,10 @@ const ListEl = styled.li`
     line-height: calc(100vw*(108/438));
     margin: 0 auto calc(100vw*(10/438));
     ${({img})=>{
+        if(img)
         return (`background-image: url(${img});`)
+        else 
+        return "";
     }}    
 `
 const NextBtn = styled.div`

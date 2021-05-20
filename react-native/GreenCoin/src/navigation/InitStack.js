@@ -1,22 +1,34 @@
-import * as React from 'react';
+import React , {useState} from 'react';
 
 import TabNavigation from './TabNavigation';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import SelectAreaScreen from '../screens/select/SelectAreaScreen';
+import SelectInterestScreen from '../screens/select/SelectInterestScreen';
+import appStaticInfomation from '../db/appStaticInfomation';
 
 
 
 const Stack = createStackNavigator();
 
+
+
+
 export default function InitStack() {
+
+
+
+
   return (
     <NavigationContainer>
-    <Stack.Navigator  
+    <Stack.Navigator
        initialRouteName="tab"
        screenOptions={{
          headerShown: false
        }}
      >
+      <Stack.Screen name="interest" component={SelectInterestScreen}/>
+      <Stack.Screen name="area" component={SelectAreaScreen}/>
       <Stack.Screen name="tab" component={TabNavigation}/>
       {/* <Stack.Screen name="cartOrderSuccess" component={CartOrderSuccessScreen}/>
       <Stack.Screen name="login" component={LoginStack}/>
