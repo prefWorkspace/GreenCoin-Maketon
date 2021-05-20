@@ -93,7 +93,7 @@ const WriteNotice = ({}) => {
                         {
                             [0, 1, 2, 3, 4, 5].map((item, index) => {
                                 return(
-                                    <SlideElWrap>
+                                    <SlideElWrap key={index}>
                                         <SlideEl>
                                             <ListEl uploadImgArr={uploadImgArr[index]}/> 
                                         </SlideEl>
@@ -187,9 +187,13 @@ const SliderWrap = styled.div`
     margin: 0 14px 0 17px;
 `
 const SlideElWrap = styled.div`
+    /* padding-right: 10px;
+    margin-right: 10px; */
 `
 const SlideEl = styled.div`
     border-radius: 5px;
+    /* padding-right: 10px;
+    margin-right: 10px; */
 `
 const PlusWrap = styled.div`
     width: 60px;
@@ -208,6 +212,8 @@ const ListEl = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    /* padding-right: 10px;
+    margin-right: 10px; */
     ${({uploadImgArr})=>{
     return uploadImgArr?
         `
@@ -225,7 +231,7 @@ const ListEl = styled.div`
 const SearchWrap = styled.div`
     margin-top: 29px;
     border-top:13px solid #F8F7F7;
-    padding: 21px 17px 0 14px;
+    margin: 21px 17px 0 14px;
 `
 const SearchInputWrap = styled.div`
     position: relative;
