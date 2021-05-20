@@ -5,12 +5,12 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NavigationHelpersContext, useNavigation,useRoute } from '@react-navigation/native';
 import userInfoSingleton from '../../../db/userInfoSingleton';
 
-export default function ProfileContent({title,navi}) {
+export default function ProfileContent({title,navi, onPress}) {
 
   const navigation = useNavigation();
   const moveToPage = () =>{
-    return;
     navigation.navigate(navi);
+    return;
   }
     return (
       <View style={styles.container}>

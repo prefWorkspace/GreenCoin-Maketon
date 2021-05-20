@@ -20,7 +20,7 @@ export default function ProfileScreen({route}) {
         <View style={styles.fakeHeight}></View>
         <ScrollView>
             <ProfileContent  title={"내 정보"}></ProfileContent>
-            <ProfileContent  title={"내 그린코인"} ></ProfileContent>
+            <ProfileContent  navi={"myCoin"} title={"내 그린코인"} ></ProfileContent>
             <ProfileContent  title={"내 글보기"} ></ProfileContent>
             <ProfileContent  title={"설정"} ></ProfileContent>
             <ProfileContent  title={"앱 정보"} ></ProfileContent>
