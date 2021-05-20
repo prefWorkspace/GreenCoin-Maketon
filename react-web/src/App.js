@@ -17,7 +17,6 @@ function App() {
       <Route exact path="/Community" component={() => <Community />} />
       <Route exact path="/ViewNotice" component={() => <ViewNotice />} />
       <Route exact path="/WriteNotice" component={() => <WriteNotice />} />
-
     </Router>
   );
 }

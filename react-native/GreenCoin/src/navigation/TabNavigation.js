@@ -7,6 +7,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import MainStack from './MainStack';
 import ProfileStack from './ProfileStack';
 import CommunityStack from './CommunityStack';
+import ContentStack from './ContentStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +38,7 @@ export default function App() {
         }}
       />
       <Tab.Screen 
-        name="shop" component={MainStack} 
+        name="shop" component={ContentStack}
         options={{
           tabBarLabel: "컨텐츠",
           tabBarIcon: ({focused }) => {
