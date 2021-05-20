@@ -4,6 +4,7 @@ import ProfileScreen from '../screens/profile/ProfileScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import MyCoinScreen from '../screens/profile/MyCoinScreen';
 import MyContentScreen from '../screens/profile/MyContentScreen';
+import SelectAreaTest from '../screens/profile/selectAreanTest';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ export default function ProfileStack({navigation,route}) {
       <Stack.Screen name="profile" component={ProfileScreen}/>
       <Stack.Screen name="myCoin" component={MyCoinScreen}/>
       <Stack.Screen name="myContent" component={MyContentScreen}/>
+      <Stack.Screen name="selectArea" component={SelectAreaTest}/>
     </Stack.Navigator>
   );
 }

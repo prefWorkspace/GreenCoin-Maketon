@@ -25,6 +25,7 @@ export default function ProfileScreen({route}) {
             <ProfileContent  title={"설정"} ></ProfileContent>
             <ProfileContent  title={"앱 정보"} ></ProfileContent>
             <ProfileContent  title={"커뮤니티 글쓰기"} ></ProfileContent>
+            <ProfileContent  navi={"selectArea"} title={"지역 선택(인트로)"} ></ProfileContent>
          </ScrollView>
       </View>
     );
