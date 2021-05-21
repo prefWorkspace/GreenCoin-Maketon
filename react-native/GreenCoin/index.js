@@ -7,4 +7,4 @@ import App from './App';
 //     console.log('Message handled in the background!', remoteMessage);
 //   });
 
-AppRegistry.registerComponent('bedragon', () => App);
+AppRegistry.registerComponent('greencoin', () => App);

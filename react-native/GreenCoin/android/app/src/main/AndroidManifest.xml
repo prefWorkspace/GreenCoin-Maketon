@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="kr.com.bedragon"  android:targetSandboxVersion="1">
+  package="kr.com.greencoin"  android:targetSandboxVersion="1">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

@@ -1,4 +1,4 @@
-package kr.com.bedragon;
+package kr.com.greencoin;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "bedragon";
+    return "greencoin";
   }
 }

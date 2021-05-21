@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "968699983754",
-    "project_id": "yongdeanda",
-    "storage_bucket": "yongdeanda.appspot.com"
+    "project_number": "505111462255",
+    "project_id": "greencoin-1b7aa",
+    "storage_bucket": "greencoin-1b7aa.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:968699983754:android:0c806cccee24f48b75ba73",
+        "mobilesdk_app_id": "1:505111462255:android:fd95812a379d90d86ca89a",
         "android_client_info": {
-          "package_name": "kr.com.bedragon"
+          "package_name": "kr.com.greencoin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "968699983754-a2bf92j9hvp65b7usmpdcqakfgqi73jb.apps.googleusercontent.com",
+          "client_id": "505111462255-ukiaahpg4jns6bd0be16cckr0n29jov4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCJgER-qVz7Oe0L5-sQB_GmHxpFsN73-84"
+          "current_key": "AIzaSyBCqnFZ7QR1XKtCu3pyPiLzxMT4BeVYu70"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "968699983754-a2bf92j9hvp65b7usmpdcqakfgqi73jb.apps.googleusercontent.com",
+              "client_id": "505111462255-ukiaahpg4jns6bd0be16cckr0n29jov4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

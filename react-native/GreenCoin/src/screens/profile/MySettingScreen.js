@@ -3,10 +3,6 @@ import { View, ScrollView, Dimensions, Alert, Text, CheckBox} from 'react-native
 import EStyleSheet from 'react-native-extended-stylesheet';
 import MainTitle from '../../components/mains/main/MainTitle';
 import CommonDetailTitle from '../../components/comm/CommonDetailTitle';
-import InputBox from '../../components/comm/InputBox';
-import ContentDecide from '../../components/comm/ContentDecide';
-import ModalCalendar from '../../components/comm/ModalCalendar';
-import BirthdayInformation from '../../components/profiles/myProfile/BirthdayInformation';
 import SettingContent from '../../components/profiles/setting/SettingContent';
 
 export default function MySettingScreen({route}) {

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* bedragonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* bedragonTests.m */; };
+		00E356F31AD99517003FC87E /* greencoinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* greencoinTests.m */; };
 		0416772B25CD362F0073BAB1 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 0416772A25CD362F0073BAB1 /* Fonts */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -15,12 +15,12 @@
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* bedragonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* bedragonTests.m */; };
-		4294ADE80F0B625110F02E0C /* libPods-bedragon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08B0AF9324626552966BC4B0 /* libPods-bedragon.a */; };
-		56DA2CBE4095C7AD54265C53 /* libPods-bedragon-bedragonTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E3F295CF6573D0DAD5A677 /* libPods-bedragon-bedragonTests.a */; };
-		7751FD2B5E0D6ABE7064EA88 /* libPods-bedragon-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F1C6E5B84E7C4EC234C0F9 /* libPods-bedragon-tvOSTests.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* greencoinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* greencoinTests.m */; };
+		4294ADE80F0B625110F02E0C /* libPods-greencoin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08B0AF9324626552966BC4B0 /* libPods-greencoin.a */; };
+		56DA2CBE4095C7AD54265C53 /* libPods-greencoin-greencoinTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E3F295CF6573D0DAD5A677 /* libPods-greencoin-greencoinTests.a */; };
+		7751FD2B5E0D6ABE7064EA88 /* libPods-greencoin-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F1C6E5B84E7C4EC234C0F9 /* libPods-greencoin-tvOSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		99F62C93BAA6C98D23307CC6 /* libPods-bedragon-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AA4709D19DF5DF22B4855D /* libPods-bedragon-tvOS.a */; };
+		99F62C93BAA6C98D23307CC6 /* libPods-greencoin-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AA4709D19DF5DF22B4855D /* libPods-greencoin-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +29,7 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = bedragon;
+			remoteInfo = greencoin;
 		};
 		04ABB42625DA194B0043D367 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -43,38 +43,38 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "bedragon-tvOS";
+			remoteInfo = "greencoin-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* bedragonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bedragonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* greencoinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = greencoinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* bedragonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bedragonTests.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* greencoinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = greencoinTests.m; sourceTree = "<group>"; };
 		0416772A25CD362F0073BAB1 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		04ABB42225DA194B0043D367 /* RNKakaoPlusFriend.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKakaoPlusFriend.xcodeproj; path = "../node_modules/react-native-kakao-plus-friend/ios/RNKakaoPlusFriend.xcodeproj"; sourceTree = "<group>"; };
-		08B0AF9324626552966BC4B0 /* libPods-bedragon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bedragon.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07F961A680F5B00A75B9A /* bedragon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bedragon.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = bedragon/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = bedragon/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = bedragon/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = bedragon/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = bedragon/main.m; sourceTree = "<group>"; };
-		1BCFDD6898ECCB0593FC294F /* Pods-bedragon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bedragon.release.xcconfig"; path = "Target Support Files/Pods-bedragon/Pods-bedragon.release.xcconfig"; sourceTree = "<group>"; };
-		25E3F295CF6573D0DAD5A677 /* libPods-bedragon-bedragonTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bedragon-bedragonTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E47B1E0B4A5D006451C7 /* bedragon-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bedragon-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* bedragon-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "bedragon-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		305E47DAC6F81BE69FBF2F9F /* Pods-bedragon-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bedragon-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-bedragon-tvOS/Pods-bedragon-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		36ECEE2ABE028CA01A1BDA47 /* Pods-bedragon-bedragonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bedragon-bedragonTests.debug.xcconfig"; path = "Target Support Files/Pods-bedragon-bedragonTests/Pods-bedragon-bedragonTests.debug.xcconfig"; sourceTree = "<group>"; };
-		512B53C669582B55B3AA6BF3 /* Pods-bedragon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bedragon.debug.xcconfig"; path = "Target Support Files/Pods-bedragon/Pods-bedragon.debug.xcconfig"; sourceTree = "<group>"; };
-		51F1C6E5B84E7C4EC234C0F9 /* libPods-bedragon-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bedragon-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = bedragon/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		840DA26B1529F195A9825D0B /* Pods-bedragon-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bedragon-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-bedragon-tvOSTests/Pods-bedragon-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		92F8E758070BF78CB38AB897 /* Pods-bedragon-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bedragon-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-bedragon-tvOSTests/Pods-bedragon-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		A1DEF1504233214BE5A10D19 /* Pods-bedragon-bedragonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bedragon-bedragonTests.release.xcconfig"; path = "Target Support Files/Pods-bedragon-bedragonTests/Pods-bedragon-bedragonTests.release.xcconfig"; sourceTree = "<group>"; };
-		D0AA4709D19DF5DF22B4855D /* libPods-bedragon-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bedragon-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5A55CBEBD3C8FC8283E4F27 /* Pods-bedragon-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bedragon-tvOS.release.xcconfig"; path = "Target Support Files/Pods-bedragon-tvOS/Pods-bedragon-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		08B0AF9324626552966BC4B0 /* libPods-greencoin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-greencoin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* greencoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = greencoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = greencoin/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = greencoin/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = greencoin/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = greencoin/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = greencoin/main.m; sourceTree = "<group>"; };
+		1BCFDD6898ECCB0593FC294F /* Pods-greencoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greencoin.release.xcconfig"; path = "Target Support Files/Pods-greencoin/Pods-greencoin.release.xcconfig"; sourceTree = "<group>"; };
+		25E3F295CF6573D0DAD5A677 /* libPods-greencoin-greencoinTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-greencoin-greencoinTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E47B1E0B4A5D006451C7 /* greencoin-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "greencoin-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* greencoin-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "greencoin-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		305E47DAC6F81BE69FBF2F9F /* Pods-greencoin-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greencoin-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-greencoin-tvOS/Pods-greencoin-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		36ECEE2ABE028CA01A1BDA47 /* Pods-greencoin-greencoinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greencoin-greencoinTests.debug.xcconfig"; path = "Target Support Files/Pods-greencoin-greencoinTests/Pods-greencoin-greencoinTests.debug.xcconfig"; sourceTree = "<group>"; };
+		512B53C669582B55B3AA6BF3 /* Pods-greencoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greencoin.debug.xcconfig"; path = "Target Support Files/Pods-greencoin/Pods-greencoin.debug.xcconfig"; sourceTree = "<group>"; };
+		51F1C6E5B84E7C4EC234C0F9 /* libPods-greencoin-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-greencoin-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = greencoin/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		840DA26B1529F195A9825D0B /* Pods-greencoin-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greencoin-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-greencoin-tvOSTests/Pods-greencoin-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		92F8E758070BF78CB38AB897 /* Pods-greencoin-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greencoin-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-greencoin-tvOSTests/Pods-greencoin-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		A1DEF1504233214BE5A10D19 /* Pods-greencoin-greencoinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greencoin-greencoinTests.release.xcconfig"; path = "Target Support Files/Pods-greencoin-greencoinTests/Pods-greencoin-greencoinTests.release.xcconfig"; sourceTree = "<group>"; };
+		D0AA4709D19DF5DF22B4855D /* libPods-greencoin-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-greencoin-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5A55CBEBD3C8FC8283E4F27 /* Pods-greencoin-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greencoin-tvOS.release.xcconfig"; path = "Target Support Files/Pods-greencoin-tvOS/Pods-greencoin-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -84,7 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56DA2CBE4095C7AD54265C53 /* libPods-bedragon-bedragonTests.a in Frameworks */,
+				56DA2CBE4095C7AD54265C53 /* libPods-greencoin-greencoinTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4294ADE80F0B625110F02E0C /* libPods-bedragon.a in Frameworks */,
+				4294ADE80F0B625110F02E0C /* libPods-greencoin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99F62C93BAA6C98D23307CC6 /* libPods-bedragon-tvOS.a in Frameworks */,
+				99F62C93BAA6C98D23307CC6 /* libPods-greencoin-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,20 +108,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7751FD2B5E0D6ABE7064EA88 /* libPods-bedragon-tvOSTests.a in Frameworks */,
+				7751FD2B5E0D6ABE7064EA88 /* libPods-greencoin-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* bedragonTests */ = {
+		00E356EF1AD99517003FC87E /* greencoinTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* bedragonTests.m */,
+				00E356F21AD99517003FC87E /* greencoinTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = bedragonTests;
+			path = greencoinTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -140,7 +140,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* bedragon */ = {
+		13B07FAE1A68108700A75B9A /* greencoin */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -151,7 +151,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = bedragon;
+			name = greencoin;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -159,10 +159,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				08B0AF9324626552966BC4B0 /* libPods-bedragon.a */,
-				25E3F295CF6573D0DAD5A677 /* libPods-bedragon-bedragonTests.a */,
-				D0AA4709D19DF5DF22B4855D /* libPods-bedragon-tvOS.a */,
-				51F1C6E5B84E7C4EC234C0F9 /* libPods-bedragon-tvOSTests.a */,
+				08B0AF9324626552966BC4B0 /* libPods-greencoin.a */,
+				25E3F295CF6573D0DAD5A677 /* libPods-greencoin-greencoinTests.a */,
+				D0AA4709D19DF5DF22B4855D /* libPods-greencoin-tvOS.a */,
+				51F1C6E5B84E7C4EC234C0F9 /* libPods-greencoin-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -179,9 +179,9 @@
 			isa = PBXGroup;
 			children = (
 				0416772A25CD362F0073BAB1 /* Fonts */,
-				13B07FAE1A68108700A75B9A /* bedragon */,
+				13B07FAE1A68108700A75B9A /* greencoin */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* bedragonTests */,
+				00E356EF1AD99517003FC87E /* greencoinTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				F04A1DA791A2E74A9C1FA73F /* Pods */,
@@ -194,10 +194,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* bedragon.app */,
-				00E356EE1AD99517003FC87E /* bedragonTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* bedragon-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* bedragon-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* greencoin.app */,
+				00E356EE1AD99517003FC87E /* greencoinTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* greencoin-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* greencoin-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -205,14 +205,14 @@
 		F04A1DA791A2E74A9C1FA73F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				512B53C669582B55B3AA6BF3 /* Pods-bedragon.debug.xcconfig */,
-				1BCFDD6898ECCB0593FC294F /* Pods-bedragon.release.xcconfig */,
-				36ECEE2ABE028CA01A1BDA47 /* Pods-bedragon-bedragonTests.debug.xcconfig */,
-				A1DEF1504233214BE5A10D19 /* Pods-bedragon-bedragonTests.release.xcconfig */,
-				305E47DAC6F81BE69FBF2F9F /* Pods-bedragon-tvOS.debug.xcconfig */,
-				E5A55CBEBD3C8FC8283E4F27 /* Pods-bedragon-tvOS.release.xcconfig */,
-				840DA26B1529F195A9825D0B /* Pods-bedragon-tvOSTests.debug.xcconfig */,
-				92F8E758070BF78CB38AB897 /* Pods-bedragon-tvOSTests.release.xcconfig */,
+				512B53C669582B55B3AA6BF3 /* Pods-greencoin.debug.xcconfig */,
+				1BCFDD6898ECCB0593FC294F /* Pods-greencoin.release.xcconfig */,
+				36ECEE2ABE028CA01A1BDA47 /* Pods-greencoin-greencoinTests.debug.xcconfig */,
+				A1DEF1504233214BE5A10D19 /* Pods-greencoin-greencoinTests.release.xcconfig */,
+				305E47DAC6F81BE69FBF2F9F /* Pods-greencoin-tvOS.debug.xcconfig */,
+				E5A55CBEBD3C8FC8283E4F27 /* Pods-greencoin-tvOS.release.xcconfig */,
+				840DA26B1529F195A9825D0B /* Pods-greencoin-tvOSTests.debug.xcconfig */,
+				92F8E758070BF78CB38AB897 /* Pods-greencoin-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -220,9 +220,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* bedragonTests */ = {
+		00E356ED1AD99517003FC87E /* greencoinTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "bedragonTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "greencoinTests" */;
 			buildPhases = (
 				F47806761E6AB5AB33E00FCC /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -236,14 +236,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = bedragonTests;
-			productName = bedragonTests;
-			productReference = 00E356EE1AD99517003FC87E /* bedragonTests.xctest */;
+			name = greencoinTests;
+			productName = greencoinTests;
+			productReference = 00E356EE1AD99517003FC87E /* greencoinTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* bedragon */ = {
+		13B07F861A680F5B00A75B9A /* greencoin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "bedragon" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "greencoin" */;
 			buildPhases = (
 				6044B694BDC7E6A39B852E35 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -258,14 +258,14 @@
 			);
 			dependencies = (
 			);
-			name = bedragon;
-			productName = bedragon;
-			productReference = 13B07F961A680F5B00A75B9A /* bedragon.app */;
+			name = greencoin;
+			productName = greencoin;
+			productReference = 13B07F961A680F5B00A75B9A /* greencoin.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* bedragon-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* greencoin-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "bedragon-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "greencoin-tvOS" */;
 			buildPhases = (
 				C4260AD9C8421FD7711FEE9E /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -278,14 +278,14 @@
 			);
 			dependencies = (
 			);
-			name = "bedragon-tvOS";
-			productName = "bedragon-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* bedragon-tvOS.app */;
+			name = "greencoin-tvOS";
+			productName = "greencoin-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* greencoin-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* bedragon-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* greencoin-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "bedragon-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "greencoin-tvOSTests" */;
 			buildPhases = (
 				F147C6D9E7F37C5CD94C75FF /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -297,9 +297,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "bedragon-tvOSTests";
-			productName = "bedragon-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* bedragon-tvOSTests.xctest */;
+			name = "greencoin-tvOSTests";
+			productName = "greencoin-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* greencoin-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -328,7 +328,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "bedragon" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "greencoin" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -347,10 +347,10 @@
 			);
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* bedragon */,
-				00E356ED1AD99517003FC87E /* bedragonTests */,
-				2D02E47A1E0B4A5D006451C7 /* bedragon-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* bedragon-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* greencoin */,
+				00E356ED1AD99517003FC87E /* greencoinTests */,
+				2D02E47A1E0B4A5D006451C7 /* greencoin-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* greencoin-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -435,7 +435,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-bedragon-bedragonTests/Pods-bedragon-bedragonTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-greencoin-greencoinTests/Pods-greencoin-greencoinTests-frameworks.sh",
 				"${PODS_ROOT}/naveridlogin-sdk-ios/NaverThirdPartyLogin.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -444,7 +444,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bedragon-bedragonTests/Pods-bedragon-bedragonTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-greencoin-greencoinTests/Pods-greencoin-greencoinTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6044B694BDC7E6A39B852E35 /* [CP] Check Pods Manifest.lock */ = {
@@ -462,7 +462,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-bedragon-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-greencoin-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -475,7 +475,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-bedragon/Pods-bedragon-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-greencoin/Pods-greencoin-frameworks.sh",
 				"${PODS_ROOT}/naveridlogin-sdk-ios/NaverThirdPartyLogin.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -484,7 +484,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bedragon/Pods-bedragon-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-greencoin/Pods-greencoin-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C4260AD9C8421FD7711FEE9E /* [CP] Check Pods Manifest.lock */ = {
@@ -502,7 +502,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-bedragon-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-greencoin-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -515,7 +515,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-bedragon-bedragonTests/Pods-bedragon-bedragonTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-greencoin-greencoinTests/Pods-greencoin-greencoinTests-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/RNImageCropPicker/QBImagePicker.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/TOCropViewController/TOCropViewControllerBundle.bundle",
@@ -528,7 +528,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bedragon-bedragonTests/Pods-bedragon-bedragonTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-greencoin-greencoinTests/Pods-greencoin-greencoinTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D96D91704024BC2684442D27 /* [CP] Copy Pods Resources */ = {
@@ -537,7 +537,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-bedragon/Pods-bedragon-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-greencoin/Pods-greencoin-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/RNImageCropPicker/QBImagePicker.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/TOCropViewController/TOCropViewControllerBundle.bundle",
@@ -550,7 +550,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bedragon/Pods-bedragon-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-greencoin/Pods-greencoin-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F147C6D9E7F37C5CD94C75FF /* [CP] Check Pods Manifest.lock */ = {
@@ -568,7 +568,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-bedragon-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-greencoin-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -590,7 +590,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-bedragon-bedragonTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-greencoin-greencoinTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -642,7 +642,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* bedragonTests.m in Sources */,
+				00E356F31AD99517003FC87E /* greencoinTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,7 +668,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* bedragonTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* greencoinTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,12 +677,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* bedragon */;
+			target = 13B07F861A680F5B00A75B9A /* greencoin */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* bedragon-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* greencoin-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -690,14 +690,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36ECEE2ABE028CA01A1BDA47 /* Pods-bedragon-bedragonTests.debug.xcconfig */;
+			baseConfigurationReference = 36ECEE2ABE028CA01A1BDA47 /* Pods-greencoin-greencoinTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = bedragonTests/Info.plist;
+				INFOPLIST_FILE = greencoinTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -707,17 +707,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bedragon.app/bedragon";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/greencoin.app/greencoin";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1DEF1504233214BE5A10D19 /* Pods-bedragon-bedragonTests.release.xcconfig */;
+			baseConfigurationReference = A1DEF1504233214BE5A10D19 /* Pods-greencoin-greencoinTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = bedragonTests/Info.plist;
+				INFOPLIST_FILE = greencoinTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -727,19 +727,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bedragon.app/bedragon";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/greencoin.app/greencoin";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 512B53C669582B55B3AA6BF3 /* Pods-bedragon.debug.xcconfig */;
+			baseConfigurationReference = 512B53C669582B55B3AA6BF3 /* Pods-greencoin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = bedragon/Info.plist;
+				INFOPLIST_FILE = greencoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -747,8 +747,8 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = bedragon;
-				SWIFT_OBJC_BRIDGING_HEADER = "bedragon-Bridging-Header.h";
+				PRODUCT_NAME = greencoin;
+				SWIFT_OBJC_BRIDGING_HEADER = "greencoin-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -757,12 +757,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1BCFDD6898ECCB0593FC294F /* Pods-bedragon.release.xcconfig */;
+			baseConfigurationReference = 1BCFDD6898ECCB0593FC294F /* Pods-greencoin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = bedragon/Info.plist;
+				INFOPLIST_FILE = greencoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -770,8 +770,8 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = bedragon;
-				SWIFT_OBJC_BRIDGING_HEADER = "bedragon-Bridging-Header.h";
+				PRODUCT_NAME = greencoin;
+				SWIFT_OBJC_BRIDGING_HEADER = "greencoin-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -779,7 +779,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 305E47DAC6F81BE69FBF2F9F /* Pods-bedragon-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 305E47DAC6F81BE69FBF2F9F /* Pods-greencoin-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -790,14 +790,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "bedragon-tvOS/Info.plist";
+				INFOPLIST_FILE = "greencoin-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.bedragon-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.greencoin-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -807,7 +807,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5A55CBEBD3C8FC8283E4F27 /* Pods-bedragon-tvOS.release.xcconfig */;
+			baseConfigurationReference = E5A55CBEBD3C8FC8283E4F27 /* Pods-greencoin-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -818,14 +818,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "bedragon-tvOS/Info.plist";
+				INFOPLIST_FILE = "greencoin-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.bedragon-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.greencoin-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -835,7 +835,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 840DA26B1529F195A9825D0B /* Pods-bedragon-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 840DA26B1529F195A9825D0B /* Pods-greencoin-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -845,24 +845,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "bedragon-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "greencoin-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.bedragon-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.greencoin-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bedragon-tvOS.app/bedragon-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/greencoin-tvOS.app/greencoin-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92F8E758070BF78CB38AB897 /* Pods-bedragon-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 92F8E758070BF78CB38AB897 /* Pods-greencoin-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -872,17 +872,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "bedragon-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "greencoin-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.bedragon-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.greencoin-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bedragon-tvOS.app/bedragon-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/greencoin-tvOS.app/greencoin-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1003,7 +1003,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "bedragonTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "greencoinTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -1012,7 +1012,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "bedragon" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "greencoin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1021,7 +1021,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "bedragon-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "greencoin-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1030,7 +1030,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "bedragon-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "greencoin-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1039,7 +1039,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "bedragon" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "greencoin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
