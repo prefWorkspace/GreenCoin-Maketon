@@ -12,12 +12,12 @@ export default function ModalCalendar({show ,setShow ,clickDate}) {
 
 
   const closeModal = () =>{
-     setShow({show:!show.show , type:"start"});
+     setShow(false);
    }
  
 
     return (
-      <Modal isVisible={show.show} style={styles.modal} onBackdropPress={closeModal}>
+      <Modal isVisible={show} style={styles.modal} onBackdropPress={closeModal}>
           <View style={[styles.container]} >
             <CalendarPicker 
               onDateChange={clickDate}

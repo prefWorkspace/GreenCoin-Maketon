@@ -9,6 +9,7 @@ export default function ProfileContent({title,navi, onPress}) {
 
   const navigation = useNavigation();
   const moveToPage = () =>{
+    if(navi)
     navigation.navigate(navi);
     return;
   }

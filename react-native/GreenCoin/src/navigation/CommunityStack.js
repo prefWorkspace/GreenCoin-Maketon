@@ -12,7 +12,7 @@ export default function CommunityStack({navigation,route}) {
 
   return (
     <Stack.Navigator  
-      initialRouteName="communityPost"
+      initialRouteName="community"
       screenOptions={{
         headerShown: false
       }}

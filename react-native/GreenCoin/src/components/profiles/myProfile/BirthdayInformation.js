@@ -5,7 +5,7 @@ import ModalCalendar from '../../comm/ModalCalendar';
 
 export default function BirthdayInformation({year,month,day,setYear,setMonth,setDay}) {
 
-    const [show,setShow] = useState({show:false,type:""});
+    const [show,setShow] = useState(false);
 
     const clickDate = (d) =>{
       let date = new Date(d);
@@ -18,23 +18,23 @@ export default function BirthdayInformation({year,month,day,setYear,setMonth,set
       setMonth(date.getMonth() + 1);
       setDay(date.getDate());
 
-      setShow({show : false , type:""});
+      setShow(false);
     }
 
     const openModal =()=>{
-      setShow({show : true , type:""});
+      setShow(true);
     }
     
     return (
       <View style={styles.container}>
+      <Text style={styles.title}>생년월일</Text>
         <View style={styles.itemContainer}>
-            <Text style={styles.title}>생년월일</Text>
-            <Text onPress={openModal} style={styles.textInput}  >{year}</Text>
-            <Text> 년  </Text>
-            <Text onPress={openModal} style={styles.textInput}  >{month}</Text>
-            <Text> 월  </Text>
-            <Text onPress={openModal} style={styles.textInput}  >{day}</Text>
-            <Text> 일</Text>
+            <Text onPress={openModal} style={styles.year}>{year ? year : "0000"}</Text>
+            <Text style={styles.label}> 년  </Text>
+            <Text onPress={openModal} style={styles.month}>{month ? month : "00"}</Text>
+            <Text style={styles.label}> 월  </Text>
+            <Text onPress={openModal} style={styles.day}>{day ? day : "00"}</Text>
+            <Text style={styles.label}> 일</Text>
         </View>
         <View style={styles.hr}></View>
         <ModalCalendar show={show} setShow={setShow} clickDate={clickDate}></ModalCalendar>
@@ -51,7 +51,8 @@ const styles = EStyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-
+    height:"90rem",
+    bottom:"10rem",
   },
   itemContainer:{
     width:"86%",
@@ -78,14 +79,50 @@ const styles = EStyleSheet.create({
     paddingLeft:"10rem",
     paddingRight:"10rem",
   },
+  label:{
+    marginRight:"10rem",
+    marginLeft:"10rem",
+  },
+  year:{
+    width:"120rem",
+    padding:"10rem",
+    borderColor:"#efefef",
+    borderWidth:1,
+    borderRadius:5,
+    textAlign:"center",
+    paddingLeft:"10rem",
+    paddingRight:"10rem",
+  },
+  month:{
+    width:"50rem",
+    padding:"10rem",
+    borderColor:"#efefef",
+    borderWidth:1,
+    borderRadius:5,
+    textAlign:"center",
+    paddingLeft:"10rem",
+    paddingRight:"10rem",
+  },
+  day:{
+    width:"50rem",
+    padding:"10rem",
+    borderColor:"#efefef",
+    borderWidth:1,
+    borderRadius:5,
+    textAlign:"center",
+    paddingLeft:"10rem",
+    paddingRight:"10rem",
+  },
   title:{
       marginRight:"auto",
-      fontSize:"14.864rem",
+      left:"20rem",
+      fontSize:11,
+      color: 'black',
+      fontFamily:"NotoSansKR-Medium",
+      top: "10rem",
   },
   hr:{
     marginTop:"auto",
     width:"86%",
-    borderBottomColor: '#efefef',
-    borderBottomWidth: 1.2,
   }, 
 });
