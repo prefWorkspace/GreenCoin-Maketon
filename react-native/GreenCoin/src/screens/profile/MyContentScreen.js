@@ -10,38 +10,54 @@ import MainTitle from '../../components/mains/main/MainTitle';
 import CommunityDetailTitle from "../../components/community/communityDetail/CommunityDetailTitle";
 import CommonDetailTitle from '../../components/comm/CommonDetailTitle';
 import MyContentDecide from '../../components/profiles/myContent/MyContentDecide';
+import ModalCommon from '../../components/comm/ModalCommon';
 
 export default function MyContentScreen({route}) {
+  
+  const [show, setShow] = useState(false);
+  const [deleteShow, setDeleteShow] = useState(false);
+  const [list, setList] = useState([
+    {
+      content:"testestsetset",
+      date:"2020-22-22",
+    },
+    {
+      content:"testestsetset",
+      date:"2020-22-22",
+    },
+    {
+      content:"testestsetset",
+      date:"2020-22-22",
+    },
+    {
+      content:"testestsetset",
+      date:"2020-22-22",
+    },
+    {
+      content:"testestsetset",
+      date:"2020-22-22",
+    }
+  ]);
 
-    const [list, setList] = useState([
-      {
-        content:"testestsetset",
-        date:"2020-22-22",
-      },
-      {
-        content:"testestsetset",
-        date:"2020-22-22",
-      },
-      {
-        content:"testestsetset",
-        date:"2020-22-22",
-      },
-      {
-        content:"testestsetset",
-        date:"2020-22-22",
-      },
-      {
-        content:"testestsetset",
-        date:"2020-22-22",
-      }
-    ]);
+    
+
+    const deleteEvent = () =>{ 
+      setShow(true);
+    }
+
+    const editEvent = () =>{ 
+
+    }
 
     const Item = ({value}) =>{
       return (
         <View style={styles.contentContainer}>
+          <View  style={styles.content}>
             <CheckBox style={styles.checkbox}/>
             <Text style={styles.left}>{value.content}</Text>
             <Text  style={styles.right}>{value.date}</Text>
+          </View>
+          <View  style={styles.hr}/>
         </View>
       )
     }
@@ -56,8 +72,10 @@ export default function MyContentScreen({route}) {
               return  <Item value={value}/> 
             })
           }
-          <MyContentDecide/>
+          <MyContentDecide editEvent={editEvent} deleteEvent={deleteEvent}/>
         </ScrollView>
+        <ModalCommon isModalVisible={show} setIsModalVisible={setShow} title={"선택하신 작성글을 삭제하시겠습니까?"} bottomType={"select"}/>
+        <ModalCommon isModalVisible={deleteShow} setIsModalVisible={setDeleteShow} title={"성공적으로 삭제가 완료되었습니다."}/>
       </View>
     );
   }
@@ -73,9 +91,22 @@ const styles = EStyleSheet.create({
     height:"100%",
   },
   contentContainer:{
+    width:"100%",
+    alignItems: "center",
+    justifyContent: "center",
+    padding:"5rem",
+  },
+  content:{
+    width:"100%",
     flexDirection:"row",
     alignItems: "center",
     justifyContent: "center",
+  },
+  hr:{
+    width:"98%",
+    borderBottomWidth:1.5,
+    borderBottomColor:"#E6E6E6",
+    paddingBottom:"5rem",
   },
   left:{
     marginRight:"auto",

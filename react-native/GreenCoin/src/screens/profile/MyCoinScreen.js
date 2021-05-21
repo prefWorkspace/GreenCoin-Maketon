@@ -8,6 +8,7 @@ import { useNavigation} from '@react-navigation/native';
 import userInfoSingleton from '../../db/userInfoSingleton';
 import MainTitle from '../../components/mains/main/MainTitle';
 import CommunityDetailTitle from "../../components/community/communityDetail/CommunityDetailTitle";
+import CommonDetailTitle from '../../components/comm/CommonDetailTitle';
 
 export default function MyCoinScreen({route}) {
     const navigation = useNavigation();
@@ -35,7 +36,7 @@ export default function MyCoinScreen({route}) {
     return (
       <View  style={styles.container}>
         <MainTitle></MainTitle>
-        <CommunityDetailTitle />
+        <CommonDetailTitle title={"내 그린코인"}></CommonDetailTitle>
         <ScrollView>
           <View style={styles.currentArea}>
             <View style={styles.currentTop}>

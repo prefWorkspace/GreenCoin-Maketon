@@ -32,6 +32,7 @@ const CommunityPostScreen = () => {
         <CommunityPostTitle/>
         <CommunityPostContent/>
         <CommunityPostImage imageList={imageList} setImageList={setImageList}/>
+        <View style={styles.hr}/>
         <CommunityPostTag/>
         <CommunityPostDecide/>
       </ScrollView>
@@ -60,4 +61,9 @@ const styles = EStyleSheet.create({
   commonPaddingBox: {
     height :"44.42rem",
   },
+  hr:{
+    height:"20rem",
+    backgroundColor:"#F8F7F7",
+    marginBottom:"20rem",
+  }
 });

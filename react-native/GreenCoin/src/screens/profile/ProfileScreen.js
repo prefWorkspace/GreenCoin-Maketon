@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React , {useState} from 'react';
 import { View, ScrollView, Dimensions, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import MyInfo from '../../components/profiles/profile/MyInfo';
@@ -7,11 +7,18 @@ import {navigationBackHandler} from '../../navigation/NavigationBackHandler';
 import { useNavigation} from '@react-navigation/native';
 import userInfoSingleton from '../../db/userInfoSingleton';
 import MainTitle from '../../components/mains/main/MainTitle';
+import ModalCommon from '../../components/comm/ModalCommon';
 
 export default function ProfileScreen({route}) {
+
+    const [show,setShow] = useState(false);
     const navigation = useNavigation();
     const userName = userInfoSingleton.getInstance()._userName;
     navigationBackHandler("main");
+
+    const versionClick = () =>{
+      setShow(true);
+    }
 
     return (
       <View  style={styles.container}>
@@ -23,11 +30,11 @@ export default function ProfileScreen({route}) {
             <ProfileContent  title={"내 그린코인"} navi={"myCoin"} ></ProfileContent>
             <ProfileContent  title={"내 글보기"} navi={"myContent"} ></ProfileContent>
             <ProfileContent  title={"설정"} navi={"mySetting"}></ProfileContent>
-            <ProfileContent  title={"앱 정보"} navi={null}></ProfileContent>
+            <ProfileContent  title={"앱 정보"} onPress={versionClick}></ProfileContent>
             <ProfileContent  title={"커뮤니티 글쓰기"} navi={"communityPost"} ></ProfileContent>
-            <ProfileContent  title={"내 정보"}></ProfileContent>
             <ProfileContent  navi={"selectArea"} title={"지역 선택(인트로)"} ></ProfileContent>
          </ScrollView>
+        <ModalCommon isModalVisible={show} setIsModalVisible={setShow} title={"000.000.ver"}/>
       </View>
     );
   }

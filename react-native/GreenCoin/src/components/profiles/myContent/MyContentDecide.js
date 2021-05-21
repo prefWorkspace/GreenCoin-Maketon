@@ -3,18 +3,18 @@ import { TouchableOpacity, Text,Image, View, Dimensions,ScrollView,StyleSheet, A
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation ,useRoute } from '@react-navigation/native';
 
-export default function MyContentDecide() {
+export default function MyContentDecide({deleteEvent , editEvent}) {
   const navigation = useNavigation();
   const routeInfo = useRoute();
 
 
     return (
       <View style={styles.container}>
-      <TouchableOpacity style={styles.titleAreaBody}>
-        <Text style={styles.label}>취소</Text>
+      <TouchableOpacity style={styles.titleAreaBody} onPress={deleteEvent}>
+        <Text style={styles.label}>삭제</Text>
       </TouchableOpacity>
       <View style={styles.div}></View>
-        <TouchableOpacity style={styles.titleAreaBodyActive} >
+        <TouchableOpacity style={styles.titleAreaBodyActive} onPress={editEvent}>
         <Text style={styles.labelActive}>수정</Text>
         </TouchableOpacity>
       </View>

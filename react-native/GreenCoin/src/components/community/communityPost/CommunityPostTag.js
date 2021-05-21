@@ -13,6 +13,17 @@ export default function CommunityPostTag() {
             <TextInput style={styles.searchInput} placeholder="연관 주제태그를 입력후 선택하여주세요."></TextInput>
             <Image style={styles.searchIcon} source={require('../../../assets/img/icon/searchIcon.png')} resizeMode="stretch"></Image>
           </View>
+          <View style={styles.tagContainer}>
+          {
+            [1,2,3,4,5].map((value)=>{
+              return (
+                <View style={styles.tagBody}>
+                  <Text style={styles.tag}>탄소줄이기</Text>
+                </View>
+              )
+            })
+          }
+          </View>
         </View>
     );
   }
@@ -53,7 +64,6 @@ const styles = EStyleSheet.create({
     marginLeft:"auto",
     marginRight:"4rem",
   },
-  
   image:{
     width:"28.42rem",
     height:"28.42rem",
@@ -67,5 +77,23 @@ const styles = EStyleSheet.create({
     height :"31.46rem",
     top:"23.28rem",
     left:"15rem",
+  },
+  tagContainer:{
+    flexDirection: 'row',
+    paddingTop:"10rem",
+  },
+  tagBody:{
+    backgroundColor:"#66D8B9",
+    height :"31.46rem",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingLeft:"20rem",
+    paddingRight:"20rem",
+    marginRight:"4rem",
+    borderRadius:50,
+  },
+  tag:{
+    color:"white",
+    fontSize:16,
   }
 });
