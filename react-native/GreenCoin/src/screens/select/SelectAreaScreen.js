@@ -1,5 +1,5 @@
 import React, { Component,useState ,useEffect } from "react";
-import { Dimensions, View,BackHandler,ScrollView,TouchableOpacity,Image } from "react-native";
+import { Dimensions, View,BackHandler,ScrollView,TouchableOpacity,Image, Text } from "react-native";
 
 
 import MainTitle from '../../components/mains/main/MainTitle';
@@ -44,7 +44,18 @@ const SelectAreaScreen = () => {
       <MainTitle/>
       <View>
         <ScrollView  contentContainerStyle={{flexGrow: 1, height : "100%"}}>
-          <WebView
+        <Text>그린 코인 시작하기</Text>
+        <View>
+          <TouchableOpacity>
+            <Text>그린 코인 시작하기</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text>그린 코인 로그인</Text>
+          </TouchableOpacity>
+        </View>
+      
+          {/*
+            <WebView
               source={{ uri: `http://172.28.5.10:3000/SelectArea` }}
               bounces={true}
               scrollEnabled={false}
@@ -52,8 +63,11 @@ const SelectAreaScreen = () => {
               injectedJavaScript="window.ReactNativeWebView.postMessage(JSON.stringify({type:'screen' , data : Math.max(document.body.offsetHeight, document.body.scrollHeight)}));"
               style={styles.content}
               // onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
-              />
+            />  
+          */}
         </ScrollView>
+
+
      </View>
     </View>
   );
