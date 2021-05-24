@@ -8,7 +8,7 @@ import { useNavigation} from '@react-navigation/native';
 import userInfoSingleton from '../../db/userInfoSingleton';
 import MainTitle from '../../components/mains/main/MainTitle';
 import ModalCommon from '../../components/comm/ModalCommon';
-
+import realmController from '../../db/realm/realmController'
 export default function ProfileScreen({route}) {
 
     const [show,setShow] = useState(false);
@@ -18,6 +18,10 @@ export default function ProfileScreen({route}) {
 
     const versionClick = () =>{
       setShow(true);
+    }
+
+    const logOut = () =>{
+      realmController.logoutUserState();
     }
 
     return (
@@ -32,7 +36,8 @@ export default function ProfileScreen({route}) {
             <ProfileContent  title={"설정"} navi={"mySetting"}></ProfileContent>
             <ProfileContent  title={"앱 정보"} onPress={versionClick}></ProfileContent>
             <ProfileContent  title={"커뮤니티 글쓰기"} navi={"communityPost"} ></ProfileContent>
-            <ProfileContent  navi={"selectArea"} title={"지역 선택(인트로)"} ></ProfileContent>
+            <ProfileContent  title={"로그아웃"} onPress={logOut}></ProfileContent>
+            {/* <ProfileContent  navi={"selectArea"} title={"지역 선택(인트로)"} ></ProfileContent> */}
          </ScrollView>
         <ModalCommon isModalVisible={show} setIsModalVisible={setShow} title={"000.000.ver"}/>
       </View>

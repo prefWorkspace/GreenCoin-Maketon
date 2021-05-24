@@ -12,36 +12,14 @@ const UserInfo ={
         isLogin:'bool',
         autoLogin:'bool',
         userId: { type: 'int', default: 0 },
-        tok_name : 'string',
-        mem_method : { type: 'int', default: 0 },
+        tok_name : 'string'
     }
 }
 
-/*
-const UserInfo = {
-        name: 'Userinfo',
-        properties: {
-            isLogin:'bool',
-            autoLogin:'bool',
-            userId: { type: 'int', default: 0 },
-            userName : 'string',
-            name :'string',
-            userPassword : 'string',
-            gender : 'string',
-            bday :'string',
-            height:'string',
-            weight :'string',
-            phone : "string",
-            email : "string",
-            loginType : { type: 'int', default: -1 },
-            mem_notification : "string",
-            mem_notification_event : "string"
-    }
-};
-*/
+
 
 const updateUserInfomation = async (state)=>{
-        var realm = await Realm.open({schemaVersion:17,schema: [UserInfo]});
+        var realm = await Realm.open({schemaVersion:18,schema: [UserInfo]});
         await realm.write(()=>{
             try{  
                 realm.deleteAll();
@@ -50,11 +28,9 @@ const updateUserInfomation = async (state)=>{
                     isLogin:  state.isLogin,
                     autoLogin:  state.autoLogin,
                     tok_name : state.tok_name,
-                    mem_method : state.mem_method
                 });
 
                 userInfoSingleton.getInstance().updateUserInfo(state);
-             
             }
             catch(e){
                 console.log(e);
@@ -78,7 +54,6 @@ const loadLoginDataFromRealm = async () =>{
     initData.tok_name = filter[0].tok_name;
     initData.autoLogin = filter[0].autoLogin;
     initData.isLogin = filter[0].isLogin;
-    initData.mem_method = filter[0].mem_method;
 
     await userInfoSingleton.getInstance().updateUserInfo(initData);
     return (await initData);
@@ -90,7 +65,6 @@ const logOutUserState = () =>{
         tok_name : "",
         autoLogin : false,
         isLogin : false,
-        mem_method : 0,
     });
 }
 
@@ -114,20 +88,11 @@ export default {
                     tok_name : userJsonFile.userInfo.tok_name,
                     name : userJsonFile.userInfo.mem_name,
                     userName :  userJsonFile.userInfo.mem_username,
-                    gender : userJsonFile.userInfo.mem_gender,
                     bday : userJsonFile.userInfo.mem_dob,
                     autoLogin : true,
                     isLogin : true,
-                    height :  userJsonFile.userInfo.mem_additional1,
-                    weight :  userJsonFile.userInfo.mem_additional2,
-                    phone : userJsonFile.userInfo.mem_phone,
-                    mem_method : userJsonFile.userInfo.mem_method,
                     email : userJsonFile.userInfo.mem_email ?  userJsonFile.userInfo.mem_email : "" ,
-                    mem_refund_bank : userJsonFile.userInfo.mem_refund_bank,
-                    mem_refund_account : userJsonFile.userInfo.mem_refund_account,
-                    refund_name : userJsonFile.userInfo.mem_refund_name,
                     mem_notification : userJsonFile.userInfo.mem_notification,
-                    mem_notification_event : userJsonFile.userInfo.mem_notification_event,
                     tok_name :userJsonFile.tocken
                   }
 
