@@ -1,13 +1,49 @@
-import * as React from 'react';
+import React ,{useState}from 'react';
 import { TouchableOpacity, Text,Image, View, Dimensions,ScrollView,StyleSheet, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation ,useRoute } from '@react-navigation/native';
 import userInfoSingleton from '../../../db/userInfoSingleton';
+import Swiper from 'react-native-swiper'
 
 export default function MainEnvironmentResult() {
   const navigation = useNavigation();
   const routeInfo = useRoute();
+  const [idx, setIndex] = useState(0);
 
+  const swipeItem  = () =>{
+    return(
+        <View style={styles.dustInfoContainer}>
+          <View style={styles.dustIconImage}>
+            <Image style={styles.dustIconImage} source={require('../../../assets/img/icon/subway.png')}></Image>
+          </View>
+          <View>
+            <Text style={[styles.label]}>하루 출/퇴근 대중교통 이용하기!</Text>
+            <View style={[styles.agreeBox]}>
+              <Text style={[styles.agreeLabel]}>미션수락</Text>
+            </View>
+          </View>
+        </View>
+      //  원래코드입니다.
+      // <View style={styles.itemContainerSwiper}>
+      //   <View style={styles.titleContainer}>
+      //     <View style={styles.titleDateContainer}>
+      //     </View>
+      //   </View>
+      //   <View style={styles.dustInfoContainer}>
+      //     <View style={styles.dustIconImage}>
+      //       <Image style={styles.dustIconImage} source={require('../../../assets/img/icon/subway.png')}></Image>
+      //     </View>
+      //     <View>
+      //       <Text style={[styles.label]}>하루 출/퇴근 대중교통 이용하기!</Text>
+      //       <View style={[styles.agreeBox]}>
+      //         <Text style={[styles.agreeLabel]}>미션수락</Text>
+      //       </View>
+      //     </View>
+      //   </View>
+      // </View>
+    )
+  }
+  
   return (
     <View style={styles.container}>
         <View style={styles.likeInfoContainer}>
@@ -17,29 +53,23 @@ export default function MainEnvironmentResult() {
           </View>
         </View>
       <View style={styles.subContainer}>
-     
-        <View style={styles.itemContainer}>
-          <View style={styles.titleContainer}>
-            <View style={styles.titleDateContainer}>
-            </View>
-          </View>
-          <View style={styles.dustInfoContainer}>
-            <View style={styles.dustIconImage}>
-              <Image style={styles.dustIconImage} source={require('../../../assets/img/icon/subway.png')}></Image>
-            </View>
-            <View>
-              <Text style={[styles.label]}>하루 출/퇴근 대중교통 이용하기!</Text>
-              <View style={[styles.agreeBox]}>
-                <Text style={[styles.agreeLabel]}>미션수락</Text>
-              </View>
-            </View>
-          </View>
-        </View>
+        
+        <Swiper
+          loop={true}
+          onIndexChanged={(index)=>{setIndex(index)}}
+          activeDotStyle={{ top:"25%", backgroundColor:"#BFBFBF"}}
+          dotStyle={{top:"25%",backgroundColor:"#E4E4E4"}}
+          >
+          {swipeItem()}
+          {swipeItem()}
+          {swipeItem()}
+        </Swiper>
+
         <View style={styles.middleContainer}></View>
         <View style={styles.itemContainer}>
           <View style={styles.titleContainer}>
             <View style={styles.titleDateContainer}>
-              <Image style={styles.resetImage} source={require('../../../assets/img/icon/reset.png')}></Image>
+              <Image style={styles.resetImage} source={require('../../../assets/img/icon/share.png')}></Image>
               <Text  style={[styles.label,styles.title]} >0000 step</Text>
             </View>
           </View>
@@ -73,6 +103,8 @@ subContainer:{
   borderWidth:1,
   borderColor:"#efefef",
   width:"100%",
+  // height: "176rem",
+  height: "200rem",
   padding:"20rem",
 },
 likeInfoContainer:{
@@ -94,6 +126,9 @@ image:{
   marginRight:"10rem",
 },
 itemContainer:{
+  width:"47%",
+},
+itemContainerSwiper:{
   width:"47%",
 },
 dustInfoContainer:{
