@@ -17,12 +17,12 @@ export default function MainTextContent({item}) {
     const navigation = useNavigation();
 
     const moveToContentDetail = () =>{
-      navigation.navigate("communityDetail");
+      navigation.navigate("communityDetail",  {no:item.no});
     }
 
 
     return (
-      <TouchableOpacity style={styles.container} onPress={moveToContentDetail}>
+      <TouchableOpacity style={styles.container} onPress={() => moveToContentDetail()}>
         <View style={styles.likeInfoContainer}>
           <View style={styles.likeInfo}>
             {

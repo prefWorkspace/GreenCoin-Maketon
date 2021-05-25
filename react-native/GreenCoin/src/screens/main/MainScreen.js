@@ -13,6 +13,8 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation } from "@react-navigation/core";
 import appStaticInfomation from "../../db/appStaticInfomation";
 
+import DateText from '../../components/commonsjh/dateText';
+
 // server 
 import serverController from '../../server/serverController';
 
@@ -34,38 +36,6 @@ const Data = [
   },
 ]
 
-const CommunityList = [
-  {
-    title:"탄소줄이고 다이어트도 같이했어요!",
-    date :"2020.00.00",
-    type : 0,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac… 운동",
-    date :"2020.11.00",
-    type : 1,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac…",
-    date :"2020.33.00",
-    type : 2,
-  },
-  {
-    title:"탄소줄이고 다이어트도 같이했어요!",
-    date :"2020.00.00",
-    type : 0,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac… 운동",
-    date :"2020.11.00",
-    type : 1,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac…",
-    date :"2020.33.00",
-    type : 2,
-  },
-]
 
 const MainScreen = () => {
   const navigation = useNavigation();
@@ -84,14 +54,14 @@ const MainScreen = () => {
       dataArr.map(item => {
         let newObj = {
           title:item.title,
-          date:item.create_date,
+          date:DateText(new Date(res.data.posts[0].create_date), "."),
           type:2,
+          no:item.no
         }
         newArr.push(newObj);
       })
       setCommunityList([...newArr]);
-    },function(err){console.log("err -- "); console.log(err);});
-
+    },function(err){console.log(err);});
 
   }, [])
 

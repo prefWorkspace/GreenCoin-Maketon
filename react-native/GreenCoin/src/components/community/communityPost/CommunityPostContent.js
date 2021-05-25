@@ -1,24 +1,25 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { TouchableOpacity, Text,Image, View, Dimensions,TextInput,StyleSheet, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation ,useRoute } from '@react-navigation/native';
 import userInfoSingleton from '../../../db/userInfoSingleton';
+import DateText from '../../commonsjh/dateText';
 
-export default function CommunityPostContent() {
+
+export default function CommunityPostContent({titleValue, labelValue, setTitleValue, setLabelValue}) {
   const navigation = useNavigation();
 
   const goBack = () =>{ navigation.goBack(); }
-  
 
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.titleAreaBody} onPress={goBack}>
-           <Text style={styles.titleLabel}>{"2020.00.00"}</Text>
+           <Text style={styles.titleLabel}>{DateText(new Date(), ".")}</Text>
         </TouchableOpacity>
         <View style={styles.labelContainer}>
-          <TextInput style={styles.title} placeholder="제목을 입력해주세요."></TextInput>
+          <TextInput value={titleValue} onChangeText={e => setTitleValue(e)} style={styles.title} placeholder="제목을 입력해주세요."></TextInput>
           <View style={styles.hr}></View>
-          <TextInput style={styles.label} multiline={true} placeholder="내용을 입력해주세요."></TextInput>
+          <TextInput value={labelValue} onChangeText={e => setLabelValue(e)}  style={styles.label} multiline={true} placeholder="내용을 입력해주세요."></TextInput>
         </View>
       </View>
     );
