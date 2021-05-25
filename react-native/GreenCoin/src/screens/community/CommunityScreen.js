@@ -10,74 +10,30 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import CommunityEventBanner from "../../components/community/community/CommunityEventBanner";
 import CommunityEvent from "../../components/community/community/CommunityEvent";
 import CommunityContentList from "../../components/community/community/CommunityContentList";
-
-const CommunityList = [
-  {
-    title:"탄소줄이고 다이어트도 같이했어요!",
-    date :"2020.00.00",
-    type : 0,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac… 운동",
-    date :"2020.11.00",
-    type : 1,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac…",
-    date :"2020.33.00",
-    type : 2,
-  },
-  {
-    title:"탄소줄이고 다이어트도 같이했어요!",
-    date :"2020.00.00",
-    type : 0,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac… 운동",
-    date :"2020.11.00",
-    type : 1,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac…",
-    date :"2020.33.00",
-    type : 2, 
-  },
-  {
-    title:"탄소줄이고 다이어트도 같이했어요!",
-    date :"2020.00.00",
-    type : 0,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac… 운동",
-    date :"2020.11.00",
-    type : 1,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac…",
-    date :"2020.33.00",
-    type : 2,
-  },
-  {
-    title:"탄소줄이고 다이어트도 같이했어요!",
-    date :"2020.00.00",
-    type : 0,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac… 운동",
-    date :"2020.11.00",
-    type : 1,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac…",
-    date :"2020.33.00",
-    type : 2, 
-  },
-]
+import serverController from '../../server/serverController';
+import DateText from '../../components/commonsjh/dateText';
 
 const CommunityScreen = () => {
  
   const [couponList,setCouponList] = useState([]);
+  const [communityList, setCommunityList] = useState([])
+  useEffect(() => {
+    serverController.connectFetchController(`/posts`,"GET",null,function(res){
+      const dataArr = res.data.posts;
+      let newArr = []
+      dataArr.map(item => {
+        let newObj = {
+          title:item.title,
+          date:DateText(new Date(res.data.posts[0].create_date), "."),
+          type:2,
+          no:item.no
+        }
+        newArr.push(newObj);
+      })
+      setCommunityList([...newArr]);
+    },function(err){console.log(err);});
 
+  }, [])
   return (
     <View style={styles.container}>
       <MainTitle/>
@@ -85,7 +41,7 @@ const CommunityScreen = () => {
         <MainAreaTitle/>
         <CommunityEventBanner couponList={couponList}/>
         <CommunityEvent/>
-        <CommunityContentList list={CommunityList} title={"우리지역 커뮤니티"} icon={"community"}/>
+        <CommunityContentList list={communityList} title={"우리지역 커뮤니티"} icon={"community"}/>
         {/* <MainDoubrleClick></MainDoubrleClick> */}
       </ScrollView>
     </View>

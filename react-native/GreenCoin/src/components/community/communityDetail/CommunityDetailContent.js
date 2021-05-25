@@ -4,7 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation ,useRoute } from '@react-navigation/native';
 import userInfoSingleton from '../../../db/userInfoSingleton';
 
-export default function CommunityDetailContent() {
+export default function CommunityDetailContent({textData}) {
   const navigation = useNavigation();
 
   const goBack = () =>{ navigation.goBack(); }
@@ -13,12 +13,12 @@ export default function CommunityDetailContent() {
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.titleAreaBody} onPress={goBack}>
-           <Text style={styles.titleLabel}>{"2020.00.00"}</Text>
+           <Text style={styles.titleLabel}>{textData.date}</Text>
            <Image style={styles.titleAddressPoint} source={require('../../../assets/img/label_point/rightClickPoint.png')}></Image>
         </TouchableOpacity>
         <View style={styles.labelContainer}>
-          <Text style={styles.title}>탄소를줄이고 다이어트도 같이했어요!</Text>
-          <Text style={styles.label}>우리들이르딮밪ㄷㄱ;ㅏㅍ벚ㄷ;ㅍ거;ㅣㅏㄷㅂ저ㅣㅍ거;ㅣㅏㄷㅂㅈㅍ기ㅓ;ㅏㅂㄷ저;ㅣㅍㄱㅂㅈ</Text>
+          <Text style={styles.title}>{textData.title}</Text>
+          <Text style={styles.label}>{textData.label}</Text>
         </View>
       </View>
     );

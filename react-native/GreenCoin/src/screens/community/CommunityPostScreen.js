@@ -13,7 +13,7 @@ import CommunityPostContent from "../../components/community/communityPost/Commu
 import CommunityPostImage from "../../components/community/communityPost/CommunityPostImage";
 import CommunityPostDecide from "../../components/community/communityPost/CommunityPostDecide";
 import ModalImageContent from "../../components/comm/ModalImageContent";
-
+import serverController from '../../server/serverController';
 
 const CommunityPostScreen = () => {
  
@@ -21,8 +21,18 @@ const CommunityPostScreen = () => {
   const [image,setImage] = useState(require('../../assets/img/icon/banner.png'));
   const [showImage,setImageShow] = useState(false);
   const [imageList,setImageList] = useState([]);
+  const [titleValue, setTitleValue] = useState("");
+  const [labelValue, setLabelValue] = useState("");
+
   const openImagePop = () =>{
     setImageShow(true);
+  }
+
+  const onClickSubmit = () => {
+    console.log(titleValue);
+    console.log(labelValue);
+    // serverController.connectFetchController(`/posts`,"GET",null,function(res){
+    // },function(err){console.log(err);});
   }
 
   return (
@@ -30,11 +40,11 @@ const CommunityPostScreen = () => {
       <MainTitle/>
       <ScrollView>
         <CommunityPostTitle/>
-        <CommunityPostContent/>
+        <CommunityPostContent titleValue={titleValue} labelValue={labelValue} setTitleValue={setTitleValue} setLabelValue={setLabelValue}/>
         <CommunityPostImage imageList={imageList} setImageList={setImageList}/>
         <View style={styles.hr}/>
         <CommunityPostTag/>
-        <CommunityPostDecide/>
+        <CommunityPostDecide onClickSubmit={onClickSubmit}/>
       </ScrollView>
     </View>
   );

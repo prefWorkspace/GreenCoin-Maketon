@@ -15,6 +15,8 @@ import CommunityDetailContent from "../../components/community/communityDetail/C
 import CommunityDetailImage from "../../components/community/communityDetail/CommunityDetailImage";
 import ModalImageContent from "../../components/comm/ModalImageContent";
 
+import DateText from '../../components/commonsjh/dateText';
+import serverController from '../../server/serverController';
 
 const CommunityList = [
   {
@@ -79,22 +81,34 @@ const CommunityList = [
   },
 ]
 
-const CommunityDetailScreen = () => {
+const CommunityDetailScreen = ({route}) => {
  
+
   const [couponList,setCouponList] = useState([]);
   const [image,setImage] = useState(require('../../assets/img/icon/banner.png'));
   const [showImage,setImageShow] = useState(false);
-
+  const [textData, setTextData] = useState({title:"", label:"", date:""})
   const openImagePop = () =>{
     setImageShow(true);
   }
 
+  useEffect(() => {
+    serverController.connectFetchController(`/posts?no=${route.params.no}`,"GET",null,function(res){
+      const data = res.data.posts[0];
+      setTextData({
+        title:data.title,
+        label:data.content,
+        date:DateText(new Date(data.create_date), "."),
+      })
+    },function(err){console.log(err);});
+  }, [])
+  // 여기다 함
   return (
     <View style={styles.container}>
       <MainTitle/>
       <ScrollView>
         <CommunityDetailTitle/>
-        <CommunityDetailContent/>
+        <CommunityDetailContent textData={textData}/>
         <CommunityDetailImage  image={image} setImage={setImage} openImagePop={openImagePop}/>
       </ScrollView>
       
