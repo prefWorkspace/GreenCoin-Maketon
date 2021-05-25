@@ -19,7 +19,7 @@ const getFcmToken = async () => {
 };
 
 export default function App() {
-  const [load,setLoad] = useState(false);
+  const [load,setLoad] = useState(true);
   const [userToken, setUserToken] = useState();
 
   useEffect(() => {
@@ -30,44 +30,11 @@ export default function App() {
 
 
 
-  function updateToFalse(){
-    setLoad(true);
-  }
-
-  function openLink(){
-    KakaoLogins.login([KAKAO_AUTH_TYPES.Talk, KAKAO_AUTH_TYPES.Account])
-    .then(tocken => {
-      KakaoLogins.getProfile()
-      .then(async (result) =>  {
-
-        await realmController.successUserLogin({
-          userId : 1,
-          tok_name : "test",
-          autoLogin : true,
-          isLogin : true,
-        });
-        updateToFalse();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    })
-    .catch(err => {
-      if (err.code === 'E_CANCELLED_OPERATION') {
-        console.log(`Login Cancelled:${err.message}`);
-      } else {
-        console.log(`Login Failed:${err.code} ${err.message}`)
-      }
-    });
-  }
 
   return  load ?
       <InitStack></InitStack>
       :
       <View>
-        <TouchableOpacity style={{width:"100%",height:"100%",backgroundColor:"grey"}} onPress={openLink}>
-
-
-        </TouchableOpacity>
+     
       </View>
 }

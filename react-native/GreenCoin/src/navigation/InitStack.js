@@ -5,6 +5,7 @@ import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SelectAreaScreen from '../screens/select/SelectAreaScreen';
 import SelectInterestScreen from '../screens/select/SelectInterestScreen';
+import KakaoLoginScreen from '../screens/KakaoLoginScreen';
 import appStaticInfomation from '../db/appStaticInfomation';
 
 
@@ -27,6 +28,7 @@ export default function InitStack() {
          headerShown: false
        }}
      >
+      <Stack.Screen name="kakaoLogin" component={KakaoLoginScreen}/>
       <Stack.Screen name="interest" component={SelectInterestScreen}/>
       <Stack.Screen name="area" component={SelectAreaScreen}/>
       <Stack.Screen name="tab" component={TabNavigation}/>

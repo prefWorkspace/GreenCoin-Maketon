@@ -44,17 +44,6 @@ const SelectAreaScreen = () => {
       <MainTitle/>
       <View>
         <ScrollView  contentContainerStyle={{flexGrow: 1, height : "100%"}}>
-        <Text>그린 코인 시작하기</Text>
-        <View>
-          <TouchableOpacity>
-            <Text>그린 코인 시작하기</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>그린 코인 로그인</Text>
-          </TouchableOpacity>
-        </View>
-      
-          {/*
             <WebView
               source={{ uri: `http://172.28.5.10:3000/SelectArea` }}
               bounces={true}
@@ -64,7 +53,6 @@ const SelectAreaScreen = () => {
               style={styles.content}
               // onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
             />  
-          */}
         </ScrollView>
 
 

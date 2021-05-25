@@ -3,8 +3,7 @@ import { View, ScrollView, Dimensions, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import MyInfo from '../../components/profiles/profile/MyInfo';
 import ProfileContent from '../../components/profiles/profile/ProfileContent';
-import {navigationBackHandler} from '../../navigation/NavigationBackHandler';
-import { useNavigation} from '@react-navigation/native';
+import { useFocusEffect, useNavigation} from '@react-navigation/native';
 import userInfoSingleton from '../../db/userInfoSingleton';
 import MainTitle from '../../components/mains/main/MainTitle';
 import ModalCommon from '../../components/comm/ModalCommon';
@@ -14,7 +13,17 @@ export default function ProfileScreen({route}) {
     const [show,setShow] = useState(false);
     const navigation = useNavigation();
     const userName = userInfoSingleton.getInstance()._userName;
-    navigationBackHandler("main");
+
+    useFocusEffect(
+      React.useCallback(() => {
+     
+        if(!userInfoSingleton.getInstance()._isLogin){
+          navigation.navigate("kakaoLogin");
+        }
+
+      }, [])
+    );
+  
 
     const versionClick = () =>{
       setShow(true);
