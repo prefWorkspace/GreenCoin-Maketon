@@ -1,23 +1,22 @@
+const ip = "http://api.checkmyactivity.com";
 
-import localStringData from '../const/localStringData';
-import userInfoSingleton from '../db/userInfoSingleton';
-
-const api = localStringData.api;
-
-
-export default {
-    post: (link,formData,nextEvent) => {
-     api.post(link,formData,{ headers: {Authorization: userInfoSingleton.getInstance()._tok_name }})
-     .then(response=>{
-       nextEvent(response.data)
-      }).catch(e=>{console.log(e)})
-     },
-    get: (link,nextEvent) => {
-      api.get(link,{headers: {Authorization: userInfoSingleton.getInstance()._tok_name }})
-      .then(response=>{
-        nextEvent(response.data)
-       }).catch(e=>{console.log(e)})
+const api = {
+  connectFetchController : async (path,method,body,callBack,errorCallBack) =>{
+      return fetch(`${ip}${path}`, {
+        credentials:'include',
+        method: method,
+        body:body?body:null,
+      }).then(function(res) {
+        return res.json();
+      }).then(function(data) {
+        if(callBack)
+          callBack(data);
+        return data;
+      }).catch(function(e){
+        if(errorCallBack)
+          errorCallBack(e);
+      });
     },
-     
-};
+}
 
+export default api; 

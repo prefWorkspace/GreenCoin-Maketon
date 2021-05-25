@@ -13,6 +13,9 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation } from "@react-navigation/core";
 import appStaticInfomation from "../../db/appStaticInfomation";
 
+// server 
+import serverController from '../../server/serverController';
+
 const Data = [
   {
     title:"환경을 지키는 쓰레기 줄이기 운동 dsafew  ",
@@ -67,7 +70,7 @@ const CommunityList = [
 const MainScreen = () => {
   const navigation = useNavigation();
   const [couponList,setCouponList] = useState([]);
-
+  const [communityList, setCommunityList] = useState([])
   useEffect(() => {
 
     if(!appStaticInfomation.getInstance()._interest)
@@ -75,6 +78,21 @@ const MainScreen = () => {
     else if(!appStaticInfomation.getInstance()._area)
       navigation.navigate("area");
       
+    serverController.connectFetchController(`/posts`,"GET",null,function(res){
+      const dataArr = res.data.posts;
+      let newArr = []
+      dataArr.map(item => {
+        let newObj = {
+          title:item.title,
+          date:item.create_date,
+          type:2,
+        }
+        newArr.push(newObj);
+      })
+      setCommunityList([...newArr]);
+    },function(err){console.log("err -- "); console.log(err);});
+
+
   }, [])
 
   return (
@@ -85,7 +103,7 @@ const MainScreen = () => {
         <MainLikeInfo list={Data} title={"미세먼지"} icon={"dust"}/>
         <MainEnvironment/>
         <MainCuponBanner couponList={couponList}/>
-        <MainLikeInfo list={CommunityList} title={"우리지역 커뮤니티"} icon={"community"}/>
+        <MainLikeInfo list={communityList} title={"우리지역 커뮤니티"} icon={"community"}/>
         <MainEnvironmentResult/>
         {/* <MainDoubrleClick></MainDoubrleClick> */}
       </ScrollView>
