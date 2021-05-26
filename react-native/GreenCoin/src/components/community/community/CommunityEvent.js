@@ -4,6 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation ,useRoute } from '@react-navigation/native';
 
 export default function CommunityEvent() {
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -32,7 +33,7 @@ export default function CommunityEvent() {
             <View style={styles.infoContainer}>
               <Text style={[styles.label]}>환경을지키기 위한 당신의 생각을 마음껏 적어주세요!</Text>
               <View style={[styles.agreeBox]}>
-                <Text style={[styles.agreeLabel]}>글쓰기</Text>
+                <Text style={[styles.agreeLabel]} onPress={() => navigation.navigate("communityPost")}>글쓰기</Text>
               </View>
             </View>
           </View>

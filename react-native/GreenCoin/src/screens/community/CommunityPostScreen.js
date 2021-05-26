@@ -1,6 +1,6 @@
 import React, { Component,useState ,useEffect } from "react";
 import { Dimensions, View,BackHandler,ScrollView,TouchableOpacity,Image } from "react-native";
-
+import { useNavigation ,useRoute } from '@react-navigation/native';
 
 import MainTitle from '../../components/mains/main/MainTitle';
 import MainAreaTitle from '../../components/mains/main/MainAreaTitle';
@@ -14,25 +14,42 @@ import CommunityPostImage from "../../components/community/communityPost/Communi
 import CommunityPostDecide from "../../components/community/communityPost/CommunityPostDecide";
 import ModalImageContent from "../../components/comm/ModalImageContent";
 import serverController from '../../server/serverController';
+import userInfoSingleton from '../../db/userInfoSingleton';
 
 const CommunityPostScreen = () => {
- 
+  const navigation = useNavigation();
   const [couponList,setCouponList] = useState([]);
   const [image,setImage] = useState(require('../../assets/img/icon/banner.png'));
   const [showImage,setImageShow] = useState(false);
   const [imageList,setImageList] = useState([]);
   const [titleValue, setTitleValue] = useState("");
   const [labelValue, setLabelValue] = useState("");
+  const [token, setToken] = useState("");
 
   const openImagePop = () =>{
     setImageShow(true);
   }
 
+  useEffect(() => {
+    setToken(userInfoSingleton.getInstance()._token);
+  }, [])
+
+  // 글쓰기
   const onClickSubmit = () => {
-    console.log(titleValue);
-    console.log(labelValue);
-    // serverController.connectFetchController(`/posts`,"GET",null,function(res){
-    // },function(err){console.log(err);});
+    let data = {
+      token : token,
+      title  : titleValue,
+      content  : labelValue,
+    }
+
+    serverController.connectFetchController(`/posts`,"POST",JSON.stringify(data),function(res){
+      if(res.success==1){
+        console.log(res);
+        navigation.navigate("community")
+      }else{
+        console.log("res.success!==1")
+      }
+    },function(err){console.log(err);});
   }
 
   return (

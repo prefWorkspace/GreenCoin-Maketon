@@ -11,6 +11,8 @@ import CommunityDetailTitle from "../../components/community/communityDetail/Com
 import CommonDetailTitle from '../../components/comm/CommonDetailTitle';
 import MyContentDecide from '../../components/profiles/myContent/MyContentDecide';
 import ModalCommon from '../../components/comm/ModalCommon';
+import serverController from '../../server/serverController';
+import DateText from '../../components/commonsjh/dateText';
 
 export default function MyContentScreen({route}) {
   
@@ -38,7 +40,14 @@ export default function MyContentScreen({route}) {
       date:"2020-22-22",
     }
   ]);
-
+  const [checkList, setCheckList] = useState([]);
+  useEffect(() => {
+    serverController.connectFetchController(`/posts?user_no=${userInfoSingleton.getInstance()._no}`,"GET",null,function(res){
+      if(res.success==1){
+        setList(res.data.posts);
+      }
+    },function(err){console.log(err);});
+  }, [])
     
 
     const deleteEvent = () =>{ 
@@ -46,16 +55,34 @@ export default function MyContentScreen({route}) {
     }
 
     const editEvent = () =>{ 
+    }
 
+    const onPressCheck = (value) => {
+      let newArr = checkList;
+      newArr.push(value.no);
+      setCheckList([...newArr]);
+    }
+
+    const onClickDelete = () => {
+      let data = {
+        token : userInfoSingleton.getInstance()._token,
+      }
+      checkList.map(item => {
+        serverController.connectFetchController(`/posts/${item}`,"DELETE",JSON.stringify(data),function(res){
+          if(res.success==1){
+            console.log(res);
+          }
+        },function(err){console.log(err);});
+      })
     }
 
     const Item = ({value}) =>{
       return (
         <View style={styles.contentContainer}>
           <View  style={styles.content}>
-            <CheckBox style={styles.checkbox}/>
+            <CheckBox style={styles.checkbox} onChange={() => onPressCheck(value)}/>
             <Text style={styles.left}>{value.content}</Text>
-            <Text  style={styles.right}>{value.date}</Text>
+            <Text  style={styles.right}>{DateText(new Date(value.create_date), ".")}</Text>
           </View>
           <View  style={styles.hr}/>
         </View>
@@ -74,7 +101,7 @@ export default function MyContentScreen({route}) {
           }
           <MyContentDecide editEvent={editEvent} deleteEvent={deleteEvent}/>
         </ScrollView>
-        <ModalCommon isModalVisible={show} setIsModalVisible={setShow} title={"선택하신 작성글을 삭제하시겠습니까?"} bottomType={"select"}/>
+        <ModalCommon submitClick={() => onClickDelete()} isModalVisible={show} setIsModalVisible={setShow} title={"선택하신 작성글을 삭제하시겠습니까?"} bottomType={"select"}/>
         <ModalCommon isModalVisible={deleteShow} setIsModalVisible={setDeleteShow} title={"성공적으로 삭제가 완료되었습니다."}/>
       </View>
     );
