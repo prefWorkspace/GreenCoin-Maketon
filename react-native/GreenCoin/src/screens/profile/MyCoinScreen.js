@@ -10,6 +10,9 @@ import MainTitle from '../../components/mains/main/MainTitle';
 import CommunityDetailTitle from "../../components/community/communityDetail/CommunityDetailTitle";
 import CommonDetailTitle from '../../components/comm/CommonDetailTitle';
 
+import serverController from '../../server/serverController';
+
+
 export default function MyCoinScreen({route}) {
     const navigation = useNavigation();
     const userName = userInfoSingleton.getInstance()._userName;
@@ -32,6 +35,19 @@ export default function MyCoinScreen({route}) {
         setIsHistory(true);
       }
     }, [historyData])
+
+    useEffect(() => {
+      // 현재 포인트 불러오기
+      const num = userInfoSingleton.getInstance()._no;
+      const token = userInfoSingleton.getInstance()._token;
+      serverController.connectFetchController(`/users/${num}/points?token=${token}`,"GET",null,function(res){
+        if(res.success==1){
+          setCurrentCoin(res.data.point);
+        }
+      },function(err){console.log(err);});
+
+    }, [])
+  
 
     return (
       <View  style={styles.container}>

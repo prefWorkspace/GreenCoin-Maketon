@@ -8,8 +8,11 @@ import ContentDecide from '../../components/comm/ContentDecide';
 import ModalCalendar from '../../components/comm/ModalCalendar';
 import BirthdayInformation from '../../components/profiles/myProfile/BirthdayInformation';
 
-export default function MyProfileScreen({route}) {
+import serverController from '../../server/serverController';
+import userInfoSingleton from '../../db/userInfoSingleton';
 
+export default function MyProfileScreen({route}) {
+  const [token, setToken] = useState("");
   const [name,setName] = useState("");
   const [phone,setPhone] = useState("");
   const [email,setEmail] = useState("");
@@ -24,11 +27,32 @@ export default function MyProfileScreen({route}) {
   const editProfile = () =>{
     setPhoneError("유효하지 않은 휴대폰 번호입니다.");
     setEmailError("유효하지 않은 이메일주소입니다.");
+
+    // 회원정보 수정
+    // 바뀐 정보 데이터는 어디서 받아는지 모르겠습니다..
+    let data = {
+      token : token,
+      email : email,
+      phone_no : phone,
+      birth_day : `${year}-${month}-${day}`,
+    }
+    serverController.connectFetchController(`/users/userinfo`,"PUT",JSON.stringify(data),function(res){
+      if(res.success==1){
+        console.log(res.data.updated_item);
+      }
+    },function(err){console.log(err);});
+
   }
 
   const clickDate = (date) =>{
     setBday(date);
   }
+
+  useEffect(() => {
+    setToken(userInfoSingleton.getInstance()._token);
+    setName(userInfoSingleton.getInstance()._username);
+  }, [])
+
 
     return (
       <View  style={styles.container}>
