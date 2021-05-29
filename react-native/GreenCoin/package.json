@@ -50,6 +50,7 @@
     "react-native-swiper": "^1.6.0",
     "react-native-switch": "^2.0.0",
     "react-native-webview": "^10.9.0",
+    "react-native-xml2js": "^1.0.3",
     "realm": "^6.1.2",
     "uuid": "^8.3.2"
   },
