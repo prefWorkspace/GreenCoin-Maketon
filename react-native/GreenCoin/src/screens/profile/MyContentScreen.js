@@ -15,7 +15,7 @@ import serverController from '../../server/serverController';
 import DateText from '../../components/commonsjh/dateText';
 
 export default function MyContentScreen({route}) {
-  
+  const navigation = useNavigation();
   const [show, setShow] = useState(false);
   const [deleteShow, setDeleteShow] = useState(false);
   const [list, setList] = useState([
@@ -61,13 +61,29 @@ export default function MyContentScreen({route}) {
       setShow(true);
     }
 
-    const editEvent = () =>{ 
+    // 글 수정하기
+    const editEvent = () =>{
+      if(checkList.length == 0){
+        alert("글을 선택해주세요.");
+        return;
+      }else if(checkList.length > 1){
+        alert("1개만 선택해 주세요.")
+        return;
+      }
+      console.log(checkList[0])
+      navigation.navigate("communityPost", {
+        isModify:checkList[0],
+      });
     }
 
     // 체크박스  체크
     const onPressCheck = (value) => {
       let newArr = checkList;
-      newArr.push(value.no);
+      if(checkList.some(item => item == value.no)){
+        newArr = checkList.filter(item => item !== value.no);
+      }else{
+        newArr.push(value.no);
+      }
       setCheckList([...newArr]);
     }
 
@@ -81,6 +97,7 @@ export default function MyContentScreen({route}) {
           if(res.success==1){
             updateList();
             setShow(false);
+            setCheckList([]);
           }
         },function(err){console.log(err);});
       })

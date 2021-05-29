@@ -4,7 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation ,useRoute } from '@react-navigation/native';
 import userInfoSingleton from '../../../db/userInfoSingleton';
 
-export default function CommunityPostTitle() {
+export default function CommunityPostTitle({isModify}) {
   const navigation = useNavigation();
   const routeInfo = useRoute();
 
@@ -15,7 +15,7 @@ export default function CommunityPostTitle() {
       <View style={styles.container}>
         <TouchableOpacity style={styles.titleAreaBody} onPress={goBack}>
            <Image style={styles.titleAddressPoint} source={require('../../../assets/img/label_point/leftClickPoint.png')}></Image>
-           <Text style={styles.titleLabel}>{"글 쓰기"}</Text>
+           <Text style={styles.titleLabel}>{isModify?"글 수정":"글 쓰기"}</Text>
         </TouchableOpacity>
       </View>
     );

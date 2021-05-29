@@ -2,7 +2,8 @@ import React, {useState,useEffect} from 'react';
 import { Text,Image, View, Dimensions,TouchableOpacity,StyleSheet, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation ,useRoute } from '@react-navigation/native';
-
+import userInfoSingleton from '../../../db/userInfoSingleton';
+import serverController from '../../../server/serverController';
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -10,6 +11,23 @@ function numberWithCommas(x) {
 
 export default function MyInfo() {
  const navigation = useNavigation();
+ const [name, setName] = useState("");
+ const [currentPoint, setCurrentPoint] = useState(0);
+
+  useEffect(() => {
+    // 이름 설정
+    setName(userInfoSingleton.getInstance()._username)
+    // 현재 포인트 불러오기
+    const num = userInfoSingleton.getInstance()._no;
+    const token = userInfoSingleton.getInstance()._token;
+    serverController.connectFetchController(`/users/${num}/points?token=${token}`,"GET",null,function(res){
+      if(res.success==1){
+        setCurrentPoint(res.data.point);
+      }
+    },function(err){console.log(err);});
+
+  }, [])
+
 
     return (
       <View style={styles.container}>
@@ -17,8 +35,8 @@ export default function MyInfo() {
               <Image style={styles.image} source={require('../../../assets/img/logo/profile.png')} resizeMode={"stretch"}></Image>
           </View>
           <View style={styles.textContainer}>
-              <Text style={styles.name}>Ahnnabanana</Text>
-              <Text style={styles.coinTitle}>보유 그린코인 : <Text style={styles.coin}>50000원</Text></Text>
+              <Text style={styles.name}>{name}</Text>
+              <Text style={styles.coinTitle}>보유 그린코인 : <Text style={styles.coin}>{currentPoint}원</Text></Text>
           </View>
       </View>
     );

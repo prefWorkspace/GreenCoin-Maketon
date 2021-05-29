@@ -22,11 +22,12 @@ const CommunityScreen = () => {
       const dataArr = res.data.posts;
       let newArr = [];
       // 날짜가 3일 전이면 new 로 표시한다.
-      let type = 1;
       var dateType = new Date();
       dateType.setDate(dateType.getDate()-3);
       dataArr.map(item => {
+        let type = 1;
         if(new Date(item.create_date) > dateType){
+          console.log("new")
           type=2;
         }
         let newObj = {
