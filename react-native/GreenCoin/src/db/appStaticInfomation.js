@@ -4,7 +4,7 @@ export default class appStaticInfomation {
 
     _area = null;
     _interest = null;
-
+    _step = false;
 
 
     _categorieslist = [];
