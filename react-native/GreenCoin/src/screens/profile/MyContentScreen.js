@@ -41,15 +41,22 @@ export default function MyContentScreen({route}) {
     }
   ]);
   const [checkList, setCheckList] = useState([]);
-  useEffect(() => {
-    serverController.connectFetchController(`/posts?user_no=${userInfoSingleton.getInstance()._no}`,"GET",null,function(res){
-      if(res.success==1){
-        setList(res.data.posts);
-      }
-    },function(err){console.log(err);});
-  }, [])
-    
 
+    // 초기 글 업데이트
+    useEffect(() => {
+      updateList();
+    }, [])
+    
+    // 글 업데이트
+    const updateList = () => {
+      serverController.connectFetchController(`/posts?user_no=${userInfoSingleton.getInstance()._no}`,"GET",null,function(res){
+        if(res.success==1){
+          setList(res.data.posts);
+        }
+      },function(err){console.log(err);});
+    }
+
+    // 삭제 모달 열기
     const deleteEvent = () =>{ 
       setShow(true);
     }
@@ -57,12 +64,14 @@ export default function MyContentScreen({route}) {
     const editEvent = () =>{ 
     }
 
+    // 체크박스  체크
     const onPressCheck = (value) => {
       let newArr = checkList;
       newArr.push(value.no);
       setCheckList([...newArr]);
     }
 
+    // 글 삭제 
     const onClickDelete = () => {
       let data = {
         token : userInfoSingleton.getInstance()._token,
@@ -70,17 +79,19 @@ export default function MyContentScreen({route}) {
       checkList.map(item => {
         serverController.connectFetchController(`/posts/${item}`,"DELETE",JSON.stringify(data),function(res){
           if(res.success==1){
-            console.log(res);
+            updateList();
+            setShow(false);
           }
         },function(err){console.log(err);});
       })
     }
 
+    // 글
     const Item = ({value}) =>{
       return (
         <View style={styles.contentContainer}>
           <View  style={styles.content}>
-            <CheckBox style={styles.checkbox} onChange={() => onPressCheck(value)}/>
+            <CheckBox style={styles.checkbox} value={checkList.some(item => item == value.no)} onValueChange={() => onPressCheck(value)}/>
             <Text style={styles.left}>{value.content}</Text>
             <Text  style={styles.right}>{DateText(new Date(value.create_date), ".")}</Text>
           </View>

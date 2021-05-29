@@ -51,11 +51,17 @@ const MainScreen = () => {
     serverController.connectFetchController(`/posts`,"GET",null,function(res){
       const dataArr = res.data.posts;
       let newArr = []
+      let type = 1;
+      var dateType = new Date();
+      dateType.setDate(dateType.getDate()-3);
       dataArr.map(item => {
+        if(new Date(item.create_date) > dateType){
+          type=2;
+        }
         let newObj = {
           title:item.title,
           date:DateText(new Date(res.data.posts[0].create_date), "."),
-          type:2,
+          type:type,
           no:item.no
         }
         newArr.push(newObj);

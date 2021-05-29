@@ -23,23 +23,25 @@ const imageList = [
   }
 ]
 
-export default function CommunityDetailImage({image,setImage,openImagePop}) {
+const url = "https://d2rue8hpwv3oux.cloudfront.net/post/";
+
+export default function CommunityDetailImage({image,setImage,openImagePop, imageData}) {
 
   const changeImage = (value) =>{
-    setImage(value.path);
+    setImage(value);
   }
 
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.titleAreaBody} onPress={()=>{openImagePop(image)}}>
-           <Image style={styles.titleAddressPoint} source={image} resizeMode="stretch"></Image>
+           <Image style={styles.titleAddressPoint} source={{uri:url+image,}} resizeMode="stretch"></Image>
         </TouchableOpacity>
         <ScrollView style={styles.scrollView} horizontal={true}>
           {
-            imageList.map((value)=>{
+            imageData.map((value)=>{
               return (
                 <TouchableOpacity style={styles.imageContainer} onPress={()=>{changeImage(value)}}>
-                  <Image style={styles.image} source={value.path} resizeMode="stretch"></Image>
+                  <Image style={styles.image} source={{uri:url+value,}} resizeMode="stretch"></Image>
                 </TouchableOpacity>
               )
             })

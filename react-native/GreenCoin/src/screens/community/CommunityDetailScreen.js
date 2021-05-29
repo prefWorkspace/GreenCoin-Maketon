@@ -88,6 +88,7 @@ const CommunityDetailScreen = ({route}) => {
   const [image,setImage] = useState(require('../../assets/img/icon/banner.png'));
   const [showImage,setImageShow] = useState(false);
   const [textData, setTextData] = useState({title:"", label:"", date:""})
+  const [imageData, setImageData] = useState([]);
   const openImagePop = () =>{
     setImageShow(true);
   }
@@ -100,16 +101,18 @@ const CommunityDetailScreen = ({route}) => {
         label:data.content,
         date:DateText(new Date(data.create_date), "."),
       })
+      setImage(data.img_attachment[0])
+      setImageData([...data.img_attachment])
     },function(err){console.log(err);});
   }, [])
-  // 여기다 함
+
   return (
     <View style={styles.container}>
       <MainTitle/>
       <ScrollView>
         <CommunityDetailTitle/>
         <CommunityDetailContent textData={textData}/>
-        <CommunityDetailImage  image={image} setImage={setImage} openImagePop={openImagePop}/>
+        <CommunityDetailImage imageData={imageData} image={image} setImage={setImage} openImagePop={openImagePop}/>
       </ScrollView>
       
       <ModalImageContent show={showImage} setShow={setImageShow} image={image}/>
