@@ -4,7 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import MyInfo from '../../components/profiles/profile/MyInfo';
 import ProfileContent from '../../components/profiles/profile/ProfileContent';
 import {navigationBackHandler} from '../../navigation/NavigationBackHandler';
-import { useNavigation} from '@react-navigation/native';
+import { useNavigation, useFocusEffect} from '@react-navigation/native';
 import userInfoSingleton from '../../db/userInfoSingleton';
 import MainTitle from '../../components/mains/main/MainTitle';
 import CommunityDetailTitle from "../../components/community/communityDetail/CommunityDetailTitle";
@@ -13,7 +13,6 @@ import MyContentDecide from '../../components/profiles/myContent/MyContentDecide
 import ModalCommon from '../../components/comm/ModalCommon';
 import serverController from '../../server/serverController';
 import DateText from '../../components/commonsjh/dateText';
-
 export default function MyContentScreen({route}) {
   const navigation = useNavigation();
   const [show, setShow] = useState(false);
@@ -47,6 +46,13 @@ export default function MyContentScreen({route}) {
       updateList();
     }, [])
     
+    // 화면 감지 글 업데이트
+    useFocusEffect(
+      React.useCallback(() => {
+        updateList();
+      }, [])
+    );
+
     // 글 업데이트
     const updateList = () => {
       serverController.connectFetchController(`/posts?user_no=${userInfoSingleton.getInstance()._no}`,"GET",null,function(res){
@@ -109,7 +115,7 @@ export default function MyContentScreen({route}) {
         <View style={styles.contentContainer}>
           <View  style={styles.content}>
             <CheckBox style={styles.checkbox} value={checkList.some(item => item == value.no)} onValueChange={() => onPressCheck(value)}/>
-            <Text style={styles.left}>{value.content}</Text>
+            <Text style={styles.left}>{value.title}</Text>
             <Text  style={styles.right}>{DateText(new Date(value.create_date), ".")}</Text>
           </View>
           <View  style={styles.hr}/>

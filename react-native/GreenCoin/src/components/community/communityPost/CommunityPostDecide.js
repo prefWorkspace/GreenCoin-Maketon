@@ -4,10 +4,9 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation ,useRoute } from '@react-navigation/native';
 import userInfoSingleton from '../../../db/userInfoSingleton';
 
-export default function CommunityPostDecide({onClickSubmit}) {
+export default function CommunityPostDecide({onClickSubmit, isModify, onClickModify}) {
   const navigation = useNavigation();
   const routeInfo = useRoute();
-
 
     return (
       <View style={styles.container}>
@@ -15,8 +14,8 @@ export default function CommunityPostDecide({onClickSubmit}) {
         <Text style={styles.label}>취소</Text>
       </TouchableOpacity>
       <View style={styles.div}></View>
-        <TouchableOpacity style={styles.titleAreaBodyActive} onPress={() => onClickSubmit()}>
-        <Text style={styles.labelActive}>올리기</Text>
+        <TouchableOpacity style={styles.titleAreaBodyActive} onPress={() => {isModify?onClickModify():onClickSubmit()}}>
+        <Text style={styles.labelActive}>{isModify?"수정":"올리기"}</Text>
         </TouchableOpacity>
       </View>
     );
