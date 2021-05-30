@@ -7,6 +7,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { WebView } from 'react-native-webview';
 import appStaticInfomation from "../../db/appStaticInfomation";
 import { useFocusEffect, useNavigation } from "@react-navigation/core";
+import localStringData from '../../const/localStringData'
 
 const SelectAreaScreen = () => {
  
@@ -45,7 +46,8 @@ const SelectAreaScreen = () => {
       <View>
         <ScrollView  contentContainerStyle={{flexGrow: 1, height : "100%"}}>
             <WebView
-              source={{ uri: `http://172.28.5.10:3000/SelectArea` }}
+            
+              source={{ uri: `${localStringData.webIp}/SelectArea` }}
               bounces={true}
               scrollEnabled={false}
               onMessage={onWebViewMessage}

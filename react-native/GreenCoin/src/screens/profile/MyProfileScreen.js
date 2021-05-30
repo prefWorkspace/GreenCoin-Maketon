@@ -10,6 +10,7 @@ import BirthdayInformation from '../../components/profiles/myProfile/BirthdayInf
 
 import serverController from '../../server/serverController';
 import userInfoSingleton from '../../db/userInfoSingleton';
+import { useFocusEffect } from '@react-navigation/core';
 
 export default function MyProfileScreen({route}) {
   const [token, setToken] = useState("");
@@ -44,14 +45,33 @@ export default function MyProfileScreen({route}) {
 
   }
 
-  const clickDate = (date) =>{
-    setBday(date);
-  }
+
 
   useEffect(() => {
     setToken(userInfoSingleton.getInstance()._token);
     setName(userInfoSingleton.getInstance()._username);
   }, [])
+
+
+  
+  useFocusEffect(
+    React.useCallback(() => {
+   
+      if(!userInfoSingleton.getInstance()._isLogin){
+        navigation.navigate("kakaoLogin");
+      }
+      else{
+        
+      setName(userInfoSingleton.getInstance()._username);
+      setEmail(userInfoSingleton.getInstance()._email);
+      setPhone(userInfoSingleton.getInstance()._phone);
+      setYear(new Date(userInfoSingleton.getInstance()._bDay).getFullYear());
+      setMonth(new Date(userInfoSingleton.getInstance()._bDay).getMonth() + 1);
+      setDay(new Date(userInfoSingleton.getInstance()._bDay).getDate());
+      }
+
+    }, [])
+  );
 
 
     return (
@@ -65,7 +85,6 @@ export default function MyProfileScreen({route}) {
           <BirthdayInformation year={year} month={month} day={day} setYear={setYear} setMonth={setMonth} setDay={setDay}/>
           <ContentDecide submitEvent={editProfile}/>
         </ScrollView>
-        <ModalCalendar show={show} setShow={setShow} clickDate={clickDate}/>
       </View>
     );
   }

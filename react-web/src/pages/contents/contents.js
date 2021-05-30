@@ -30,9 +30,9 @@ const Contents = (props) => {
     const barRef = useRef();
     useEffect(() => {
         setCurrentDataArr([
-            {title: "칼로리", content:1000},
-            {title: "줄인 탄소", content:1000},
-            {title: "거리", content:1000},
+            {title: "칼로리", content:1000, name:"kcals"},
+            {title: "줄인 탄소", content:1000, name:"tansos"},
+            {title: "거리", content:1000, name:"distancs"},
         ]);
 
         setGraphData([150, 114, 69, 82, 119, 40, 146]);
@@ -54,6 +54,13 @@ const Contents = (props) => {
         setBubbleText(item);
     }
 
+
+    const moveToMyCoin = ()=>{
+        window.ReactNativeWebView.postMessage(JSON.stringify({
+            type:"myCoin",
+        }));
+    }
+
     const onClickRight = () =>{
     }
 
@@ -63,6 +70,7 @@ const Contents = (props) => {
     const onClickMore = () => {
     }
 
+
     return(
         <ContentsWrap>
             {/* <Header /> */}
@@ -71,8 +79,8 @@ const Contents = (props) => {
             <StepWrap>
                 <ShareImg src={Share} alt="공유하기 아이콘"/>
                 <StepTop>
-                    <StepText>{currentStep} steps</StepText>
-                    <KgText>{currentKg} kg</KgText>
+                    <StepText name="steps">{currentStep} steps</StepText>
+                    <KgText name="kgs">{currentKg} kg</KgText>
                     <SkewRecImg src={SkewRec} alt="직사각형"/>
                 </StepTop>
 
@@ -82,7 +90,7 @@ const Contents = (props) => {
                             return(
                                 <StepBottomEl key={index}>
                                     <StepBottomTitle>{item.title}</StepBottomTitle>
-                                    <StepBottomContent>{InsertComma(item.content)}</StepBottomContent>
+                                    <StepBottomContent name={item.name}>{InsertComma(item.content)}</StepBottomContent>
                                 </StepBottomEl>
                             )
                         })
@@ -175,7 +183,7 @@ const Contents = (props) => {
             </CoinHistory>
 
             {/* 교환 버튼 */}
-            <ChangeBtn>
+            <ChangeBtn onClick={moveToMyCoin}>
                 지역화폐로 교환하기
             </ChangeBtn>
             {/* <Navbar crtIndex={1}/> */}

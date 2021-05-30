@@ -13,6 +13,12 @@ export default class CommonDataManager {
     _location_name = "";
     _location_fullname = "";
 
+    _email = "";
+    _phone = "";
+    _bDay = "";
+
+
+
     /**
      * @returns {CommonDataManager}
      */
@@ -34,6 +40,9 @@ export default class CommonDataManager {
         this._location_no = state.location_no;
         this._location_name = state.location_name;
         this._location_fullname = state.location_fullname;
+        this._email = state.email;
+        this._phone = state.phone;
+        this._bDay = state.bDay;
     }
 
     logout(){

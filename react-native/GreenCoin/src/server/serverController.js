@@ -17,6 +17,7 @@ const api = {
           callBack(data);
         return data;
       }).catch(function(e){
+        console.log(e);
         if(errorCallBack)
           errorCallBack(e);
       });

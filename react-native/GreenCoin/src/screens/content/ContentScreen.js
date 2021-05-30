@@ -1,4 +1,4 @@
-import React, { Component,useState ,useEffect } from "react";
+import React, { useRef,useState ,useEffect } from "react";
 import { Text,Dimensions, View,NativeEventEmitter,ScrollView,TouchableOpacity,Image } from "react-native";
 
 
@@ -13,13 +13,21 @@ import {
   SensorTypes
 } from "react-native-sensors";
 import { map, filter } from "rxjs/operators";
-
+import localStringData from '../../const/localStringData'
+import serverController from '../../server/serverController'
+import userInfoSingleton from '../../db/userInfoSingleton'
+import { useNavigation } from "@react-navigation/core";
 
 const ContentScreen = () => {
-
   const [webViewHeight,setWebViewHeight] = useState(100);
   const [step,setStep] = useState(0);
-
+  const [kg,setKg] = useState(50);
+  const [kcal,setKcal] = useState(0);
+  const [distancs,setDistancs] = useState(0);
+  const userInfo = userInfoSingleton.getInstance();
+  const webview = useRef(null);
+  
+  const navigation = useNavigation();
   setUpdateIntervalForType(SensorTypes.accelerometer, 100); // defaults to 100ms
 
   const subscription = accelerometer
@@ -34,36 +42,100 @@ const ContentScreen = () => {
     }
   );
 
+
   const stepUpdate = () => {
     if(appStaticInfomation.getInstance()._step)
       return;
     appStaticInfomation.getInstance()._step = true;
-    console.log("아니");
     setTimeout(()=>{
         setStep(e => e + 1);
+        updateStep();
         appStaticInfomation.getInstance()._step = false;
     },1000);
   }
 
+
   const onWebViewMessage = (event) => {
-      setWebViewHeight(Number(event.nativeEvent.data));
+    let data = JSON.parse(event.nativeEvent.data);
+    if(data.type == "screen"){
+      initSteps();
+    }
+    else if(data.type == "myCoin"){
+      navigation.navigate("myCoin");
+    }
   }
 
 
-//172.28.5.10
+  const initSteps = () =>{
+    serverController.connectFetchController(`/users/${userInfo._no}/steps?token=${userInfo._token}&no=${userInfo._no}`,"GET",null,
+    function(res){
+      if(res.success != 1)
+        return;
+
+      setStep(res.data.steps[0].step)
+      setKg(55)
+      setKcal(res.data.steps[0].kcal)
+      setDistancs(res.data.steps[0].meter)
+    }
+    );
+  }
+
+  useEffect(() => {
+    if(step != 0)
+      insertHTMLInfo();
+  }, [step,kg,kcal,distancs])
+
+  const insertHTMLInfo = () =>{
+    if(webview && webview.current){
+
+      var ca = (step ? step : 1) * 0.03;
+      ca = (ca).toFixed(3) ?  (ca).toFixed(3) : 0;
+      var tan = ca ? (ca / 100).toFixed(3) : 0;
+
+      webview.current.injectJavaScript(`
+        document.getElementsByName("steps")[0].innerHTML = "${step} steps"
+        document.getElementsByName("kgs")[0].innerHTML = "${kg} kg"
+        document.getElementsByName("kcals")[0].innerHTML = "${kcal > 0 ? kcal.toFixed(3) : ca}"
+        document.getElementsByName("tansos")[0].innerHTML = "${tan}"
+        document.getElementsByName("distancs")[0].innerHTML = "${distancs > 0 ? distancs.toFixed(3) : (step *  0.0008).toFixed(3)}"
+      `)
+
+    }
+  }
+
+  const updateStep = () =>{
+    if(webview && webview.current){
+
+      insertHTMLInfo();
+   
+      let data = { token : userInfo._token, step : 1 };
+      serverController.connectFetchController(`/users/${userInfo._no}/steps/add`,"POST",JSON.stringify(data),
+      function(res){
+        if(res.success == 1){
+          initSteps();
+        }
+      }
+      );
+    }
+
+  }
+
+
+  
+//172.28.5.10r
   return (
     <View style={styles.container}>
       <MainTitle/>
       <View>
-        <Text>step : {step}</Text>
-        <ScrollView  contentContainerStyle={{flexGrow: 1, height : webViewHeight}}>
+        <TouchableOpacity onPress={updateStep}><Text>step : {step}</Text></TouchableOpacity>
+        <ScrollView  contentContainerStyle={{flexGrow: 1, height : "100%"}}>
           <WebView
-              // source={{ uri: `http://172.28.5.10:3000` }}
-              source={{ uri: `http://172.28.5.10:3000` }}
+              ref={webview}
+              source={{ uri: `${localStringData.webIp}` }}
               bounces={true}
               scrollEnabled={false}
               onMessage={onWebViewMessage}
-              injectedJavaScript="window.ReactNativeWebView.postMessage(Math.max(document.body.offsetHeight, document.body.scrollHeight));"
+              injectedJavaScript="window.ReactNativeWebView.postMessage(JSON.stringify({type:'screen' , data : Math.max(document.body.offsetHeight, document.body.scrollHeight)}));"
               style={styles.content}
               // onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
               />

@@ -77,7 +77,10 @@ const logOutUserState = () =>{
         location_no : '',
         location_name : '',
         location_fullname : '',
-        token : ''
+        token : '',
+        email : '',
+        phone :'',
+        bDay : ''
 
     });
 }
@@ -85,12 +88,8 @@ const logOutUserState = () =>{
 export default {
     checkAutoLogin : async (setLoad) =>{
         var realData =  await loadLoginDataFromRealm();
-        console.log(realData);
         if(realData.autoLogin == true && realData.token){
-            
-            console.log("==============");
             serverController.connectFetchController(`/auth?token=${realData.token}`,"GET",null,async function(res){
-                console.log(res);
                 let data = res.data;
 
                 if(!data)
@@ -105,10 +104,12 @@ export default {
                     location_no : data.userInfo.location_no,
                     location_name : data.userInfo.location_name,
                     location_fullname : data.userInfo.location_fullname,
+                    email : data.userProfile.email,
+                    phone : data.userProfile.phone_no,
+                    bDay : data.userProfile.birth_day,
                     token : data.token
                 }
 
-                console.log(state);
                 await updateUserInfomation(state);
                 setLoad(true);
                   
