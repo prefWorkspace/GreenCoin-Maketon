@@ -152,7 +152,7 @@ const Contents = (props) => {
                 <HistoryTop>
                     <PigImg src={Pig} alt="돼지 아이콘"/>
                     <HistoryTitle>나의 그린코인 적립 및 지역 화폐 전환 내역</HistoryTitle>
-                    <MoreBtn onClick={ () => onClickMore()}>더보기 +</MoreBtn>
+                    <MoreBtn onClick={ () => moveToMyCoin()}>더보기 +</MoreBtn>
                 </HistoryTop>
 
                 <HistoryTable>

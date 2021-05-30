@@ -81,6 +81,16 @@ const ContentScreen = () => {
   }
 
   useEffect(() => {
+    serverController.connectFetchController(`/users/${userInfo._no}/points/history?token=${userInfo._token}&no=${userInfo._no}`,"GET",null,
+    function(res){
+      if(res.success != 1)
+        return;
+      console.log(res)
+    }
+    );
+  }, [])
+
+  useEffect(() => {
     if(step != 0)
       insertHTMLInfo();
   }, [step,kg,kcal,distancs])
