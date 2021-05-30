@@ -27,18 +27,17 @@ const CommunityPostScreen = ({route}) => {
   const [token, setToken] = useState("");
 
   const [isModify, setIsModify] = useState(false);
-  const [modifyNum, setModifyNum] = useState(0);
+  const [modifyNum, setModifyNum] = useState(null);
 
   const openImagePop = () =>{
     setImageShow(true);
   }
 
   // 글쓰기페이지에서 분기처리 진행하였습니다
-  // 서버통신하여 해당글의 제목과 내용을 받아와 ui에 표시하였습니다.
-  // 계속 작업 예정입니다.
-  // 남은것 이미지 업로르, 수정하기 버튼 api 연결
   useEffect(() => {
     if(route.params==undefined){
+      setIsModify(false);
+      setModifyNum(null);
     }else{
       setIsModify(true);
       setModifyNum(route.params.isModify);
@@ -62,12 +61,27 @@ const CommunityPostScreen = ({route}) => {
 
     serverController.connectFetchController(`/posts`,"POST",JSON.stringify(data),function(res){
       if(res.success==1){
-        console.log(res);
-        navigation.navigate("community")
+        navigation.navigate("community");
       }else{
-        console.log("res.success!==1")
+        console.log("res.success!==1");
       }
     },function(err){console.log(err);});
+  }
+
+  // 글수정
+  const onClickModify = () => {
+    let data = {
+      token : token,
+      title : titleValue,
+      content : labelValue,
+    }
+    serverController.connectFetchController(`/posts/${modifyNum}`,"PUT",JSON.stringify(data),function(res){
+      if(res.success==1){
+        navigation.navigate("myContent");
+      }
+    },function(err){console.log("err");console.log(err);});
+
+
   }
 
   return (
@@ -79,7 +93,7 @@ const CommunityPostScreen = ({route}) => {
         <CommunityPostImage imageList={imageList} setImageList={setImageList}/>
         <View style={styles.hr}/>
         <CommunityPostTag/>
-        <CommunityPostDecide onClickSubmit={onClickSubmit}/>
+        <CommunityPostDecide onClickSubmit={onClickSubmit} isModify={isModify} onClickModify={onClickModify}/>
       </ScrollView>
     </View>
   );
