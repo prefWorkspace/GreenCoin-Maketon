@@ -6,7 +6,7 @@ import { useNavigation ,useRoute } from '@react-navigation/native';
 
 const getStylesType = (type) =>{
   switch(type){
-    case 0 : return <View style={styles.contentTypeA}><Text>Hot</Text></View>;
+    case 0 : return <View style={styles.contentTypeA}><Text></Text></View>;
     case 1 : return <View style={styles.contentTypeA}><Text>Hot</Text></View>;
     case 2 : return <View style={styles.contentTypeB}><Text>New</Text></View>;
     case 3 : return <View style={styles.contentTypeC}><Text>Hot</Text></View>;
@@ -17,7 +17,7 @@ export default function MainTextContent({item}) {
     const navigation = useNavigation();
 
     const moveToContentDetail = () =>{
-      navigation.navigate("communityDetail",  {no:item.no});
+      navigation.navigate("communityDetail",  {no:item.no, isTopic:item.isTopic});
     }
 
 

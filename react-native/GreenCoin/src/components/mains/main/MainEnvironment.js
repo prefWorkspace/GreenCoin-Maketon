@@ -16,6 +16,10 @@ export default function MainEnvironment() {
   const [sulfurous, setSulfurous] = useState(0); // 아황산가스
   const [idexmvl, setIdexmvl] = useState(0); // 통합대기환경지수
   
+  const [dustStatus, setDustStatus] = useState("좋음");
+  const [ultraDustStatus, setUltraDustStatus] = useState("좋음");
+  const [ozoneStatus, setOzoneStatus] = useState("좋음");
+  const [dustTime, setDustTime] = useState("00:00");
   // 서울시 실시간 대기환경 평균 현황에서 데이터를 가져왔습니다.
   // 서울시 실시간 대기환경 평균 현황 -> http://data.seoul.go.kr/dataList/OA-1201/S/1/datasetView.do
   // 라이브러리 사용하여 XML을 JSON 형태로 바꾸었고
@@ -45,27 +49,72 @@ export default function MainEnvironment() {
       parseString(result, (err, result) => {
         const data = JSON.parse(JSON.stringify(result));
         const _data = data.ListAvgOfSeoulAirQualityService.row[0];
-        setNitrogen(_data.NITROGEN[0]);
-        setCarbon(_data.CARBON[0]);
-        setSulfurous(_data.SULFUROUS[0]);
-        setIdexmvl(_data.IDEX_MVL[0]);
-        // console.log(data.ListAvgOfSeoulAirQualityService.row[0].NITROGEN[0]) // 이산화탄소
-        // console.log(data.ListAvgOfSeoulAirQualityService.row[0].CARBON[0]) // 일산화탄소
-        // console.log(data.ListAvgOfSeoulAirQualityService.row[0].SULFUROUS[0]) // 아황산가스
-        // console.log(data.ListAvgOfSeoulAirQualityService.row[0].IDEX_MVL[0]) // 통합대기환경지수
+        setNitrogen(_data.NITROGEN[0]); // 이산화탄소
+        setCarbon(_data.CARBON[0]);// 일산화탄소
+        setSulfurous(_data.SULFUROUS[0]);// 아황산가스
+        setIdexmvl(_data.IDEX_MVL[0]);// 통합대기환경지수
       })
     })
     .catch(error => console.log('error', error));
   }
 
+
+  const refreshDus = () => {
+    const currentDate = new Date();
+    setDustTime(`${insertZero(currentDate.getHours()+9)}:${insertZero(currentDate.getMinutes())}`)
+
+    var myHeaders = new Headers();
+    myHeaders.append("Cookie", "WMONID=jiy3dsOGOuh");
+
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+  fetch("http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureSidoLIst?sidoName=서울&searchCondition=DAILY&pageNo=1&numOfRows=1&returnType=json&serviceKey=8lyaDMu%2FLOG8QO4QSq%2FmOmmtQ%2FneX%2BqEjNhWcuef1KDTv4EqX2%2Fue7Zjc5TCvfDiyVcYg7SHaIRhOkiTVR2uMg%3D%3D", requestOptions)
+  .then(response => response.json())
+  .then(result =>
+    {
+      const data = result.response.body.items[0]
+      // 미세먼지
+      if(data.pm10Value > 0 && data.pm10Value < 30){
+        setDustStatus("좋음");
+      }else if(data.pm10Value > 31 && data.pm10Value < 80){
+        setDustStatus("보통");
+      }else if(data.pm10Value > 81 && data.pm10Value < 150){
+        setDustStatus("나쁨");
+      }else{
+        setDustStatus("매우나쁨");
+      }
+      // 초미세먼지
+      if(data.pm25Value > 0 && data.pm25Value < 15){
+        setUltraDustStatus("좋음");
+      }else if(data.pm25Value > 16 && data.pm25Value < 35){
+        setUltraDustStatus("보통");
+      }else if(data.pm25Value > 36 && data.pm25Value < 75){
+        setUltraDustStatus("나쁨");
+      }else{
+        setUltraDustStatus("매우나쁨");
+      }
+      // 오존
+      if(data.o3Value > 0 && data.o3Value < 0.030){
+        setOzoneStatus("좋음");
+      }else if(data.o3Value > 0.091 && data.o3Value < 0.150){
+        setOzoneStatus("나쁨");
+      }else{
+        setOzoneStatus("좋음");
+      }
+    }
+  )
+  .catch(error => console.log('error', error));
+  }
+
   useEffect(() => { 
     refreshAir();
+    refreshDus();
   }, [])
 
-  // 데기시간 업데이트 버튼 클릭
-  const onPressAirTime = () => {
-    refreshAir();
-  }
 
     return (
       <View style={styles.container}>
@@ -74,8 +123,10 @@ export default function MainEnvironment() {
             <View style={styles.titleContainer}>
               <Text  style={[styles.title]}>미세먼지</Text>
               <View style={styles.titleDateContainer}>
-                <Text  style={[styles.title]} >10:30AM</Text>
-                <Image style={styles.resetImage} source={require('../../../assets/img/icon/reset.png')}></Image>
+                <Text  style={[styles.title]} >{dustTime}</Text>
+                <TouchableOpacity onPress={() => refreshDus()}>
+                  <Image style={styles.resetImage} source={require('../../../assets/img/icon/reset.png')}></Image>
+                </TouchableOpacity>
               </View>
             </View>
             <View style={styles.dustInfoContainer}>
@@ -83,9 +134,9 @@ export default function MainEnvironment() {
                 <Image style={styles.dustIconImage} source={require('../../../assets/img/icon/dustIcon.png')}></Image>
               </View>
               <View>
-                <Text style={[styles.label,{bottom:"10%"}]}>&nbsp;&nbsp;미세먼지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{}]}>좋음</Text></Text>
-                <Text style={[styles.label,{bottom:"20%"}]}>&nbsp;&nbsp;초미세먼지&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{}]}>좋음</Text></Text>
-                <Text style={[styles.label,{bottom:"30%"}]}>&nbsp;&nbsp;오존&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{}]}>좋음</Text></Text>
+                <Text style={[styles.label,{bottom:"10%"}]}>&nbsp;&nbsp;미세먼지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{}]}>{dustStatus}</Text></Text>
+                <Text style={[styles.label,{bottom:"20%"}]}>&nbsp;&nbsp;초미세먼지&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{}]}>{ultraDustStatus}</Text></Text>
+                <Text style={[styles.label,{bottom:"30%"}]}>&nbsp;&nbsp;오존&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{}]}>{ozoneStatus}</Text></Text>
               </View>
             </View>
           </View>
@@ -95,7 +146,7 @@ export default function MainEnvironment() {
               <Text  style={[styles.label,styles.title]}>대기 정보</Text>
               <View style={styles.titleDateContainer}>
                 <Text  style={[styles.label,styles.title]} >{airTime}</Text>
-                <TouchableOpacity  onPress={() => onPressAirTime()}>
+                <TouchableOpacity  onPress={() => refreshAir()}>
                   <Image style={styles.resetImage} source={require('../../../assets/img/icon/reset.png')}></Image>
                 </TouchableOpacity>
               </View>

@@ -40,44 +40,77 @@ const Data = [
 const MainScreen = () => {
   const navigation = useNavigation();
   const [couponList,setCouponList] = useState([]);
-  const [communityList, setCommunityList] = useState([])
+  const [communityList, setCommunityList] = useState([]);
+  const [topicList, setTopicList] = useState([]);
   useEffect(() => {
-
     if(!appStaticInfomation.getInstance()._interest)
       navigation.navigate("interest");
     else if(!appStaticInfomation.getInstance()._area)
       navigation.navigate("area");
       
+    var dateType = new Date();
+    dateType.setDate(dateType.getDate()-3);
+
+    // 커뮤니티 글
     serverController.connectFetchController(`/posts`,"GET",null,function(res){
       const dataArr = res.data.posts;
-      let newArr = []
-      
-      var dateType = new Date();
-      dateType.setDate(dateType.getDate()-3);
+      let newArr = [];
       dataArr.map(item => {
-        let type = 1;
+        let type = 0;
         if(new Date(item.create_date) > dateType){
           type=2;
+        }
+        if(item.hot_post){
+          type=1;
         }
         let newObj = {
           title:item.title,
           date:DateText(new Date(item.create_date), "."),
           type:type,
-          no:item.no
+          no:item.no,
+          isTopic:false,
         }
         newArr.push(newObj);
       })
       setCommunityList([...newArr]);
     },function(err){console.log(err);});
 
+    // 토픽 글
+    serverController.connectFetchController(`/pollutions/1/posts`,"GET",null,function(res){
+      if(res.success==1){
+        const data = res.data.posts;
+        let newTopicArr = [];
+        data.map(item => {
+          let type = 0;
+          if(new Date(item.create_date) > dateType){
+            type=2;
+          }
+          if(item.hot_post){
+            type=1;
+          }
+          let newObj = {
+            title:item.title,
+            date:DateText(new Date(item.create_date), "."),
+            type:type,
+            no:item.no,
+            isTopic:true,
+          }
+          newTopicArr.push(newObj);
+        })
+        setTopicList([...newTopicArr]);
+      }
+    },function(err){console.log(err);});
+
   }, [])
+
+
 
   return (
     <View style={styles.container}>
       <MainTitle/>
       <ScrollView>
         <MainAreaTitle/>
-        <MainLikeInfo list={Data} title={"미세먼지"} icon={"dust"}/>
+        <MainLikeInfo list={topicList} title={"미세먼지"} icon={"dust"}/>
         <MainEnvironment/>
         <MainCuponBanner couponList={couponList}/>
         <MainLikeInfo list={communityList} title={"우리지역 커뮤니티"} icon={"community"}/>

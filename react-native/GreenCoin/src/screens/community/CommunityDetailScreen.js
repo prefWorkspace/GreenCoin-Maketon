@@ -93,18 +93,32 @@ const CommunityDetailScreen = ({route}) => {
     setImageShow(true);
   }
 
+  // 토픽, 커뮤니티 분기처리
   useEffect(() => {
-    serverController.connectFetchController(`/posts?no=${route.params.no}`,"GET",null,function(res){
-      const data = res.data.posts[0];
-      setTextData({
-        title:data.title,
-        label:data.content,
-        date:DateText(new Date(data.create_date), "."),
-      })
-      setImage(data.img_attachment[0])
-      setImageData([...data.img_attachment])
-    },function(err){console.log(err);});
+    // 토픽글
+    if(route.params.isTopic){
+      serverController.connectFetchController(`/pollutions/posts/${route.params.no}`,"GET",null,function(res){
+        setResData(res.data)
+      },function(err){console.log(err);});
+    }
+    // 커뮤니티글
+    else{
+      serverController.connectFetchController(`/posts?no=${route.params.no}`,"GET",null,function(res){
+        setResData(res.data.posts[0])
+      },function(err){console.log(err);});
+    }
   }, [])
+
+  // 데이터 저장
+  const setResData = (data) => {
+    setTextData({
+      title:data.title,
+      label:data.content,
+      date:DateText(new Date(data.create_date), "."),
+    })
+    setImage(data.img_attachment[0])
+    setImageData([...data.img_attachment])
+  }
 
   return (
     <View style={styles.container}>

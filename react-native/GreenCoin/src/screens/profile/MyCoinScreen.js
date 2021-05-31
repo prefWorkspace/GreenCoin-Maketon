@@ -46,9 +46,16 @@ export default function MyCoinScreen({route}) {
         }
       },function(err){console.log(err);});
 
+      getPointHistoryList(num, token);
     }, [])
   
-
+    const getPointHistoryList = (num, token) => {
+      serverController.connectFetchController(`/users/${num}/points/history?token=${token}`,"GET",null,
+      function(res){
+        // console.log(res.data.point_history);
+        setHistoryData(res.data.point_history);
+      });
+    }
     return (
       <View  style={styles.container}>
         <MainTitle></MainTitle>

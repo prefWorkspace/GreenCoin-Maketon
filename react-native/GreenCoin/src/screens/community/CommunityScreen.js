@@ -25,16 +25,20 @@ const CommunityScreen = () => {
       var dateType = new Date();
       dateType.setDate(dateType.getDate()-3);
       dataArr.map(item => {
-        let type = 1;
+        console.log(item.hot_post);
+        let type = 0;
         if(new Date(item.create_date) > dateType){
-          console.log("new")
           type=2;
+        }
+        if(item.hot_post){
+          type=1;
         }
         let newObj = {
           title:item.title,
           date:DateText(new Date(item.create_date), "."),
           type:type,
-          no:item.no
+          no:item.no,
+          isTopic:false,
         }
         newArr.push(newObj);
       })
