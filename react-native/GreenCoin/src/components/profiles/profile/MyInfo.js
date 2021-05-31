@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import { Text,Image, View, Dimensions,TouchableOpacity,StyleSheet, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { useNavigation ,useRoute } from '@react-navigation/native';
+import { useNavigation ,useFocusEffect } from '@react-navigation/native';
 import userInfoSingleton from '../../../db/userInfoSingleton';
 import serverController from '../../../server/serverController';
 
@@ -14,9 +14,10 @@ export default function MyInfo() {
  const [name, setName] = useState("");
  const [currentPoint, setCurrentPoint] = useState(0);
 
-  useEffect(() => {
-    // 이름 설정
-    setName(userInfoSingleton.getInstance()._username)
+
+  useFocusEffect(
+    React.useCallback(() => {  
+      setName(userInfoSingleton.getInstance()._username)
     // 현재 포인트 불러오기
     const num = userInfoSingleton.getInstance()._no;
     const token = userInfoSingleton.getInstance()._token;
@@ -25,9 +26,8 @@ export default function MyInfo() {
         setCurrentPoint(res.data.point);
       }
     },function(err){console.log(err);});
-
-  }, [])
-
+    }, [])
+  );
 
     return (
       <View style={styles.container}>

@@ -16,6 +16,15 @@ import SkewRec from '../../img/contents/skewRec@3x.png';
 import Arrow from '../../img/icon/arrow@3x.png';
 import Pig from '../../img/contents/pig@3x.png';
 import Bubble from '../../img/contents/bubble@3x.png';
+import serverController from '../../pages/server/serverController';
+
+function getDateType(date){
+    function checkZero(checkString){
+      return checkString.toString().length == 1 ?  "0" + checkString : checkString;
+    }
+    var temp = `${checkZero(date.getFullYear())}-${checkZero(date.getMonth() + 1)}-${checkZero(date.getDate())}`;
+    return temp;
+  }
 
 const Contents = (props) => {
 
@@ -24,28 +33,35 @@ const Contents = (props) => {
     const [currentDataArr, setCurrentDataArr] = useState([]);
     const [graphData, setGraphData] = useState([]);
     const [historyData, setHistoryData] = useState([]);
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(-1);
     const [bubbleLeft, setBubbleLeft] = useState(17);
-    const [bubbleText, setBubbleText] = useState(0);
-    const barRef = useRef();
-    useEffect(() => {
-        setCurrentDataArr([
-            {title: "칼로리", content:1000, name:"kcals"},
-            {title: "줄인 탄소", content:1000, name:"tansos"},
-            {title: "거리", content:1000, name:"distancs"},
-        ]);
+    const [bubbleText, setBubbleText] = useState(null);
+    const [curDate,setCurDate] = useState(new Date());
+    const [steps,setSteps] = useState([{},{},{},{},{},{},{}]);
 
-        setGraphData([150, 114, 69, 82, 119, 40, 146]);
-        setBubbleText(150)
-        setHistoryData([
-            {date:"2020.00.00", price:150, desc:"적립", current:550},
-            {date:"2020.00.00", price:150, desc:"적립", current:400},
-            {date:"2020.00.00", price:-5000, desc:"지역화폐 교환", current:250},
-            {date:"2020.00.00", price:250, desc:"적립", current:5250},
-        ])
-        setTimeout(() => {
-            setBubbleLeft(barRef.current.children[0].offsetLeft)
-        }, 50)
+    const barRef = useRef();
+    const listRef = useRef();
+
+
+    useEffect(() => {
+
+
+        setCurrentDataArr([
+        {title: "칼로리", content:1000, name:"kcals"},
+        {title: "줄인 탄소", content:1000, name:"tansos"},
+        {title: "거리", content:1000, name:"distancs"},
+        ]);
+        // setGraphData([150, 114, 69, 82, 119, 40, 146]);
+        // setBubbleText(150)
+        // setHistoryData([
+        //     {date:"2020.00.00", price:150, desc:"적립", current:550},
+        //     {date:"2020.00.00", price:150, desc:"적립", current:400},
+        //     {date:"2020.00.00", price:-5000, desc:"지역화폐 교환", current:250},
+        //     {date:"2020.00.00", price:250, desc:"적립", current:5250},
+        // ])
+        // setTimeout(() => {
+        //     setBubbleLeft(barRef.current.children[0].offsetLeft)
+        // }, 50)
     }, [])
 
     const onClickBar = (e, index, item) =>{
@@ -61,20 +77,93 @@ const Contents = (props) => {
         }));
     }
 
+    const updateCalendar = () =>{
+
+   
+        let cur = new Date(curDate.getTime());
+        cur.setDate(cur.getDate() - cur.getDay())
+        
+        let lastDate = new Date(curDate.getTime());
+        lastDate.setDate(lastDate.getDate() + (7 -  lastDate.getDay()))
+
+        console.log(getDateType(cur) + " +============== " + getDateType(lastDate));
+        serverController.connectFetchController(`users/${listRef.current.getAttribute("no")}/points/history?token=${listRef.current.getAttribute("token")}&order=ASC&action_date_ge=${getDateType(cur)}&action_date_le=${getDateType(lastDate)}`,"GET",null,
+        function(res){
+          if(res.success != 1)
+            return;
+    
+            let dateArray = [];
+            let point_history = res.data.point_history;
+            for(var i =0;i<7;i++){
+              dateArray.push(point_history.length > i ? point_history[i].point : 0);
+            }
+           setGraphData(dateArray);
+        }
+        );
+     
+        
+        serverController.connectFetchController(`users/${listRef.current.getAttribute("no")}/steps?token=${listRef.current.getAttribute("token")}&order=ASC&date_ge=${getDateType(cur)}&date_le=${getDateType(lastDate)}`,"GET",null,
+        function(res){
+          if(res.success != 1)
+            return;
+
+            
+            let dateArray = [];
+            let stepsArray = res.data.steps;
+            for(var i =0;i<7;i++){
+                dateArray.push(stepsArray.length > i ? stepsArray[i] : {kcal:0,meter:0,step:0});
+              }
+            setSteps(dateArray);
+
+           // console.log(res.data.steps);
+        }
+        );
+    }
+
+    useEffect(() => {
+        setBubbleText(null);
+        setActiveIndex(-1);
+        updateCalendar();
+    }, [curDate])
+
     const onClickRight = () =>{
+        let cur = new Date(curDate.getTime());
+        cur.setDate(1);
+        cur.setMonth(cur.getMonth() + 1);
+        if(cur.getFullYear() == new Date().getFullYear() && cur.getMonth() == new Date().getMonth()){
+            setCurDate(new Date());
+        }
+        else
+            setCurDate(cur);
     }
 
     const onClickLeft = () =>{
+        let cur = new Date(curDate.getTime());
+        cur.setDate(1);
+        cur.setMonth(cur.getMonth() - 1);
+        if(cur.getFullYear() == new Date().getFullYear() && cur.getMonth() == new Date().getMonth()){
+            setCurDate(new Date());
+        }
+        else
+            setCurDate(cur);
     }
 
-    const onClickMore = () => {
+    const getPointHistoryList = () => {
+        serverController.connectFetchController(`users/${listRef.current.getAttribute("no")}/points/history?token=${listRef.current.getAttribute("token")}`,"GET",null,
+        function(res){
+          if(res.success != 1)
+            return;
+          setHistoryData(res.data.point_history);
+        }
+        );
+        updateCalendar();
     }
 
 
     return(
         <ContentsWrap>
             {/* <Header /> */}
-            
+            <div ref={listRef} name="historyListTag" token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJubyI6IjciLCJ1c2VybmFtZSI6Imp1bmdtaW4iLCJsb2NhdGlvbl9ubyI6IjE3IiwibG9jYXRpb25fbmFtZSI6IuygnOyjvCIsImxvY2F0aW9uX2Z1bGxuYW1lIjoi7KCc7KO87Yq567OE7J6Q7LmY64-EIiwiaWF0IjoxNjIyNDYxNjk2fQ.klHmyW6Eyh_7Ztt9Whk6ciL1L60gK3ibkyoq8hwqB9w" no="7" onClick={getPointHistoryList}></div>
             {/* 만보기 */}
             <StepWrap>
                 <ShareImg src={Share} alt="공유하기 아이콘"/>
@@ -102,12 +191,12 @@ const Contents = (props) => {
             <GraphWrap>
                 <DateWrap>
                     <LeftArrow src={Arrow} alt="방향 아이콘" onClick={() => onClickLeft()}/>
-                    <DateText>0월</DateText>
+                    <DateText>{curDate.getMonth() + 1}월</DateText>
                     <RightArrow src={Arrow} alt="방향 아이콘" onClick={() => onClickRight()}/>
                 </DateWrap>
 
                 <GraphCanvas>   
-                    <BubbleText style={{left:`${bubbleLeft - 27}px`}}>{bubbleText}코인</BubbleText> 
+                    <BubbleText style={{display:(bubbleText == null ? "none" : "block"), left:`${bubbleLeft - 27}px`}}>{bubbleText}코인</BubbleText> 
                     <GraphBarGroup ref={barRef}>
                         {
                             graphData.map((item, index) => {
@@ -137,13 +226,13 @@ const Contents = (props) => {
             {/* 그래프 텍스트 */}
             <GraphData>
                 <GraphDataTop>
-                    <SelectDate>0000년 0월 0일</SelectDate>
+                    <SelectDate>{curDate.getFullYear()}년 {curDate.getMonth() + 1}월 {curDate.getDate() + (7 - activeIndex)}일</SelectDate>
                     <DateCoin>150 그린코인 적립됨</DateCoin>
                 </GraphDataTop>
                 <GraphDataBottom>
-                    <GraphDataText><GreenText>00.00kg</GreenText> 의 탄소 감소</GraphDataText>
-                    <GraphDataText><GreenText>00km</GreenText> 걷고</GraphDataText>
-                    <GraphDataText><GreenText>0000kcal</GreenText> 소비 하였습니다.</GraphDataText>
+                    <GraphDataText><GreenText>{activeIndex == -1 ? "0" : (steps[activeIndex].kcal / 100).toFixed(3)}kg</GreenText> 의 탄소 감소</GraphDataText>
+                    <GraphDataText><GreenText>{activeIndex == -1 ? "0" : steps[activeIndex].meter}km</GreenText> 걷고</GraphDataText>
+                    <GraphDataText><GreenText>{activeIndex == -1 ? "0" : steps[activeIndex].kcal}kcal</GreenText> 소비 하였습니다.</GraphDataText>
                 </GraphDataBottom>
             </GraphData>
             
@@ -170,10 +259,10 @@ const Contents = (props) => {
                             }
                             return(
                                 <TableContentWrap key={index}>
-                                    <TableContent style={{color:"#959595"}}>{item.date}</TableContent>
-                                    <TableContent>{InsertComma(item.price)}코인</TableContent>
-                                    <TableContent style={{fontWeight:500, color:color}}>{item.desc}</TableContent>
-                                    <TableContent>{InsertComma(item.current)}코인</TableContent>
+                                    <TableContent style={{color:"#959595"}}>{item.action_date}</TableContent>
+                                    <TableContent>{InsertComma(item.point)}코인</TableContent>
+                                    <TableContent style={{fontWeight:500, color:color}}>{item.action}</TableContent>
+                                    <TableContent>{InsertComma(item.point)}코인</TableContent>
                                 </TableContentWrap>
                             )
                         })

@@ -18,6 +18,14 @@ import serverController from '../../server/serverController'
 import userInfoSingleton from '../../db/userInfoSingleton'
 import { useNavigation } from "@react-navigation/core";
 
+function getDateType(date){
+  function checkZero(checkString){
+    return checkString.toString().length == 1 ?  "0" + checkString : checkString;
+  }
+  var temp = `${checkZero(date.getFullYear())}-${checkZero(date.getMonth() + 1)}-${checkZero(date.getDate())}`;
+  return temp;
+}
+
 const ContentScreen = () => {
   const [webViewHeight,setWebViewHeight] = useState(100);
   const [step,setStep] = useState(0);
@@ -27,6 +35,7 @@ const ContentScreen = () => {
   const userInfo = userInfoSingleton.getInstance();
   const webview = useRef(null);
   
+  console.log(userInfo);
   const navigation = useNavigation();
   setUpdateIntervalForType(SensorTypes.accelerometer, 100); // defaults to 100ms
 
@@ -67,7 +76,7 @@ const ContentScreen = () => {
 
 
   const initSteps = () =>{
-    serverController.connectFetchController(`/users/${userInfo._no}/steps?token=${userInfo._token}&no=${userInfo._no}`,"GET",null,
+    serverController.connectFetchController(`/users/${userInfo._no}/steps?token=${userInfo._token}`,"GET",null,
     function(res){
       if(res.success != 1)
         return;
@@ -81,13 +90,23 @@ const ContentScreen = () => {
   }
 
   useEffect(() => {
-    serverController.connectFetchController(`/users/${userInfo._no}/points/history?token=${userInfo._token}&no=${userInfo._no}`,"GET",null,
+    
+    let curDate = new Date();
+    curDate.setDate(curDate.getDate() - curDate.getDay())
+    
+    let lastDate = new Date();
+    lastDate.setDate(lastDate.getDate() + (7 -  lastDate.getDay()))
+    
+    serverController.connectFetchController(`/users/${userInfo._no}/steps?token=${userInfo._token}&order=ASC&date_ge=${getDateType(curDate)}&date_le=${getDateType(lastDate)}`,"GET",null,
     function(res){
       if(res.success != 1)
         return;
-      console.log(res)
+
+        console.log(res.data.steps);
+       // console.log(res.data.steps);
     }
     );
+   
   }, [])
 
   useEffect(() => {
@@ -103,11 +122,15 @@ const ContentScreen = () => {
       var tan = ca ? (ca / 100).toFixed(3) : 0;
 
       webview.current.injectJavaScript(`
-        document.getElementsByName("steps")[0].innerHTML = "${step} steps"
-        document.getElementsByName("kgs")[0].innerHTML = "${kg} kg"
-        document.getElementsByName("kcals")[0].innerHTML = "${kcal > 0 ? kcal.toFixed(3) : ca}"
-        document.getElementsByName("tansos")[0].innerHTML = "${tan}"
-        document.getElementsByName("distancs")[0].innerHTML = "${distancs > 0 ? distancs.toFixed(3) : (step *  0.0008).toFixed(3)}"
+        document.getElementsByName("steps")[0].innerHTML = "${step} steps";
+        document.getElementsByName("kgs")[0].innerHTML = "${kg} kg";
+        document.getElementsByName("kcals")[0].innerHTML = "${kcal > 0 ? kcal.toFixed(3) : ca}";
+        document.getElementsByName("tansos")[0].innerHTML = "${tan}";
+        document.getElementsByName("distancs")[0].innerHTML = "${distancs > 0 ? distancs.toFixed(3) : (step *  0.0008).toFixed(3)}";
+        document.getElementsByName("historyListTag")[0].setAttribute("token","${userInfo._token}");
+        document.getElementsByName("historyListTag")[0].setAttribute("no","${userInfo._no}");
+        document.getElementsByName("historyListTag")[0].click();
+        
       `)
 
     }
@@ -115,12 +138,10 @@ const ContentScreen = () => {
 
   const updateStep = () =>{
     if(webview && webview.current){
-
-      insertHTMLInfo();
-   
-      let data = { token : userInfo._token, step : 1 };
+      let data = { token : userInfo._token, step : 1  };
       serverController.connectFetchController(`/users/${userInfo._no}/steps/add`,"POST",JSON.stringify(data),
       function(res){
+        console.log(res.data.updated_item);
         if(res.success == 1){
           initSteps();
         }

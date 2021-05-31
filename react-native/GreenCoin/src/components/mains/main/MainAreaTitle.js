@@ -4,14 +4,14 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation ,useRoute } from '@react-navigation/native';
 import userInfoSingleton from '../../../db/userInfoSingleton';
 
-export default function MainTitle() {
+export default function MainAreaTitle() {
   const navigation = useNavigation();
   const routeInfo = useRoute();
 
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.titleAreaBody} onPress={()=>{}}>
-          <Text style={styles.titleLabel}>{"주소를 선택해주세요!"}</Text>
+        <TouchableOpacity style={styles.titleAreaBody} onPress={()=>{navigation.navigate("selectArea")}}>
+          <Text style={styles.titleLabel}>{userInfoSingleton.getInstance()._location_fullname}</Text>
           <Image style={styles.titleAddressPoint} source={require('../../../assets/img/label_point/rightClickPoint.png')}></Image>
         </TouchableOpacity>
       </View>

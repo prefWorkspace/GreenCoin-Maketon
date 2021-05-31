@@ -8,7 +8,9 @@ import { useNavigation} from '@react-navigation/native';
 import userInfoSingleton from '../../db/userInfoSingleton';
 import MainTitle from '../../components/mains/main/MainTitle';
 import CommunityDetailTitle from "../../components/community/communityDetail/CommunityDetailTitle";
+import serverController from '../../server/serverController';
 import WhiteGra from '../../img/intro/whiteGra.png';
+import CommonDetailTitle from '../../components/comm/CommonDetailTitle';
 
 
 export default function SelectAreaTest({route}) {
@@ -22,7 +24,9 @@ export default function SelectAreaTest({route}) {
 
 
     useEffect(() => {
-        setListData(["서울특별시", "제주", "서울특별시", "제주", "서울특별시", "제주"])
+      serverController.connectFetchController('/locations',"GET",null,function(res){
+        setListData(res.data.locations);
+      });
     }, [])
 
     // 시작 버튼 클릭
@@ -51,7 +55,7 @@ export default function SelectAreaTest({route}) {
     return (
       <View  style={styles.container}>
         <MainTitle></MainTitle>
-        <CommunityDetailTitle />
+        <CommonDetailTitle title={"지역선택"} />
         <ScrollView>
             {
                 listData.map((item, index) => {
@@ -62,7 +66,7 @@ export default function SelectAreaTest({route}) {
                         key={index}
                         >
                             <Text style={[styles.listText, currentIndex==index&&styles.selectElText]}>
-                                {item}
+                                {item.fullname}
                             </Text>
                         </TouchableOpacity>
                     )
@@ -73,11 +77,7 @@ export default function SelectAreaTest({route}) {
 
          <ImageBackground source={require("../../img/intro/whiteGra.png")} style={styles.btnWrap}>
              <TouchableOpacity style={[styles.startBtnWrap, styles.btn, isPress&&styles.selectStartBtn]}>
-                <Text style={styles.startBtn} onClick={() => onClickStart()}>그린 코인 시작하기!</Text>
-             </TouchableOpacity>
-
-             <TouchableOpacity style={[styles.loginBtnWrap, styles.btn, isPress&&styles.selectLoginBtn]}>
-                <Text style={styles.loginBtn} onClick={() => onClickLogin()}>그린 코인 로그인</Text>
+                <Text style={styles.startBtn} onClick={() => onClickStart()}>지역 설정하기!</Text>
              </TouchableOpacity>
         </ImageBackground>
 
@@ -123,7 +123,7 @@ const styles = EStyleSheet.create({
     width:"95%",
     borderWidth:"3rem",
     borderRadius: "10rem",
-    height:"66rem",
+    height:"46rem",
     display:"flex",
     justifyContent:"center",
     alignItems:"center",
