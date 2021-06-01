@@ -15,6 +15,8 @@ export default function MainEnvironment() {
   const [carbon, setCarbon] = useState(0); // 일산화탄소
   const [sulfurous, setSulfurous] = useState(0); // 아황산가스
   const [idexmvl, setIdexmvl] = useState(0); // 통합대기환경지수
+  const [airStatus, setAirStatus] = useState(["좋음", "좋음", "좋음", "좋음"])
+
   
   const [dustStatus, setDustStatus] = useState("좋음");
   const [ultraDustStatus, setUltraDustStatus] = useState("좋음");
@@ -53,6 +55,48 @@ export default function MainEnvironment() {
         setCarbon(_data.CARBON[0]);// 일산화탄소
         setSulfurous(_data.SULFUROUS[0]);// 아황산가스
         setIdexmvl(_data.IDEX_MVL[0]);// 통합대기환경지수
+
+        let newS = airStatus;
+        if(_data.NITROGEN[0] > 0 && _data.NITROGEN[0] < 0.030){
+          newS[0] = "좋음";
+        }else if(_data.NITROGEN[0] > 0.031 && _data.NITROGEN[0] < 0.06){
+          newS[0] = "보통";
+        }else if(_data.NITROGEN[0] > 0.061 && _data.NITROGEN[0] < 0.2){
+          newS[0] = "나쁨";
+        }else{
+          newS[0] = "매우나쁨";
+        }
+
+        if(_data.CARBON[0] > 0 && _data.CARBON[0] < 2.0){
+          newS[1] = "좋음";
+        }else if(_data.CARBON[0] > 2.01 && _data.CARBON[0] < 9.0){
+          newS[1] = "보통";
+        }else if(_data.CARBON[0] > 9.01 && _data.CARBON[0] < 15.00){
+          newS[1] = "나쁨";
+        }else{
+          newS[1] = "매우나쁨";
+        }
+
+        if(_data.SULFUROUS[0] > 0 && _data.SULFUROUS[0] < 0.02){
+          newS[2] = "좋음";
+        }else if(_data.SULFUROUS[0] >  0.021 && _data.SULFUROUS[0] < 0.05){
+          newS[2] = "보통";
+        }else if(_data.SULFUROUS[0] > 0.051 && _data.SULFUROUS[0] < 0.150){
+          newS[2] = "나쁨";
+        }else{
+          newS[2] = "매우나쁨";
+        }
+
+        if(_data.IDEX_MVL[0] > 0 && _data.IDEX_MVL[0] < 50){
+          newS[3] = "좋음";
+        }else if(_data.IDEX_MVL[0] >  51 && _data.IDEX_MVL[0] < 100){
+          newS[3] = "보통";
+        }else if(_data.IDEX_MVL[0] > 101 && _data.IDEX_MVL[0] < 250){
+          newS[3] = "나쁨";
+        }else{
+          newS[3] = "매우나쁨";
+        }
+        setAirStatus([...newS]);
       })
     })
     .catch(error => console.log('error', error));
@@ -100,15 +144,29 @@ export default function MainEnvironment() {
       // 오존
       if(data.o3Value > 0 && data.o3Value < 0.030){
         setOzoneStatus("좋음");
-      }else if(data.o3Value > 0.091 && data.o3Value < 0.150){
+      }else if(data.o3Value > 0.031 && data.o3Value < 0.90){
+        setOzoneStatus("보통");
+      }else if(data.o3Value > 0.91 && data.o3Value < 0.150){
         setOzoneStatus("나쁨");
       }else{
-        setOzoneStatus("좋음");
+        setOzoneStatus("매우나쁨")
       }
     }
   )
   .catch(error => console.log('error', error));
   }
+
+  const statusColor = (status) => {
+    if(status == "좋음"){
+      return "#00C386";
+    }else if(status == "보통"){
+      return "#FFC400";
+    }else{
+      return "#FF4E00";
+    }
+  }
+
+
 
   useEffect(() => { 
     refreshAir();
@@ -134,9 +192,9 @@ export default function MainEnvironment() {
                 <Image style={styles.dustIconImage} source={require('../../../assets/img/icon/dustIcon.png')}></Image>
               </View>
               <View>
-                <Text style={[styles.label,{bottom:"10%"}]}>&nbsp;&nbsp;미세먼지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{}]}>{dustStatus}</Text></Text>
-                <Text style={[styles.label,{bottom:"20%"}]}>&nbsp;&nbsp;초미세먼지&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{}]}>{ultraDustStatus}</Text></Text>
-                <Text style={[styles.label,{bottom:"30%"}]}>&nbsp;&nbsp;오존&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{}]}>{ozoneStatus}</Text></Text>
+                <Text style={[styles.label,{bottom:"10%"}]}>&nbsp;&nbsp;미세먼지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{color:statusColor(dustStatus)}]}>{dustStatus}</Text></Text>
+                <Text style={[styles.label,{bottom:"20%"}]}>&nbsp;&nbsp;초미세먼지&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{color:statusColor(ultraDustStatus)}]}>{ultraDustStatus}</Text></Text>
+                <Text style={[styles.label,{bottom:"30%"}]}>&nbsp;&nbsp;오존&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{color:statusColor(ozoneStatus)}]}>{ozoneStatus}</Text></Text>
               </View>
             </View>
           </View>
@@ -153,10 +211,10 @@ export default function MainEnvironment() {
             </View>
             <View style={styles.dustInfoContainer}>
               <View>
-                <Text style={[styles.label,{bottom:"10%"}]}>이산화탄소 &nbsp;<Text style={[styles.scoreLike,{}]}>좋음</Text>&nbsp;&nbsp;&nbsp;<Text>{nitrogen}ppm</Text></Text>
-                <Text style={[styles.label,{bottom:"20%"}]}>일산화탄소 &nbsp;<Text style={[styles.scoreLike,{color:"#FFC400"}]}>보통</Text>&nbsp;&nbsp;&nbsp;<Text>{carbon}ppm</Text></Text>
-                <Text style={[styles.label,{bottom:"30%"}]}>아황산가스 &nbsp;<Text style={[styles.scoreLike,{color:"#FFC400"}]}>보통</Text>&nbsp;&nbsp;&nbsp;<Text>{sulfurous}ppm</Text></Text>
-                <Text style={[styles.label,{bottom:"40%"}]}>통합대기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{color:"#FF4E00"}]}>나쁨</Text>&nbsp;&nbsp;&nbsp;<Text>{idexmvl}</Text></Text>
+                <Text style={[styles.label,{bottom:"10%"}]}>이산화탄소 &nbsp;<Text style={[styles.scoreLike,{color:statusColor(airStatus[0])}]}>{airStatus[0]}</Text>&nbsp;&nbsp;&nbsp;<Text>{nitrogen}ppm</Text></Text>
+                <Text style={[styles.label,{bottom:"20%"}]}>일산화탄소 &nbsp;<Text style={[styles.scoreLike,{color:statusColor(airStatus[1])}]}>{airStatus[1]}</Text>&nbsp;&nbsp;&nbsp;<Text>{carbon}ppm</Text></Text>
+                <Text style={[styles.label,{bottom:"30%"}]}>아황산가스 &nbsp;<Text style={[styles.scoreLike,{color:statusColor(airStatus[2])}]}>{airStatus[2]}</Text>&nbsp;&nbsp;&nbsp;<Text>{sulfurous}ppm</Text></Text>
+                <Text style={[styles.label,{bottom:"40%"}]}>통합대기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={[styles.scoreLike,{color:statusColor(airStatus[3])}]}>{airStatus[3]}</Text>&nbsp;&nbsp;&nbsp;<Text>{idexmvl}</Text></Text>
               </View>
             </View>
           </View>

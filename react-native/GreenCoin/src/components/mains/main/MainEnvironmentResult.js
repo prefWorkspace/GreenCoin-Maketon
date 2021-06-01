@@ -1,4 +1,4 @@
-import React ,{useState}from 'react';
+import React ,{useEffect, useState}from 'react';
 import { TouchableOpacity, Text,Image, View, Dimensions,ScrollView,StyleSheet, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation ,useRoute } from '@react-navigation/native';
@@ -8,7 +8,20 @@ import Swiper from 'react-native-swiper'
 export default function MainEnvironmentResult() {
   const navigation = useNavigation();
   const routeInfo = useRoute();
+  const userInfo = userInfoSingleton.getInstance();
   const [idx, setIndex] = useState(0);
+
+  // const initSteps = () =>{
+  //   serverController.connectFetchController(`/users/${userInfo._no}/steps?token=${userInfo._token}`,"GET",null,
+  //     function(res){
+  //       console.log(res);
+  //     }
+  //   );
+  // }
+
+  // useEffect(() => {
+  //   initSteps();
+  // }, [])
 
   const swipeItem  = () =>{
     return(
