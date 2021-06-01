@@ -3,6 +3,7 @@ import { TouchableOpacity, Text,Image, View, Dimensions,ScrollView,StyleSheet, A
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation ,useRoute } from '@react-navigation/native';
 import userInfoSingleton from '../../../db/userInfoSingleton';
+import serverController from '../../../server/serverController';
 import Swiper from 'react-native-swiper'
 
 export default function MainEnvironmentResult() {
@@ -11,17 +12,20 @@ export default function MainEnvironmentResult() {
   const userInfo = userInfoSingleton.getInstance();
   const [idx, setIndex] = useState(0);
 
-  // const initSteps = () =>{
-  //   serverController.connectFetchController(`/users/${userInfo._no}/steps?token=${userInfo._token}`,"GET",null,
-  //     function(res){
-  //       console.log(res);
-  //     }
-  //   );
-  // }
+  const initSteps = () =>{
 
-  // useEffect(() => {
-  //   initSteps();
-  // }, [])
+    // 제 데이터가 없어 빈배열로 나옵니다  ㅜㅜ
+    serverController.connectFetchController(`/users/${userInfo._no}/steps?token=${userInfo._token}`,"GET",null,function(res){
+      const data = res.data.steps; // []
+      console.log(data.step); // undefined
+      console.log(data.kcal); // undefined
+      console.log(data.meter); // undefined
+    },function(err){console.log(err);});
+  }
+
+  useEffect(() => {
+    initSteps();
+  }, [])
 
   const swipeItem  = () =>{
     return(
