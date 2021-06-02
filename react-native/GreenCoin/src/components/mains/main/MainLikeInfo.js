@@ -14,7 +14,7 @@ const getIconType = (icon) =>{
   }
 }
 
-export default function MainLikeInfo({title,icon,list}) {
+export default function MainLikeInfo({title,icon,list, noBtn}) {
   const navigation = useNavigation();
   const routeInfo = useRoute();
 
@@ -30,9 +30,12 @@ export default function MainLikeInfo({title,icon,list}) {
             <Image style={styles.image} source={getIconType(icon)} resizeMode="stretch"></Image>
             <Text>{title}</Text>
           </View>
-          <TouchableOpacity onPress={() => onPressMore()}>
-            <Text style={styles.likeInfoMore}>더보기 +</Text>
-          </TouchableOpacity>
+          {
+            !noBtn&&
+            <TouchableOpacity onPress={() => onPressMore()}>
+              <Text style={styles.likeInfoMore}>더보기 +</Text>
+            </TouchableOpacity>
+          }
         </View>
         {
           list.map((item)=>{

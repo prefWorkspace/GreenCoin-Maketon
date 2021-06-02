@@ -76,20 +76,20 @@ export default function CommunityContentList({title,icon,list}) {
             <Text>{title}</Text>
           </View>
         </View>
-        <ScrollView style={styles.tagContainer} horizontal={true} showsHorizontalScrollIndicator={false}>
+        {/* <ScrollView style={styles.tagContainer} horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             Data.map((value)=>{
               return <CategoryTag value={value}></CategoryTag>
             })
           }
-        </ScrollView>
-        <View style={styles.hideTagLast}></View>
+        </ScrollView> */}
+        {/* <View style={styles.hideTagLast}></View>
         <View style={styles.searchContainer}>
           <View style={styles.searchBarContainer}>
             <TextInput style={styles.searchInput}></TextInput>
             <Image style={styles.searchIcon} source={require('../../../assets/img/icon/searchIcon.png')} resizeMode="stretch"></Image>
           </View>
-        </View>
+        </View> */}
         {
           list.map((item)=>{
               return <MainTextContent item={item}></MainTextContent>          

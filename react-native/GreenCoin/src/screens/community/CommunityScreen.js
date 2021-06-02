@@ -20,10 +20,10 @@ const CommunityScreen = () => {
   const [communityList, setCommunityList] = useState([])
   const [listIndex, setListIndex] = useState(0);
 
-  const listUpdate = () => {
+  const listUpdate = (isFirst) => {
     serverController.connectFetchController(`/posts?limit=10&offset=${listIndex}`,"GET",null,function(res){
       const dataArr = res.data.posts;
-      let newArr = communityList;
+      let newArr = isFirst?[]:communityList;
       // 날짜가 3일 전이면 new 로 표시한다.
       var dateType = new Date();
       dateType.setDate(dateType.getDate()-3);
@@ -51,14 +51,13 @@ const CommunityScreen = () => {
   }
   useFocusEffect(
     React.useCallback(() => { 
-      listUpdate();
+      listUpdate(true);
     }, [])
   );
 
 
   const onPressMore = () => {
-    let newIndex = listIndex + 2;
-    listUpdate();
+    listUpdate(false);
   }
 
   return (

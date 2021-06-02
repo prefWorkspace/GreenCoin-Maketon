@@ -45,6 +45,8 @@ const MainScreen = () => {
   const [couponList,setCouponList] = useState([]);
   const [communityList, setCommunityList] = useState([]);
   const [topicList, setTopicList] = useState([]);
+  const [isModal, setIsModal] = useState(false);
+
   useEffect(() => {
     if(!appStaticInfomation.getInstance()._interest)
       navigation.navigate("interest");
@@ -83,7 +85,7 @@ const MainScreen = () => {
       },function(err){console.log(err);});
   
       // 토픽 글
-      serverController.connectFetchController(`/pollutions/1/posts`,"GET",null,function(res){
+      serverController.connectFetchController(`/pollutions/1/posts?limit=1`,"GET",null,function(res){
         if(res.success==1){
           const data = res.data.posts;
           let newTopicArr = [];
@@ -116,14 +118,14 @@ const MainScreen = () => {
     <View style={styles.container}>
       <MainTitle/>
       
-      <ModalCommon isModalVisible={false} title={"아직 개발중입니다."} setIsModalVisible={true}/>
+      <ModalCommon isModalVisible={isModal} title={"아직 개발중입니다."} bottomType={"select"} setIsModalVisible={() => setIsModal(false)} submitClick={() => setIsModal(false)}/>
       <ScrollView>
         <MainAreaTitle/>
-        <MainLikeInfo list={topicList} title={"미세먼지"} icon={"dust"}/>
+        <MainLikeInfo list={topicList} title={"미세먼지"} icon={"dust"} noBtn/>
         <MainEnvironment/>
         <MainCuponBanner couponList={couponList}/>
         <MainLikeInfo list={communityList} title={"우리지역 커뮤니티"} icon={"community"}/>
-        <MainEnvironmentResult/>
+        <MainEnvironmentResult setIsModal={setIsModal}/>
         {/* <MainDoubrleClick></MainDoubrleClick> */}
       </ScrollView>
     </View>

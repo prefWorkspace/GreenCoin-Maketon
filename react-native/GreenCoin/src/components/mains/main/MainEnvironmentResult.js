@@ -7,7 +7,7 @@ import serverController from '../../../server/serverController';
 import Swiper from 'react-native-swiper'
 import ModalCommon from '../../comm/ModalCommon';
 
-export default function MainEnvironmentResult() {
+export default function MainEnvironmentResult({setIsModal}) {
   const navigation = useNavigation();
   const routeInfo = useRoute();
   const userInfo = userInfoSingleton.getInstance();
@@ -23,8 +23,8 @@ export default function MainEnvironmentResult() {
   }
 
 
-  const onPressAgree = () => {
-    console.log('onPressAgree');
+  const popModal = () => {
+    setIsModal(true);
   }
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function MainEnvironmentResult() {
           <View>
             <Text style={[styles.label]}>하루 출/퇴근 대중교통 이용하기!</Text>
             <View style={[styles.agreeBox]}>
-              <TouchableOpacity onPress={() => onPressAgree()}>
+              <TouchableOpacity onPress={() => popModal()}>
                 <Text style={[styles.agreeLabel]}>미션수락</Text>
               </TouchableOpacity>
             </View>
@@ -92,7 +92,9 @@ export default function MainEnvironmentResult() {
         <View style={styles.itemContainer}>
           <View style={styles.titleContainer}>
             <View style={styles.titleDateContainer}>
-              <Image style={styles.resetImage} source={require('../../../assets/img/icon/share.png')}></Image>
+              <TouchableOpacity onPress={() => popModal()}>
+                <Image style={styles.resetImage} source={require('../../../assets/img/icon/share.png')}></Image>
+              </TouchableOpacity>
               <Text  style={[styles.label,styles.title]} >{stepInfo.step} step</Text>
             </View>
           </View>
