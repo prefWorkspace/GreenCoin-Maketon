@@ -1,5 +1,5 @@
 import React, { Component,useState ,useEffect } from "react";
-import { Dimensions, View,BackHandler,ScrollView,TouchableOpacity,Image } from "react-native";
+import { Dimensions, View,BackHandler,ScrollView,TouchableOpacity,Image, Text } from "react-native";
 
 
 import MainTitle from '../../components/mains/main/MainTitle';
@@ -12,20 +12,22 @@ import CommunityEvent from "../../components/community/community/CommunityEvent"
 import CommunityContentList from "../../components/community/community/CommunityContentList";
 import serverController from '../../server/serverController';
 import DateText from '../../components/commonsjh/dateText';
+import { useFocusEffect } from '@react-navigation/core';
 
 const CommunityScreen = () => {
  
   const [couponList,setCouponList] = useState([]);
   const [communityList, setCommunityList] = useState([])
-  useEffect(() => {
-    serverController.connectFetchController(`/posts`,"GET",null,function(res){
+  const [listIndex, setListIndex] = useState(0);
+
+  const listUpdate = () => {
+    serverController.connectFetchController(`/posts?limit=10&offset=${listIndex}`,"GET",null,function(res){
       const dataArr = res.data.posts;
-      let newArr = [];
+      let newArr = communityList;
       // 날짜가 3일 전이면 new 로 표시한다.
       var dateType = new Date();
       dateType.setDate(dateType.getDate()-3);
       dataArr.map(item => {
-        console.log(item.hot_post);
         let type = 0;
         if(new Date(item.create_date) > dateType){
           type=2;
@@ -42,10 +44,23 @@ const CommunityScreen = () => {
         }
         newArr.push(newObj);
       })
+      let newIndex = listIndex + 10;
+      setListIndex(newIndex);
       setCommunityList([...newArr]);
     },function(err){console.log(err);});
+  }
+  useFocusEffect(
+    React.useCallback(() => { 
+      listUpdate();
+    }, [])
+  );
 
-  }, [])
+
+  const onPressMore = () => {
+    let newIndex = listIndex + 2;
+    listUpdate();
+  }
+
   return (
     <View style={styles.container}>
       <MainTitle/>
@@ -55,6 +70,9 @@ const CommunityScreen = () => {
         <CommunityEvent/>
         <CommunityContentList list={communityList} title={"우리지역 커뮤니티"} icon={"community"}/>
         {/* <MainDoubrleClick></MainDoubrleClick> */}
+        <TouchableOpacity onPress={() => onPressMore()}>
+          <Text style={styles.moreBtn}>더보기 +</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
@@ -92,5 +110,9 @@ const styles = EStyleSheet.create({
   },
   image:{
 
+  },
+  moreBtn:{
+    textAlign:"center",
+    paddingVertical: 25,
   }
 });

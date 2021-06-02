@@ -18,6 +18,11 @@ export default function MainLikeInfo({title,icon,list}) {
   const navigation = useNavigation();
   const routeInfo = useRoute();
 
+
+  const onPressMore = () => {
+    navigation.navigate("community");
+  }
+
     return (
       <View style={styles.container}>
         <View style={styles.likeInfoContainer}>
@@ -25,7 +30,9 @@ export default function MainLikeInfo({title,icon,list}) {
             <Image style={styles.image} source={getIconType(icon)} resizeMode="stretch"></Image>
             <Text>{title}</Text>
           </View>
-          <Text style={styles.likeInfoMore}>더보기 +</Text>
+          <TouchableOpacity onPress={() => onPressMore()}>
+            <Text style={styles.likeInfoMore}>더보기 +</Text>
+          </TouchableOpacity>
         </View>
         {
           list.map((item)=>{

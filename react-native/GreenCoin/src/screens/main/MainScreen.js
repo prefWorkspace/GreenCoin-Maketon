@@ -1,5 +1,5 @@
 import React, { Component,useState ,useEffect } from "react";
-import { Dimensions, View,BackHandler,ScrollView,TouchableOpacity,Image } from "react-native";
+import {Dimensions, View,BackHandler,ScrollView,TouchableOpacity,Image } from "react-native";
 
 
 import MainTitle from '../../components/mains/main/MainTitle';
@@ -12,12 +12,14 @@ import MainLikeInfo from '../../components/mains/main/MainLikeInfo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation } from "@react-navigation/core";
 import appStaticInfomation from "../../db/appStaticInfomation";
-import userInfoSingleton from "../../db/userInfoSingleton";
-
+import { useFocusEffect } from '@react-navigation/core';
 import DateText from '../../components/commonsjh/dateText';
+
+import userInfoSingleton from "../../db/userInfoSingleton";
 
 // server 
 import serverController from '../../server/serverController';
+import ModalCommon from "../../components/comm/ModalCommon";
 
 const Data = [
   {
@@ -48,40 +50,19 @@ const MainScreen = () => {
       navigation.navigate("interest");
     else if(!appStaticInfomation.getInstance()._area)
       navigation.navigate("area");
-      
-    var dateType = new Date();
-    dateType.setDate(dateType.getDate()-3);
+  }, [])
 
-    // 커뮤니티 글
-    serverController.connectFetchController(`/posts`,"GET",null,function(res){
-      const dataArr = res.data.posts;
-      let newArr = [];
-      dataArr.map(item => {
-        let type = 0;
-        if(new Date(item.create_date) > dateType){
-          type=2;
-        }
-        if(item.hot_post){
-          type=1;
-        }
-        let newObj = {
-          title:item.title,
-          date:DateText(new Date(item.create_date), "."),
-          type:type,
-          no:item.no,
-          isTopic:false,
-        }
-        newArr.push(newObj);
-      })
-      setCommunityList([...newArr]);
-    },function(err){console.log(err);});
 
-    // 토픽 글
-    serverController.connectFetchController(`/pollutions/1/posts`,"GET",null,function(res){
-      if(res.success==1){
-        const data = res.data.posts;
-        let newTopicArr = [];
-        data.map(item => {
+  useFocusEffect(
+    React.useCallback(() => {
+      var dateType = new Date();
+      dateType.setDate(dateType.getDate()-3);
+  
+      // 커뮤니티 글
+      serverController.connectFetchController(`/posts?limit=6`,"GET",null,function(res){
+        const dataArr = res.data.posts;
+        let newArr = [];
+        dataArr.map(item => {
           let type = 0;
           if(new Date(item.create_date) > dateType){
             type=2;
@@ -94,21 +75,48 @@ const MainScreen = () => {
             date:DateText(new Date(item.create_date), "."),
             type:type,
             no:item.no,
-            isTopic:true,
+            isTopic:false,
           }
-          newTopicArr.push(newObj);
+          newArr.push(newObj);
         })
-        setTopicList([...newTopicArr]);
-      }
-    },function(err){console.log(err);});
+        setCommunityList([...newArr]);
+      },function(err){console.log(err);});
+  
+      // 토픽 글
+      serverController.connectFetchController(`/pollutions/1/posts`,"GET",null,function(res){
+        if(res.success==1){
+          const data = res.data.posts;
+          let newTopicArr = [];
+          data.map(item => {
+            let type = 0;
+            if(new Date(item.create_date) > dateType){
+              type=2;
+            }
+            if(item.hot_post){
+              type=1;
+            }
+            let newObj = {
+              title:item.title,
+              date:DateText(new Date(item.create_date), "."),
+              type:type,
+              no:item.no,
+              isTopic:true,
+            }
+            newTopicArr.push(newObj);
+          })
+          setTopicList([...newTopicArr]);
+        }
+      },function(err){console.log(err);});
 
-  }, [])
-
+    }, [])
+  );
 
 
   return (
     <View style={styles.container}>
       <MainTitle/>
+      
+      <ModalCommon isModalVisible={false} title={"아직 개발중입니다."} setIsModalVisible={true}/>
       <ScrollView>
         <MainAreaTitle/>
         <MainLikeInfo list={topicList} title={"미세먼지"} icon={"dust"}/>

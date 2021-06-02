@@ -5,6 +5,7 @@ import { useNavigation ,useRoute } from '@react-navigation/native';
 import userInfoSingleton from '../../../db/userInfoSingleton';
 import serverController from '../../../server/serverController';
 import Swiper from 'react-native-swiper'
+import ModalCommon from '../../comm/ModalCommon';
 
 export default function MainEnvironmentResult() {
   const navigation = useNavigation();
@@ -14,17 +15,17 @@ export default function MainEnvironmentResult() {
   const [stepInfo, setStepInfo] = useState({kcal:0,location_no: 0, meter: 0, step: 0});
 
   const initSteps = () =>{
-
-    // 제 데이터가 없어 빈배열로 나옵니다  ㅜㅜ
     serverController.connectFetchController(`/users/${userInfo._no}/steps?token=${userInfo._token}`,"GET",null,function(res){
-      const data = res.data.steps; // []
-      console.log(data);
+      const data = res.data.steps; 
+      if(!data[0]){return;}
       setStepInfo(data[0]);
     },function(err){console.log(err);});
   }
 
 
-
+  const onPressAgree = () => {
+    console.log('onPressAgree');
+  }
 
   useEffect(() => {
     initSteps();
@@ -39,7 +40,9 @@ export default function MainEnvironmentResult() {
           <View>
             <Text style={[styles.label]}>하루 출/퇴근 대중교통 이용하기!</Text>
             <View style={[styles.agreeBox]}>
-              <Text style={[styles.agreeLabel]}>미션수락</Text>
+              <TouchableOpacity onPress={() => onPressAgree()}>
+                <Text style={[styles.agreeLabel]}>미션수락</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
