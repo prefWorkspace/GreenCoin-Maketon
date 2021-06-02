@@ -11,17 +11,20 @@ export default function MainEnvironmentResult() {
   const routeInfo = useRoute();
   const userInfo = userInfoSingleton.getInstance();
   const [idx, setIndex] = useState(0);
+  const [stepInfo, setStepInfo] = useState({kcal:0,location_no: 0, meter: 0, step: 0});
 
   const initSteps = () =>{
 
     // 제 데이터가 없어 빈배열로 나옵니다  ㅜㅜ
     serverController.connectFetchController(`/users/${userInfo._no}/steps?token=${userInfo._token}`,"GET",null,function(res){
       const data = res.data.steps; // []
-      console.log(data.step); // undefined
-      console.log(data.kcal); // undefined
-      console.log(data.meter); // undefined
+      console.log(data);
+      setStepInfo(data[0]);
     },function(err){console.log(err);});
   }
+
+
+
 
   useEffect(() => {
     initSteps();
@@ -87,14 +90,18 @@ export default function MainEnvironmentResult() {
           <View style={styles.titleContainer}>
             <View style={styles.titleDateContainer}>
               <Image style={styles.resetImage} source={require('../../../assets/img/icon/share.png')}></Image>
-              <Text  style={[styles.label,styles.title]} >0000 step</Text>
+              <Text  style={[styles.label,styles.title]} >{stepInfo.step} step</Text>
             </View>
           </View>
           <View style={styles.dustInfoContainer}>
             <View style={styles.infoContainer}>
-              <Text style={[styles.calLabel]}>00.00 kg</Text>
-              <Text style={[styles.label]}>칼로리 <Text style={styles.rate}>0.0070ppm</Text></Text>
-              <Text style={[styles.label]}>거리&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Text style={styles.rate}>56</Text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+              <Text style={[styles.calLabel]}>{(stepInfo.kcal / 100).toFixed(3)} kg</Text>
+              <View style={styles.row}>
+              <Text style={[styles.label]}>칼로리</Text><Text style={styles.rate}>{stepInfo.kcal.toFixed(3)}</Text>
+              </View>
+              <View style={styles.row}>
+              <Text style={[styles.label]}>거리</Text><Text style={styles.rate}>{stepInfo.meter.toFixed(3)}</Text>
+              </View>
             </View>
           </View>
         </View>
@@ -134,6 +141,12 @@ likeInfoContainer:{
 likeInfo:{
   marginRight:"auto",
   flexDirection: 'row',
+  alignItems: "center",
+  justifyContent: "center",
+},
+row:{
+  flexDirection: 'row',
+  width:"100rem",
   alignItems: "center",
   justifyContent: "center",
 },
@@ -204,7 +217,10 @@ agreeLabel:{
   color:"white",
 },
 rate:{
-  color:"#7B7B7B"
+  color:"#7B7B7B",
+  marginLeft:"10rem",
+  fontSize:10,
+  marginBottom:"5rem",
 },
 label:{
   fontSize:10,

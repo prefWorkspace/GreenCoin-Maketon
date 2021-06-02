@@ -31,6 +31,7 @@ export default function ProfileScreen({route}) {
 
     const logOut = () =>{
       realmController.logoutUserState();
+      navigation.goBack();
     }
 
     return (

@@ -12,6 +12,7 @@ import MainLikeInfo from '../../components/mains/main/MainLikeInfo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation } from "@react-navigation/core";
 import appStaticInfomation from "../../db/appStaticInfomation";
+import userInfoSingleton from "../../db/userInfoSingleton";
 
 import DateText from '../../components/commonsjh/dateText';
 

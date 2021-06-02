@@ -36,6 +36,7 @@ export default function MyProfileScreen({route}) {
       email : email,
       phone_no : phone,
       birth_day : `${year}-${month}-${day}`,
+      location_no : userInfoSingleton.getInstance()._location_no,
     }
     serverController.connectFetchController(`/users/userinfo`,"PUT",JSON.stringify(data),function(res){
       if(res.success==1){
@@ -45,14 +46,6 @@ export default function MyProfileScreen({route}) {
 
   }
 
-
-
-  useEffect(() => {
-    setToken(userInfoSingleton.getInstance()._token);
-    setName(userInfoSingleton.getInstance()._username);
-  }, [])
-
-
   
   useFocusEffect(
     React.useCallback(() => {
@@ -61,7 +54,7 @@ export default function MyProfileScreen({route}) {
         navigation.navigate("kakaoLogin");
       }
       else{
-        
+      setToken(userInfoSingleton.getInstance()._token);
       setName(userInfoSingleton.getInstance()._username);
       setEmail(userInfoSingleton.getInstance()._email);
       setPhone(userInfoSingleton.getInstance()._phone);

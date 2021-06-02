@@ -17,6 +17,7 @@ import localStringData from '../../const/localStringData'
 import serverController from '../../server/serverController'
 import userInfoSingleton from '../../db/userInfoSingleton'
 import { useNavigation } from "@react-navigation/core";
+import ModalCommon from '../../components/comm/ModalCommon'
 
 function getDateType(date){
   function checkZero(checkString){
@@ -32,18 +33,18 @@ const ContentScreen = () => {
   const [kg,setKg] = useState(50);
   const [kcal,setKcal] = useState(0);
   const [distancs,setDistancs] = useState(0);
+  const [show,setShow] = useState(false);
+
   const userInfo = userInfoSingleton.getInstance();
   const webview = useRef(null);
   
-  console.log(userInfo);
   const navigation = useNavigation();
   setUpdateIntervalForType(SensorTypes.accelerometer, 100); // defaults to 100ms
 
   const subscription = accelerometer
-  .pipe(map(({ x, y, z }) => x + y + z), filter(speed => speed > 20))
+  .pipe(map(({ x, y, z }) => x + y + z), filter(speed => {  return speed < -10 || speed > 12; }))
   .subscribe(
     speed => {
-      //console.log(`You moved your phone with ${speed}`)
       stepUpdate();
     },
     error => {
@@ -58,7 +59,8 @@ const ContentScreen = () => {
     appStaticInfomation.getInstance()._step = true;
     setTimeout(()=>{
         setStep(e => e + 1);
-        updateStep();
+        console.log("============")
+        //updateStep();
         appStaticInfomation.getInstance()._step = false;
     },1000);
   }
@@ -72,6 +74,9 @@ const ContentScreen = () => {
     else if(data.type == "myCoin"){
       navigation.navigate("myCoin");
     }
+    else{
+      setShow(true);
+    }
   }
 
 
@@ -81,7 +86,8 @@ const ContentScreen = () => {
       if(res.success != 1)
         return;
 
-      setStep(res.data.steps[0].step)
+      if(step < 2)
+        setStep(res.data.steps[0].step)
       setKg(55)
       setKcal(res.data.steps[0].kcal)
       setDistancs(res.data.steps[0].meter)
@@ -172,6 +178,7 @@ const ContentScreen = () => {
               />
         </ScrollView>
      </View>
+      <ModalCommon isModalVisible={show} setIsModalVisible={setShow} title={"공유 기능은 준비중에 있습니다"}/>
     </View>
   );
 }

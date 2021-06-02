@@ -159,6 +159,9 @@ const Contents = (props) => {
         updateCalendar();
     }
 
+    const clickNotReady = () =>{
+        window.ReactNativeWebView.postMessage(JSON.stringify({ type:"pop"}));
+    }
 
     return(
         <ContentsWrap>
@@ -166,7 +169,7 @@ const Contents = (props) => {
             <div ref={listRef} name="historyListTag" token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJubyI6IjciLCJ1c2VybmFtZSI6Imp1bmdtaW4iLCJsb2NhdGlvbl9ubyI6IjE3IiwibG9jYXRpb25fbmFtZSI6IuygnOyjvCIsImxvY2F0aW9uX2Z1bGxuYW1lIjoi7KCc7KO87Yq567OE7J6Q7LmY64-EIiwiaWF0IjoxNjIyNDYxNjk2fQ.klHmyW6Eyh_7Ztt9Whk6ciL1L60gK3ibkyoq8hwqB9w" no="7" onClick={getPointHistoryList}></div>
             {/* 만보기 */}
             <StepWrap>
-                <ShareImg src={Share} alt="공유하기 아이콘"/>
+                <ShareImg onClick={clickNotReady} src={Share} alt="공유하기 아이콘"/>
                 <StepTop>
                     <StepText name="steps">{currentStep} steps</StepText>
                     <KgText name="kgs">{currentKg} kg</KgText>

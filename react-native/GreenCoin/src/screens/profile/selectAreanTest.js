@@ -9,6 +9,7 @@ import userInfoSingleton from '../../db/userInfoSingleton';
 import MainTitle from '../../components/mains/main/MainTitle';
 import CommunityDetailTitle from "../../components/community/communityDetail/CommunityDetailTitle";
 import serverController from '../../server/serverController';
+import realmController from '../../db/realm/realmController';
 import WhiteGra from '../../img/intro/whiteGra.png';
 import CommonDetailTitle from '../../components/comm/CommonDetailTitle';
 
@@ -20,8 +21,9 @@ export default function SelectAreaTest({route}) {
 
     const [isPress, setIsPress] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(null);
+    const [currentItem, setCurrentItem] = useState(null);
     const [listData, setListData] = useState([]);
-
+    
 
     useEffect(() => {
       serverController.connectFetchController('/locations',"GET",null,function(res){
@@ -30,8 +32,28 @@ export default function SelectAreaTest({route}) {
     }, [])
 
     // 시작 버튼 클릭
-    const onClickStart = (item) =>{
-        // reactNativeSelectArea("tab");
+    const onClickStart = () =>{
+      if(!currentItem)
+        return;
+      
+      let data = {
+        token : userInfoSingleton.getInstance()._token ,
+        email : userInfoSingleton.getInstance()._email ? userInfoSingleton.getInstance()._email : "",
+        phone_no : userInfoSingleton.getInstance()._phone ? userInfoSingleton.getInstance()._phone : "",
+        birth_day : userInfoSingleton.getInstance()._bDay ? userInfoSingleton.getInstance()._bDay.split('T')[0] : "0000-00-00",
+        location_no : currentItem.no,
+      }
+
+      serverController.connectFetchController(`/users/userinfo`,"PUT",JSON.stringify(data),function(res){
+        if(res.success==1){
+          realmController.checkAutoLogin((result)=>{
+            if(result){
+              navigation.goBack();
+            }
+          });
+        }
+      },function(err){console.log(err);});
+
     }
     
     // 로그인 버튼 클릭
@@ -40,8 +62,9 @@ export default function SelectAreaTest({route}) {
     }
 
     // 리스트 클릭 
-    const onClickList = (index) =>{
+    const onClickList = (item,index) =>{
         setCurrentIndex(index);
+        setCurrentItem(item);
         if(currentIndex == index){
             setIsPress(false);
             setCurrentIndex(null);
@@ -61,7 +84,7 @@ export default function SelectAreaTest({route}) {
                 listData.map((item, index) => {
                     return(
                         <TouchableOpacity
-                        onPress={() => onClickList(index)}
+                        onPress={() => onClickList(item,index)}
                         style={[styles.listWrap, currentIndex==index&&styles.selectEl]}
                         key={index}
                         >
@@ -76,8 +99,8 @@ export default function SelectAreaTest({route}) {
         
 
          <ImageBackground source={require("../../img/intro/whiteGra.png")} style={styles.btnWrap}>
-             <TouchableOpacity style={[styles.startBtnWrap, styles.btn, isPress&&styles.selectStartBtn]}>
-                <Text style={styles.startBtn} onClick={() => onClickStart()}>지역 설정하기!</Text>
+             <TouchableOpacity style={[styles.startBtnWrap, styles.btn, isPress&&styles.selectStartBtn]} onPress={onClickStart}>
+                <Text style={styles.startBtn} >지역 설정하기!</Text>
              </TouchableOpacity>
         </ImageBackground>
 

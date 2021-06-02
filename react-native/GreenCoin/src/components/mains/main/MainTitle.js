@@ -13,7 +13,7 @@ export default function MainTitle() {
         <TouchableOpacity style={styles.titleLeft} onPress={()=>{navigation.navigate("main")}}>
           <Image style={styles.logoImage} source={require('../../../assets/img/logo/MainLogo.png')} resizeMode="stretch" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.titleRight}  onPress={()=>{  navigation.navigate("search" ,{root:routeInfo.name}); }}>
+        <TouchableOpacity style={styles.titleRight}  onPress={()=>{  navigation.navigate(""); }}>
           <Image style={styles.searchImage} source={require('../../../assets/img/logo/profile.png')}/>
         </TouchableOpacity>
       </View>

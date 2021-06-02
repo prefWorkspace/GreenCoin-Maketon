@@ -17,7 +17,8 @@ export default function MyInfo() {
 
   useFocusEffect(
     React.useCallback(() => {  
-      setName(userInfoSingleton.getInstance()._username)
+      
+    setName(userInfoSingleton.getInstance()._username)
     // 현재 포인트 불러오기
     const num = userInfoSingleton.getInstance()._no;
     const token = userInfoSingleton.getInstance()._token;
@@ -40,8 +41,8 @@ export default function MyInfo() {
           </View>
       </View>
     );
-  }
-
+}
+  
 
 const entireScreenWidth = Dimensions.get('window').width;
 EStyleSheet.build({ $rem: entireScreenWidth / 380 });
