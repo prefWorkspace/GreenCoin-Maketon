@@ -205,7 +205,7 @@ const Contents = (props) => {
                             graphData.map((item, index) => {
                                 if(index == 0){}
                                 return(
-                                    <GraphBar key={index} onClick={(e) => onClickBar(e, index, item)} style={{height:`${item}px`, backgroundColor:`${activeIndex == index?"#6EEAC8":"#E8E8E8"}`}}></GraphBar>
+                                    <GraphBar key={index} onClick={(e) => onClickBar(e, index, item)} style={{height:`${item >= 150 ? 150 : item}px`, backgroundColor:`${activeIndex == index?"#6EEAC8":"#E8E8E8"}`}}></GraphBar>
                                 )
                             })
                         }
@@ -257,15 +257,15 @@ const Contents = (props) => {
                     {
                         historyData.map((item, index) => {
                             let color = "#00C386";
-                            if(item.desc == "지역화폐 교환"){
+                            if(item.action_reason == "step_reward"){
                                 color="#D68C01";
                             }
                             return(
                                 <TableContentWrap key={index}>
                                     <TableContent style={{color:"#959595"}}>{item.action_date}</TableContent>
                                     <TableContent>{InsertComma(item.point)}코인</TableContent>
-                                    <TableContent style={{fontWeight:500, color:color}}>{item.action}</TableContent>
-                                    <TableContent>{InsertComma(item.point)}코인</TableContent>
+                                    <TableContent style={{fontWeight:500, color:color}}>{item.action_reason == "step_reward" ? "지급내역" : "교환요청"}</TableContent>
+                                    <TableContent>{InsertComma(item.point_result)}코인</TableContent>
                                 </TableContentWrap>
                             )
                         })

@@ -14,9 +14,8 @@ import WhiteGra from '../../img/intro/whiteGra.png';
 import CommonDetailTitle from '../../components/comm/CommonDetailTitle';
 
 
-export default function SelectAreaTest({route}) {
+export default function SelectAreaTest() {
     const navigation = useNavigation();
-    const userName = userInfoSingleton.getInstance()._userName;
     navigationBackHandler("main");
 
     const [isPress, setIsPress] = useState(false);
@@ -35,13 +34,14 @@ export default function SelectAreaTest({route}) {
     const onClickStart = () =>{
       if(!currentItem)
         return;
-      
+
       let data = {
         token : userInfoSingleton.getInstance()._token ,
         email : userInfoSingleton.getInstance()._email ? userInfoSingleton.getInstance()._email : "",
         phone_no : userInfoSingleton.getInstance()._phone ? userInfoSingleton.getInstance()._phone : "",
         birth_day : userInfoSingleton.getInstance()._bDay ? userInfoSingleton.getInstance()._bDay.split('T')[0] : "0000-00-00",
         location_no : currentItem.no,
+        profile_img  : userInfoSingleton.getInstance()._profile_img ? userInfoSingleton.getInstance()._profile_img : ""
       }
 
       serverController.connectFetchController(`/users/userinfo`,"PUT",JSON.stringify(data),function(res){

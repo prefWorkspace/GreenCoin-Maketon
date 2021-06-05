@@ -28,10 +28,10 @@ export default function InitStack() {
          headerShown: false
        }}
      >
+     <Stack.Screen name="tab" component={TabNavigation}/>
       <Stack.Screen name="kakaoLogin" component={KakaoLoginScreen}/>
       <Stack.Screen name="interest" component={SelectInterestScreen}/>
       <Stack.Screen name="area" component={SelectAreaScreen}/>
-      <Stack.Screen name="tab" component={TabNavigation}/>
       {/* <Stack.Screen name="cartOrderSuccess" component={CartOrderSuccessScreen}/>
       <Stack.Screen name="login" component={LoginStack}/>
       <Stack.Screen name="register" component={RegisterAccountStack}/>

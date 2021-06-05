@@ -18,68 +18,6 @@ import ModalImageContent from "../../components/comm/ModalImageContent";
 import DateText from '../../components/commonsjh/dateText';
 import serverController from '../../server/serverController';
 
-const CommunityList = [
-  {
-    title:"탄소줄이고 다이어트도 같이했어요!",
-    date :"2020.00.00",
-    type : 0,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac… 운동",
-    date :"2020.11.00",
-    type : 1,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac…",
-    date :"2020.33.00",
-    type : 2,
-  },
-  {
-    title:"탄소줄이고 다이어트도 같이했어요!",
-    date :"2020.00.00",
-    type : 0,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac… 운동",
-    date :"2020.11.00",
-    type : 1,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac…",
-    date :"2020.33.00",
-    type : 2, 
-  },
-  {
-    title:"탄소줄이고 다이어트도 같이했어요!",
-    date :"2020.00.00",
-    type : 0,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac… 운동",
-    date :"2020.11.00",
-    type : 1,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac…",
-    date :"2020.33.00",
-    type : 2,
-  },
-  {
-    title:"탄소줄이고 다이어트도 같이했어요!",
-    date :"2020.00.00",
-    type : 0,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac… 운동",
-    date :"2020.11.00",
-    type : 1,
-  },
-  {
-    title:"Title place here, long title will be shorten when text reac…",
-    date :"2020.33.00",
-    type : 2, 
-  },
-]
 
 const CommunityDetailScreen = ({route}) => {
  

@@ -6,8 +6,8 @@ const api = axios.create({baseURL:"http://172.28.5.10:3000"});
 
 export default {
     imagePath : "https://greencoinimage.s3.ap-northeast-2.amazonaws.com/images/",
-    ip : "http://172.28.5.10:3000",
-    webIp : "http://172.28.5.10:3000",
+    ip : "http://3.35.2.241:3000",
+    webIp : "http://3.35.2.241:3000",
     api : api,
 };
 

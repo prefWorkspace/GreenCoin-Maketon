@@ -4,7 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 
 import KakaoLogins, {KAKAO_AUTH_TYPES} from '@react-native-seoul/kakao-login';
-import realController from '../db/realm/realmController';
+import realmController from '../db/realm/realmController';
 import LoginTypeSelectButton from '../components/comm/LoginTypeSelectButton';
 import appStaticInfomation from '../db/appStaticInfomation';
 import userInfoSingleton from '../db/userInfoSingleton';
@@ -15,27 +15,7 @@ import { useNavigation } from '@react-navigation/core';
 export default function KakaoLoginScreen() {
 
   const navigation = useNavigation();
-  const appInfo = appStaticInfomation.getInstance();
 
-  const callBackRegister = async (data) =>{
-    if(!data)
-      return;
-
-    var state = {
-      no : data.userInfo.no,
-      username : data.userInfo.username,
-      autoLogin : true,
-      isLogin : true,
-      point : data.userInfo.point,
-      location_no : data.userInfo.location_no,
-      location_name : data.userInfo.location_name,
-      location_fullname : data.userInfo.location_fullname,
-      token : data.token
-    }
-
-    await realController.successUserLogin(state);
-    navigation.goBack();
-  }
 
 
   const loginByKakao = () =>{
@@ -43,16 +23,38 @@ export default function KakaoLoginScreen() {
       .then(tocken => {
         KakaoLogins.getProfile()
         .then(result => {
-          console.log(result);
             let data = {
               id : result.id,
-              username  : result.nickname ?  result.nickname : "jungmin",
-              location_no  : 17,
+              username  : result.nickname ?  result.nickname : "user",
+              location_no  : 1,
             }
 
-            serverController.connectFetchController("/auth/kakao","POST",JSON.stringify(data),function(res){
-              callBackRegister(res.data);
-              
+            serverController.connectFetchController("/auth/kakao","POST",JSON.stringify(data),async function(res){
+              serverController.connectFetchController(`/auth?token=${res.data.token}`,"GET",null,async function(res){
+                let data = res.data;
+
+                if(!data)
+                    return;
+                var state = {
+                    no : data.userInfo.no,
+                    username : data.userInfo.username,
+                    autoLogin : true,
+                    isLogin : true,
+                    point : data.userInfo.point ? data.userInfo.point : "0",
+                    location_no : data.userInfo.location_no,
+                    location_name : data.userInfo.location_name,
+                    location_fullname : data.userInfo.location_fullname,
+                    email : data.userProfile.email,
+                    phone : data.userProfile.phone_no,
+                    bDay : data.userProfile.birth_day,
+                    token : data.token,
+                    profile_img : data.userProfile.profile_img
+                }
+
+                await realmController.successUserLogin(state);
+                navigation.goBack();
+                  
+            });
             })
         })
         .catch(err => {

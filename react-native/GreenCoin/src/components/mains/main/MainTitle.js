@@ -1,12 +1,19 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { TouchableOpacity, Text,Image, View, Dimensions,ScrollView,StyleSheet, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { useNavigation ,useRoute } from '@react-navigation/native';
+import { useNavigation ,useRoute , useFocusEffect } from '@react-navigation/native';
 import userInfoSingleton from '../../../db/userInfoSingleton';
 
 export default function MainTitle() {
   const navigation = useNavigation();
-  const routeInfo = useRoute();
+  const [image, setImage] = useState("");
+
+
+  useFocusEffect(
+    React.useCallback(() => {  
+      setImage(userInfoSingleton.getInstance()._profile_img);
+    }, [])
+  );
 
     return (
       <View style={styles.container}>
@@ -14,7 +21,14 @@ export default function MainTitle() {
           <Image style={styles.logoImage} source={require('../../../assets/img/logo/MainLogo.png')} resizeMode="stretch" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.titleRight}  onPress={()=>{  navigation.navigate(""); }}>
-          <Image style={styles.searchImage} source={require('../../../assets/img/logo/profile.png')}/>
+          <Image style={styles.image} source={
+              image ? 
+              {uri: "https://d2rue8hpwv3oux.cloudfront.net/post/" + image}
+              :
+              require('../../../assets/img/logo/profile.png')
+              } 
+              resizeMode={"cover"}
+            />
         </TouchableOpacity>
       </View>
     );
@@ -50,13 +64,10 @@ const styles = EStyleSheet.create({
     height:"40.62rem",
     width:"123.09rem"
   },
-  searchImage:{
-    width :"40.62rem",
-    height:"40.62rem",
-    backgroundColor:"grey",
+  image:{ 
+    width:"40rem",
+    height:"40rem",
     borderRadius:50,
-
-    
-  }
+  },
 
 });

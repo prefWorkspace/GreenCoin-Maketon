@@ -68,19 +68,67 @@ const CommunityPostScreen = ({route}) => {
     },function(err){console.log(err);});
   }
 
+
+  
+  const saveImageToServer = () =>{
+    var formData = new FormData();
+
+    imageList.map((value)=>{
+      formData.append('file', {
+        uri: value.path, 
+        type: value.mime, 
+        name: value.path.split('/')[value.path.split('/').length - 1], }
+      );
+    })
+
+    formData.append("token",userInfoSingleton.getInstance()._token);
+    formData.append("path","post/");
+    serverController.insertFilePostFetchController(`/files`,formData,function(res){
+      if(res.success==1){
+
+          let img_attachment = [];
+          res.data.upload_results.map((value)=>{
+            img_attachment.push(value.file_name);
+          });
+          
+          let data = {
+            token : token,
+            title : titleValue,
+            content : labelValue,
+            img_attachment : img_attachment
+          }
+      
+          serverController.connectFetchController(`/posts/${modifyNum}`,"PUT",JSON.stringify(data),function(res){
+            if(res.success==1){
+              navigation.navigate("myContent");
+            }
+          },function(err){console.log("err");console.log(err);});
+      }
+
+
+    },function(err){console.log(err);});
+  }
+  
+
   // 글수정
   const onClickModify = () => {
-    let data = {
-      token : token,
-      title : titleValue,
-      content : labelValue,
-    }
-    serverController.connectFetchController(`/posts/${modifyNum}`,"PUT",JSON.stringify(data),function(res){
-      if(res.success==1){
-        navigation.navigate("myContent");
-      }
-    },function(err){console.log("err");console.log(err);});
 
+    if(imageList.length > 0){
+      saveImageToServer();
+    }
+    else{
+      let data = {
+        token : token,
+        title : titleValue,
+        content : labelValue,
+      }
+  
+      serverController.connectFetchController(`/posts/${modifyNum}`,"PUT",JSON.stringify(data),function(res){
+        if(res.success==1){
+          navigation.navigate("myContent");
+        }
+      },function(err){console.log("err");console.log(err);});
+    }
 
   }
 

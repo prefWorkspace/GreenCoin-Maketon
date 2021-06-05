@@ -56,6 +56,19 @@ export default function MyCoinScreen({route}) {
         setHistoryData(res.data.point_history);
       });
     }
+
+    const makeToCoin = () =>{
+
+      const num = userInfoSingleton.getInstance()._no;
+      const token = userInfoSingleton.getInstance()._token;
+
+      var data = { token : token }
+      serverController.connectFetchController(`/users/${num}/points`,"delete",JSON.stringify(data),
+      function(res){
+        setHistoryData([...historyData.concat(res.data.point_history)]);
+      });
+    }
+
     return (
       <View  style={styles.container}>
         <MainTitle></MainTitle>
@@ -64,7 +77,7 @@ export default function MyCoinScreen({route}) {
           <View style={styles.currentArea}>
             <View style={styles.currentTop}>
               <Text style={styles.currentTitle}>보유 그린코인:</Text>
-              <Text style={styles.changeText}>지역 화폐로 교환</Text>
+              <Text style={styles.changeText} onPress={makeToCoin} >지역 화폐로 교환</Text>
             </View>
 
             <Text style={styles.crtCoin}>{currentCoin} 코인</Text>
@@ -88,12 +101,13 @@ export default function MyCoinScreen({route}) {
               <>     
                 {
                   historyData.map((item, index) => {
+                    console.log(item.action_reason);
                     return(
                       <View style={styles.contentWrap}>
-                        <Text style={[styles.tableContent, styles.grey]}>{item.date}</Text>
-                        <Text style={styles.tableContent}>{item.price} 코인</Text>
-                        <Text style={[styles.tableContent, item.desc == "지역화폐 교환"?styles.orange:styles.green]}>{item.desc}</Text>
-                        <Text style={styles.tableContent}>{item.current} 코인</Text>
+                        <Text style={[styles.tableContent, styles.grey]}>{item.action_date}</Text>
+                        <Text style={styles.tableContent}>{item.point} 코인</Text>
+                        <Text style={[styles.tableContent, item.action_reason == "claim_money"?styles.orange:styles.green]}>{item.action_reason == "step_reward" ? "지급내역" : "교환요청"}</Text>
+                        <Text style={styles.tableContent}>{item.point_result} 코인</Text>
                       </View>
                     )
                   })

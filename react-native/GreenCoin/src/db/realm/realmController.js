@@ -80,7 +80,8 @@ const logOutUserState = () =>{
         token : '',
         email : '',
         phone :'',
-        bDay : ''
+        bDay : '',
+        profile_img : '',
 
     });
 }
@@ -94,7 +95,7 @@ export default {
 
                 if(!data)
                     return;
-            
+            console.log(data);
                 var state = {
                     no : data.userInfo.no,
                     username : data.userInfo.username,
@@ -107,7 +108,8 @@ export default {
                     email : data.userProfile.email,
                     phone : data.userProfile.phone_no,
                     bDay : data.userProfile.birth_day,
-                    token : data.token
+                    token : data.token,
+                    profile_img : data.userProfile.profile_img
                 }
 
                 await updateUserInfomation(state);

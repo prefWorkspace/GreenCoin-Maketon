@@ -11,7 +11,7 @@ export default function CommunityPostImage({imageList , setImageList}) {
   
   const clickOpenGallery = () =>{
     ImagePicker.openPicker({ multiple: true ,mediaType:'photo', compressImageQuality : 0.6}).then(images => {
-      if(imageList.length + images.length > 4){
+      if( images.length > 4){
         Alert.alert(" ","이미지는 최대 4장까지 첨부 가능합니다.");
       }else{
         images.map((value)=>{imageList.push(value)});

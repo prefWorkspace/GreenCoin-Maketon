@@ -17,6 +17,7 @@ export default class CommonDataManager {
     _phone = "";
     _bDay = "";
 
+    _profile_img = '';
 
 
     /**
@@ -43,6 +44,8 @@ export default class CommonDataManager {
         this._email = state.email;
         this._phone = state.phone;
         this._bDay = state.bDay;
+        this._profile_img = state.profile_img;
+
     }
 
     logout(){
@@ -51,6 +54,7 @@ export default class CommonDataManager {
         this._autoLogin = false;
         this._isLogin = false;
         this._token = "";
+        this._profile_img = "";
     }
 
     isLogin(){

@@ -107,8 +107,7 @@ const ContentScreen = () => {
     function(res){
       if(res.success != 1)
         return;
-
-        console.log(res.data.steps);
+        initSteps();
        // console.log(res.data.steps);
     }
     );
@@ -129,7 +128,7 @@ const ContentScreen = () => {
 
       webview.current.injectJavaScript(`
         document.getElementsByName("steps")[0].innerHTML = "${step} steps";
-        document.getElementsByName("kgs")[0].innerHTML = "${kg} kg";
+        document.getElementsByName("kgs")[0].innerHTML = "${kcal > 0 ? (kcal / 100).toFixed(3) : (ca / 100).toFixed(3)} kg";
         document.getElementsByName("kcals")[0].innerHTML = "${kcal > 0 ? kcal.toFixed(3) : ca}";
         document.getElementsByName("tansos")[0].innerHTML = "${tan}";
         document.getElementsByName("distancs")[0].innerHTML = "${distancs > 0 ? distancs.toFixed(3) : (step *  0.0008).toFixed(3)}";
@@ -164,7 +163,7 @@ const ContentScreen = () => {
     <View style={styles.container}>
       <MainTitle/>
       <View>
-        <TouchableOpacity onPress={updateStep}><Text>step : {step}</Text></TouchableOpacity>
+        {/* <TouchableOpacity onPress={updateStep}><Text>step : {step}</Text></TouchableOpacity> */}
         <ScrollView  contentContainerStyle={{flexGrow: 1, height : "100%"}}>
           <WebView
               ref={webview}

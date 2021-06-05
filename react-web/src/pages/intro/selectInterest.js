@@ -26,18 +26,19 @@ const SelectInterest = ({}) => {
     const [listData, setListData] = useState([]);
 
 
-    // const listData = [
-    //     {img: list, avtiveImg:listAct, title:"탄소줄이기"},
-    //     {img: list_2, avtiveImg:list_2Act, title:"수질오염"},
-    //     {img: list_3, avtiveImg:list_3Act, title:"쓰레기 줄이기"},
-    //     {img: list_4, avtiveImg:list_4Act, title:"미세먼지"},
-    //     {img: list_5, avtiveImg:list_5Act, title:"Sustainable fashion"},
-    // ];
-    
-    useEffect(() => {  serverController.connectFetchController('pollutions',"GET",null,function(res){
+
+    useEffect(() => {  
+        
+        window.ReactNativeWebView.postMessage(JSON.stringify({
+            type:"interest",
+            data:selectedArr
+        }));
+        /*
+        serverController.connectFetchController('pollutions',"GET",null,function(res){
         console.log(res);
         setListData(res.data.pollutions);
-    },null);  }, [])
+    },null); */
+ }, [])
 
     const onClickListEl = (index) => {
         let newArr = selectedArr;
@@ -70,7 +71,6 @@ const SelectInterest = ({}) => {
             <ListWrap>
                 {
                     listData.map((item, index) => {
-                        console.log(item);
                         return(
                             <ListEl onClick={() => onClickListEl(item.no)} img={list}></ListEl>
                         )
