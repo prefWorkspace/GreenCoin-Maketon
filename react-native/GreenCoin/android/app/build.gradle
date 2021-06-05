@@ -161,9 +161,6 @@ android {
         }
         release {
             storeFile file('dragon.jks') // 기준은 App 폴더 기준이다.
-            storePassword "Yddcom2020!@"
-            keyAlias "yddcompany2019@gmail.com"
-            keyPassword "Yddcom2020!@"
         }
     }
     buildTypes {
